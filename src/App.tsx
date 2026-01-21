@@ -1,9 +1,5 @@
-import Index from "./pages/Index";
+import Home from "./pages"; // aponta para src/pages/index.tsx
 
-function App() {
-  return (
-    <Index />
-  );
+export default function App() {
+  return <Home />;
 }
-
-export default App;
