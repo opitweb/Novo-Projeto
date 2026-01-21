@@ -1,9 +1,7 @@
-import Index from "./pages/Index";
-
-function App() {
+export default function Home() {
   return (
-    <Index />
+    <main className="min-h-screen flex items-center justify-center">
+      <h1 className="text-3xl font-bold">MedDigital</h1>
+    </main>
   );
 }
-
-export default App;
