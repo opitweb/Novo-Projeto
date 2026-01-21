@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern Healthcare + Marketing Agency Palette */
+    --background: 220 30% 98%;
+    --foreground: 220 60% 18%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 60% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 60% 18%;
+    --primary: 200 80% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 60% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 15% 45%;
+    --accent: 25 95% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 200 80% 35%;
+    --radius: 0.75rem;
+
+    /* Custom tokens - Healthcare Marketing */
+    --healthcare-teal: 180 65% 45%;
+    --healthcare-blue: 200 80% 35%;
+    --healthcare-purple: 260 60% 55%;
+    --healthcare-coral: 25 95% 55%;
+    --healthcare-green: 160 60% 45%;
+    --soft-blue: 210 100% 96%;
+    --soft-purple: 260 100% 97%;
+    --soft-coral: 25 100% 96%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 60% 18%;
+    --sidebar-primary: 200 80% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 94%;
+    --sidebar-accent-foreground: 220 60% 18%;
+    --sidebar-border: 220 20% 88%;
+    --sidebar-ring: 200 80% 35%;
+  }
+
+  .dark {
+    --background: 220 25% 10%;
+    --foreground: 220 20% 95%;
+    --card: 220 25% 12%;
+    --card-foreground: 220 20% 95%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 200 80% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 60% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 15% 60%;
+    --accent: 25 95% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 200 80% 45%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  h1, h2, h3, h4, h5, h6 { @apply font-display tracking-tight; }
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight; }
+  h2 { @apply text-3xl md:text-4xl font-bold leading-tight; }
+  h3 { @apply text-xl md:text-2xl font-semibold; }
+  h4 { @apply text-lg font-semibold; }
+  p { @apply leading-relaxed; }
+}
+
+@layer components {
+  /* Gradient backgrounds */
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--soft-blue)) 0%, hsl(var(--soft-purple)) 50%, hsl(var(--soft-coral)) 100%);
+  }
+  .bg-gradient-section {
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--soft-blue)) 100%);
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--healthcare-teal)) 100%);
+  }
+
+  /* Decorative blob shapes */
+  .blob-shape { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+
+  /* Modern button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full
+           bg-gradient-to-r from-primary to-healthcare-teal text-primary-foreground 
+           font-sans font-semibold tracking-wide transition-all duration-300 
+           hover:shadow-lg hover:shadow-primary/30 hover:scale-105
+           focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full
+           border-2 border-primary text-primary 
+           font-sans font-semibold tracking-wide transition-all duration-300 
+           hover:bg-primary hover:text-primary-foreground hover:scale-105
+           focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  /* BOTÃO VERDE CORRIGIDO */
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full
+           bg-gradient-to-r from-healthcare-teal to-healthcare-green text-white 
+           font-sans font-semibold tracking-wide transition-all duration-300 
+           hover:shadow-lg hover:shadow-healthcare-teal/30 hover:scale-105
+           focus:outline-none focus:ring-2 focus:ring-healthcare-teal/50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3 text-primary 
+           font-sans font-semibold tracking-wide transition-all duration-300 
+           hover:text-accent relative;
+  }
+  .btn-ghost::after {
+    @apply content-[''] absolute bottom-2 left-6 right-6 h-0.5 bg-accent rounded-full scale-x-0 
+           transition-transform duration-300 origin-left;
+  }
+  .btn-ghost:hover::after { @apply scale-x-100; }
+
+  /* Section styling */
+  .section-padding { @apply py-20 md:py-28 lg:py-32; }
+  .container-narrow { @apply max-w-5xl mx-auto px-6 md:px-8; }
+  .container-wide { @apply max-w-7xl mx-auto px-6 md:px-8; }
+
+  /* Card styles */
+  .card-modern {
+    @apply bg-card p-8 md:p-10 rounded-2xl border border-border/30 
+           transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1;
+  }
+  .card-gradient {
+    @apply relative p-8 md:p-10 rounded-2xl overflow-hidden
+           bg-gradient-to-br from-card via-card to-soft-blue
+           border border-border/30 transition-all duration-500 
+           hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2;
+  }
+  .card-icon {
+    @apply w-16 h-16 rounded-2xl flex items-center justify-center
+           bg-gradient-to-br from-primary/10 to-healthcare-teal/10
+           transition-all duration-300;
+  }
+
+  /* Text styling */
+  .text-balance { text-wrap: balance; }
+
+  /* TEXTO VERDE CORRIGIDO */
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-healthcare-teal via-healthcare-green to-primary;
+  }
+
+  /* Animate on scroll */
+  .animate-fade-up { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+  .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .link-underline { @apply relative; }
+  .link-underline::after {
+    @apply content-[''] absolute -bottom-0.5 left-0 w-full h-0.5 bg-accent rounded-full
+           scale-x-0 transition-transform duration-300 origin-left;
+  }
+  .link-underline:hover::after { @apply scale-x-100; }
+}
+
+@layer utilities {
+  .bg-healthcare-teal { background-color: hsl(var(--healthcare-teal)); }
+  .bg-healthcare-blue { background-color: hsl(var(--healthcare-blue)); }
+  .bg-healthcare-purple { background-color: hsl(var(--healthcare-purple)); }
+  .bg-healthcare-coral { background-color: hsl(var(--healthcare-coral)); }
+  .bg-soft-blue { background-color: hsl(var(--soft-blue)); }
+  .bg-soft-purple { background-color: hsl(var(--soft-purple)); }
+  .bg-soft-coral { background-color: hsl(var(--soft-coral)); }
+  .text-healthcare-teal { color: hsl(var(--healthcare-teal)); }
+  .text-healthcare-coral { color: hsl(var(--healthcare-coral)); }
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+html { scroll-behavior: smooth; }
+::selection { background-color: hsl(var(--accent) / 0.2); color: hsl(var(--primary)); }
