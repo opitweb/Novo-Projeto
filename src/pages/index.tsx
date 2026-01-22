@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Sparkles, Zap, ArrowRight } from 'lucide-react';
+import { Sparkles, Zap, ArrowRight, CheckCircle2, TrendingUp, Users } from 'lucide-react';
 
-const HealthMarketingLanding = () => {
+const Index = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -12,87 +11,113 @@ const HealthMarketingLanding = () => {
   }, []);
 
   return (
-    <>
-      <Helmet>
-        <title>Betterfly | Marketing Digital para Saúde em Barcelona</title>
-      </Helmet>
+    <div className="min-h-screen bg-white text-slate-900 transition-colors duration-500">
+      
+      {/* ELEMENTOS DE FUNDO (PARALLAX) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div 
+          className="absolute w-[600px] h-[600px] rounded-full blur-[120px] bg-blue-100 opacity-60"
+          style={{
+            transform: `translateY(${scrollY * -0.2}px) translateX(20%)`,
+            top: '10%',
+            right: '0'
+          }}
+        />
+      </div>
 
-      {/* bg-background usa o BRANCO do seu CSS */}
-      <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
-        
-        {/* ELEMENTOS DE FUNDO (PARALLAX SUAVE) */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-          <div 
-            className="absolute w-[600px] h-[600px] rounded-full blur-[120px] bg-soft-blue opacity-60"
-            style={{
-              transform: `translateY(${scrollY * -0.2}px) translateX(20%)`,
-              top: '10%',
-              right: '0'
-            }}
-          />
-        </div>
-
-        {/* HERO SECTION */}
-        <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[90vh] flex items-center">
-          <div className="max-w-7xl mx-auto w-full relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              
-              <div className="space-y-8 animate-fade-up">
-                <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 text-primary px-5 py-2 rounded-full text-sm font-bold">
-                  <Sparkles className="w-4 h-4" />
-                  Marketing Médico em Barcelona
-                </div>
-
-                {/* Usando sua classe text-gradient do Index.css */}
-                <h1 className="text-5xl lg:text-7xl font-black leading-tight text-slate-900">
-                  Marketing Médico <br/>
-                  <span className="text-gradient">estratégico e ético</span>
-                </h1>
-
-                <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
-                  Construímos posicionamento sólido para clínicas, gerando 
-                  <span className="text-primary font-bold"> confiança e crescimento sustentável</span>.
-                </p>
-
-                <div className="flex flex-wrap gap-4">
-                  <button className="btn-primary">
-                    Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
-                  </button>
-                  <button className="btn-outline">Ver Casos</button>
-                </div>
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-[90vh] flex items-center">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 text-blue-600 px-5 py-2 rounded-full text-sm font-bold">
+                <Sparkles className="w-4 h-4" />
+                Estúdio de Marketing em Barcelona
               </div>
 
-              {/* LADO DIREITO: Substituímos o vazio por um card de impacto */}
-              <div className="hidden lg:block relative">
-                <div className="card-gradient p-8 animate-fade-in">
-                  <div className="text-center">
-                    <p className="text-5xl font-black text-primary">+340%</p>
-                    <p className="text-slate-600 font-medium">Aumento médio em conversão</p>
+              <h1 className="text-5xl lg:text-7xl font-black leading-tight text-slate-900">
+                Marketing Médico <br/>
+                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">estratégico e ético</span>
+              </h1>
+
+              <p className="text-xl text-slate-600 leading-relaxed max-w-xl">
+                Construímos posicionamento sólido para clínicas e profissionais, gerando 
+                <span className="text-blue-600 font-bold"> confiança e crescimento sustentável</span>.
+              </p>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold flex items-center transition-all transform hover:scale-105 shadow-lg shadow-blue-200">
+                  Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+                <button className="border-2 border-slate-200 hover:border-blue-600 hover:text-blue-600 text-slate-600 px-8 py-4 rounded-xl font-bold transition-all">
+                  Ver Casos
+                </button>
+              </div>
+            </div>
+
+            {/* CARD DE IMPACTO LADO DIREITO */}
+            <div className="hidden lg:block relative animate-in fade-in zoom-in duration-1000">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
+                  <TrendingUp size={120} />
+                </div>
+                <div className="relative z-10 text-center text-white">
+                  <p className="text-7xl font-black mb-2">+340%</p>
+                  <p className="text-blue-10/80 text-xl font-medium">Aumento médio de novos pacientes</p>
+                  <div className="mt-8 flex justify-center gap-4">
+                    <div className="bg-white/10 px-4 py-2 rounded-lg backdrop-blur-md">
+                      <p className="text-xs uppercase tracking-wider opacity-70">Confiança</p>
+                      <p className="font-bold">100% Ético</p>
+                    </div>
+                    <div className="bg-white/10 px-4 py-2 rounded-lg backdrop-blur-md">
+                      <p className="text-xs uppercase tracking-wider opacity-70">Retorno</p>
+                      <p className="font-bold">ROI Garantido</p>
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
-        </section>
 
-        {/* SEÇÃO DE SERVIÇOS (Exemplo de como continuar o site) */}
-        <section className="section-padding bg-white/50 backdrop-blur-sm border-t border-border">
-          <div className="container-wide text-center">
-            <h2 className="mb-12">Nossos Serviços</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-               <div className="card-modern">
-                  <Zap className="text-primary w-10 h-10 mb-4" />
-                  <h3>SEO Médico</h3>
-                  <p className="text-muted-foreground">Apareça no topo do Google quando pacientes buscarem sua especialidade.</p>
-               </div>
-               {/* Adicione mais cards aqui */}
-            </div>
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE SERVIÇOS */}
+      <section className="py-24 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl lg:text-5xl font-bold mb-16 text-slate-900">
+            Especialidades que <span className="text-blue-600">dominamos</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-left group">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                  <Zap className="text-blue-600 group-hover:text-white w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">SEO Médico</h3>
+                <p className="text-slate-600 leading-relaxed">Fique no topo das buscas do Google quando o paciente precisar da sua especialidade.</p>
+             </div>
+
+             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-left group">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                  <Users className="text-blue-600 group-hover:text-white w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">Gestão de Autoridade</h3>
+                <p className="text-slate-600 leading-relaxed">Transformamos seu conhecimento em conteúdo que gera desejo e confiança imediata.</p>
+             </div>
+
+             <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all text-left group">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                  <CheckCircle2 className="text-blue-600 group-hover:text-white w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">Anúncios Éticos</h3>
+                <p className="text-slate-600 leading-relaxed">Campanhas focadas em conversão, respeitando todas as normas do conselho de saúde.</p>
+             </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default HealthMarketingLanding;
+export default Index;
