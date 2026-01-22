@@ -1,8 +1,8 @@
-import Home from './pages/index'; // Importa o código que você me mandou
+import HealthMarketingLanding from './pages/index';
 
 function App() {
   return (
-    <Home />
+    <HealthMarketingLanding />
   );
 }
 
