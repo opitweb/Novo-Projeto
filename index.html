@@ -1,61 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Sparkles
-} from "lucide-react";
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>MedDigital | Agencia de Marketing Médico</title>
+    <meta name="description" content="Estrategias digitales especializadas en el sector sanitario: SEO médico, visibilidad local y captación de pacientes." />
+    <meta name="author" content="MedDigital" />
 
-const Index = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    <meta property="og:title" content="MedDigital | Marketing para Clínicas" />
+    <meta property="og:description" content="Impulsamos tu clínica médica en el mundo digital con resultados medibles." />
+    <meta property="og:type" content="website" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MedDigital | Marketing Médico" />
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  </head>
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
-
-      {/* HERO */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-
-          {/* H1 SEO (INVISÍVEL – NÃO MUDA DESIGN) */}
-          <h1 className="sr-only">
-            Marketing Digital para Profesionales de la Salud en Barcelona
-          </h1>
-
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 backdrop-blur-sm text-cyan-400 px-5 py-3 rounded-full text-sm font-bold mb-6">
-            <Sparkles className="w-5 h-5 animate-pulse" />
-            Estudio especializado en salud en Barcelona
-          </div>
-
-          <div className="text-6xl lg:text-7xl font-black leading-tight mb-6">
-            <span className="block text-white mb-2">Marketing Médico</span>
-            <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent animate-gradient">
-              estratégico
-            </span>
-            <span className="block text-white">y ético</span>
-          </div>
-
-          <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl">
-            Estrategia y posicionamiento digital para profesionales y clínicas
-            de la salud en Barcelona, con foco en confianza y crecimiento sostenible.
-          </p>
-        </div>
-      </section>
-
-      {/* SEO LOCAL INVISÍVEL */}
-      <section className="sr-only">
-        <h2>Marketing Médico en Barcelona</h2>
-        <p>
-          Estudio de marketing digital especializado en profesionales de la salud,
-          clínicas, terapeutas y centros sanitarios en Barcelona.
-        </p>
-      </section>
-
-    </div>
-  );
-};
-
-export default Index;
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
