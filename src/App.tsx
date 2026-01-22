@@ -3,9 +3,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// CORREÇÃO AQUI: Mudamos "Index" para "index" (minúsculo)
+// Corrigido para minúsculo
 import Index from "./pages/index"; 
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/notFound";
 import { Chatbot } from "@/components/chatbot/Chatbot"; 
 
 const queryClient = new QueryClient();
@@ -20,6 +20,7 @@ const App = () => (
         
         <Routes>
           <Route path="/" element={<Index />} />
+          {/* Rota de captura para páginas não encontradas */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
