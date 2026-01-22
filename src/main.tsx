@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async' // Essencial para o SEO funcionar
 import App from './App'
-import './App.css' // Esta linha ativa o fundo preto e as cores
+import './index.css' // Mantenha o index.css que tem o :root { --background: 100% }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </React.StrictMode>,
 )
