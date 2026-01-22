@@ -1,7 +1,9 @@
-export default function App() {
+import Home from './pages/index'; // Importa o componente que você me enviou
+
+function App() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">MedDigital</h1>
-    </main>
+    <Home />
   );
 }
+
+export default App;
