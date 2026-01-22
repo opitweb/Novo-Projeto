@@ -30,7 +30,6 @@ const HealthMarketingLanding = () => {
 
   return (
     <>
-      {/* SEO TÉCNICO – VITE */}
       <Helmet>
         <title>
           Betterfly | Estudio de Marca y Marketing Digital para Salud en Barcelona
@@ -51,7 +50,6 @@ const HealthMarketingLanding = () => {
 
               <div className="space-y-8">
 
-                {/* H1 SEO INVISÍVEL */}
                 <h1 className="sr-only">
                   Estudio de Marca y Marketing Digital para Profesionales de la Salud en Barcelona
                 </h1>
@@ -61,7 +59,6 @@ const HealthMarketingLanding = () => {
                   Estudio especializado en salud en Barcelona
                 </div>
 
-                {/* Headline visual – INALTERADA */}
                 <div className="text-6xl lg:text-7xl font-black leading-tight">
                   <span className="block text-white mb-2">Marketing Médico</span>
                   <span className="block bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent animate-gradient">
@@ -79,13 +76,11 @@ const HealthMarketingLanding = () => {
                 </p>
               </div>
 
-              {/* VISUAL: permanece exatamente igual */}
-              <div />
+              <div /> {/* VISUAL placeholder */}
             </div>
           </div>
         </section>
 
-        {/* SEO LOCAL INVISÍVEL */}
         <section className="sr-only">
           <h2>Estudio de Marketing Digital en Barcelona</h2>
           <p>
