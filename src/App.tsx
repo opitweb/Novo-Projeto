@@ -1,4 +1,4 @@
-import Home from './pages/index'; // Importa o componente que você me enviou
+import Home from './pages/index'; // Importa o código que você me mandou
 
 function App() {
   return (
