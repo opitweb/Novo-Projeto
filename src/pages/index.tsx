@@ -30,23 +30,32 @@ const Index = () => {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 text-blue-600 px-5 py-2 rounded-full text-sm font-bold">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 text-blue-600 px-5 py-2 rounded-full text-sm font-bold animate-in fade-in zoom-in duration-700">
                 <Sparkles className="w-4 h-4" />
                 Estúdio de Marketing em Barcelona
               </div>
 
+              {/* TÍTULO COM EFEITO DE REVELAÇÃO (LETREIRO) */}
               <h1 className="text-5xl lg:text-7xl font-black leading-tight text-slate-900">
-                Marketing Médico <br/>
-                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">estratégico e ético</span>
+                <span className="block overflow-hidden">
+                  <span className="block animate-in slide-in-from-top-full duration-1000 ease-in-out">
+                    Marketing Médico
+                  </span>
+                </span>
+                <span className="block overflow-hidden">
+                  <span className="block bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent animate-in slide-in-from-bottom-full duration-1000 delay-300 ease-in-out">
+                    estratégico e ético
+                  </span>
+                </span>
               </h1>
 
-              <p className="text-xl text-slate-600 leading-relaxed max-w-xl">
+              <p className="text-xl text-slate-600 leading-relaxed max-w-xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
                 Construímos posicionamento sólido para clínicas e profissionais, gerando 
                 <span className="text-blue-600 font-bold"> confiança e crescimento sustentável</span>.
               </p>
 
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-wrap gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-700">
                 <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold flex items-center transition-all transform hover:scale-105 shadow-lg shadow-blue-200">
                   Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
                 </button>
@@ -57,7 +66,7 @@ const Index = () => {
             </div>
 
             {/* CARD DE IMPACTO LADO DIREITO */}
-            <div className="hidden lg:block relative animate-in fade-in zoom-in duration-1000">
+            <div className="hidden lg:block relative animate-in fade-in zoom-in duration-1000 delay-300">
               <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
                   <TrendingUp size={120} />
