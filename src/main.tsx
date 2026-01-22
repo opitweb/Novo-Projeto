@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import './App.css' // Importa os estilos que fazem o site ficar bonito
+import './App.css' // Esta linha ativa o fundo preto e as cores
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
