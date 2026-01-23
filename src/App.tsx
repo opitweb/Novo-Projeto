@@ -28,27 +28,29 @@ const App: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isScrolling, setIsScrolling] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
       setScrollY(currentScroll);
-      // Se rolou mais de 50px, ativa o modo "bolinha menor"
       setIsScrolling(currentScroll > 50);
     };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
+    const handleMouseMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY });
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  const faqData = [
+    { q: "¿Es ético hacer publicidad médica?", a: "Absolutamente. Seguimos todas las normativas del sector en Barcelona, enfocándonos en información útil y profesionalismo." },
+    { q: "¿Cuánto tempo tardan en verse los resultados?", a: "Las campañas de Ads generan tráfico inmediato. El posicionamiento orgánico (SEO) suele dar frutos sólidos entre 3 y 6 meses." },
+    { q: "¿Trabajan con todas las especialidades?", a: "Sí, aunque estamos especializados en Odontología estética, Cirugía, Dermatología y clínicas de bienestar premium." }
+  ];
 
   const services = [
     { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
@@ -57,83 +59,112 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-slate-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8F9FB] text-slate-900 relative overflow-x-hidden md:cursor-none">
       
-      {/* CURSOR DINÂMICO */}
+      {/* CURSOR DINÂMICO AZUL */}
       <div 
         className={`fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center rounded-full transition-all duration-300 ease-out shadow-lg
-          ${isScrolling 
-            ? 'w-4 h-4 bg-[#3156A3]' // Bolinha menor azul quando rola
-            : 'w-24 h-24 bg-[#3156A3] backdrop-blur-sm' // Círculo maior azul no topo
-          }`}
+          ${isScrolling ? 'w-4 h-4 bg-[#3156A3]' : 'w-24 h-24 bg-[#3156A3]'}`}
         style={{
           transform: `translate3d(${mousePos.x - (isScrolling ? 8 : 48)}px, ${mousePos.y - (isScrolling ? 8 : 48)}px, 0)`,
-          transition: 'transform 0.1s ease-out, width 0.3s, height 0.3s, background-color 0.3s'
+          transition: 'transform 0.1s ease-out, width 0.3s, height 0.3s'
         }}
       >
-        {/* O texto some suavemente quando isScrolling for true */}
-        <span className={`text-[10px] text-white font-bold tracking-widest transition-opacity duration-300 
-          ${isScrolling ? 'opacity-0' : 'opacity-100'}`}>
+        <span className={`text-[10px] text-white font-bold tracking-widest transition-opacity duration-300 ${isScrolling ? 'opacity-0' : 'opacity-100'}`}>
           SCROLL
         </span>
       </div>
 
       <Navbar />
 
-      {/* ELEMENTOS DE FUNDO */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <div 
-          className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40 transition-transform duration-700 ease-out"
-          style={{ transform: `translate(${20 + scrollY * 0.02}%, ${-10 + scrollY * -0.05}%)` }}
-        />
+      {/* BACKGROUND ELEMENTS */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40"
+          style={{ transform: `translate(${20 + scrollY * 0.02}%, ${-10 + scrollY * -0.05}%)` }} />
       </div>
 
       <main className="relative z-10">
+        {/* HERO SECTION */}
         <section id="inicio" className="relative pt-40 pb-20 px-4 min-h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16">
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-10 duration-1000">
-              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#00A89F]" />
-                Marketing Médico em Barcelona
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8 opacity-0 animate-reveal">
+              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold">
+                <Sparkles className="w-4 h-4 text-[#00A89F]" /> Marketing Médico em Barcelona
               </div>
               <h1 className="text-5xl lg:text-7xl font-black leading-tight text-[#3156A3]">
                 Marketing Médico <br/>
                 <span className="bg-gradient-to-r from-[#3156A3] to-[#00A89F] bg-clip-text text-transparent">estratégico e ético</span>
               </h1>
-              <p className="text-xl text-slate-600 leading-relaxed max-w-xl border-l-4 border-[#00A89F] pl-6">
-                Construímos posicionamento sólido para clínicas com foco em resultados reais.
-              </p>
-              <button className="bg-[#3156A3] text-white px-8 py-5 rounded-2xl font-bold flex items-center hover:scale-105 transition-transform">
-                Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
+              <p className="text-xl text-slate-600 border-l-4 border-[#00A89F] pl-6">Construímos posicionamento sólido para clínicas, gerando confiança.</p>
+              <div className="flex gap-4">
+                <button className="bg-[#3156A3] text-white px-8 py-5 rounded-2xl font-bold flex items-center hover:scale-105 transition-transform shadow-xl shadow-[#3156A3]/20">
+                  Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+              </div>
             </div>
-            
-            <div className="hidden lg:flex items-center justify-center">
-               <div className="bg-[#3156A3] p-16 rounded-[4rem] text-white text-center shadow-2xl">
+            <div className="hidden lg:block opacity-0 animate-reveal delay-200 text-center">
+               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-16 rounded-[4rem] text-white shadow-2xl">
                   <Award size={64} className="mx-auto mb-6 text-[#00A89F]" />
-                  <p className="text-7xl font-black">+340%</p>
-                  <p className="text-blue-100">Crescimento Anual</p>
+                  <p className="text-8xl font-black mb-2 tracking-tighter">+340%</p>
+                  <p className="text-blue-100 text-xl">Crescimento Faturamento</p>
                </div>
             </div>
           </div>
         </section>
 
-        {/* Seção extra para permitir o scroll */}
-        <section id="servicios" className="py-32 bg-white min-h-screen">
-          <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-            {services.map((s, i) => (
-              <div key={i} className="p-10 bg-[#F8F9FB] rounded-[2rem] border border-slate-100">
-                <s.icon className="text-[#3156A3] mb-6" size={40} />
-                <h3 className="text-2xl font-bold text-[#3156A3] mb-4">{s.title}</h3>
-                <p className="text-slate-500">{s.desc}</p>
-              </div>
-            ))}
+        {/* SERVIÇOS */}
+        <section id="servicios" className="py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-20">
+              <h3 className="text-4xl lg:text-5xl font-black text-[#3156A3]">Especialidades que dominamos</h3>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {services.map((s, i) => (
+                <div key={i} className="p-10 bg-[#F8F9FB] rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-2">
+                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm">
+                    <s.icon size={32} className="text-[#3156A3]" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-[#3156A3]">{s.title}</h3>
+                  <p className="text-slate-500">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ SECTION */}
+        <section className="py-32 bg-[#F8F9FB]">
+          <div className="max-w-3xl mx-auto px-4">
+            <h3 className="text-4xl font-black text-[#3156A3] text-center mb-12">Perguntas Frequentes</h3>
+            <div className="space-y-4">
+              {faqData.map((item, i) => (
+                <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden">
+                  <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full p-6 flex justify-between items-center text-left font-bold text-[#3156A3]">
+                    {item.q} <ChevronDown className={`transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openFaq === i && <div className="p-6 pt-0 text-slate-500 bg-slate-50">{item.a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section id="contacto" className="py-24 px-4">
+          <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] rounded-[3.5rem] p-12 lg:p-20 text-center text-white shadow-2xl">
+            <h2 className="text-4xl lg:text-6xl font-black mb-10">Pronto para elevar sua <span className="text-[#00A89F]">Clínica</span>?</h2>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <a href="#" className="bg-[#00A89F] text-white px-12 py-6 rounded-2xl font-black text-lg flex items-center justify-center hover:scale-105 transition-all">
+                <MessageCircle className="mr-3" /> WhatsApp
+              </a>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer className="py-20 bg-white border-t text-center">
-        <p className="font-black text-[#3156A3]">Betterfly Media © 2026</p>
+      <footer className="py-20 bg-white border-t text-center text-slate-500">
+        <p className="font-black text-2xl text-[#3156A3] mb-4">Betterfly Media</p>
+        <p>© 2026 Feito com ❤️ em Barcelona.</p>
       </footer>
     </div>
   );
