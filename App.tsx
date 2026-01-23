@@ -17,7 +17,7 @@ import {
   MousePointer2,
   HeartPulse
 } from 'lucide-react';
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [scrollY, setScrollY] = useState(0);
