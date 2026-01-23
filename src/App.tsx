@@ -11,7 +11,7 @@ import {
   type LucideIcon 
 } from 'lucide-react';
 
-// Navbar interna para garantir funcionamento
+// Navbar integrada para evitar erros de importação
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-[60] bg-white/80 backdrop-blur-md border-b border-slate-100 p-4">
     <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -38,7 +38,9 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove);
@@ -49,12 +51,6 @@ const App: React.FC = () => {
     };
   }, []);
 
-  const faqData = [
-    { q: "¿Es ético hacer publicidad médica?", a: "Absolutamente. Seguimos todas las normativas del sector en Barcelona, enfocándonos en información útil y profesionalismo." },
-    { q: "¿Cuánto tempo tardan en verse los resultados?", a: "Las campañas de Ads generan tráfico inmediato. El posicionamiento orgánico (SEO) suele dar frutos sólidos entre 3 y 6 meses." },
-    { q: "¿Trabajan con todas las especialidades?", a: "Sí, aunque estamos especializados en Odontología estética, Cirugía, Dermatología y clínicas de bienestar premium." }
-  ];
-
   const services: ServiceItem[] = [
     { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
     { icon: MousePointer2, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
@@ -62,22 +58,23 @@ const App: React.FC = () => {
   ];
 
   return (
-    // 'cursor-none' esconde o mouse padrão para usar a bolinha
-    <div className="min-h-screen bg-[#F8F9FB] text-slate-900 selection:bg-[#3156A3]/10 selection:text-[#3156A3] relative overflow-x-hidden md:cursor-none">
+    <div className="min-h-screen bg-[#F8F9FB] text-slate-900 selection:bg-[#3156A3]/10 selection:text-[#3156A3] relative overflow-x-hidden">
       
-      {/* 1. CURSOR PERSONALIZADO (A BOLINHA) */}
+      {/* 1. O CURSOR (BOLA QUE SEGUE O MOUSE) */}
       <div 
-        className="fixed top-0 left-0 w-8 h-8 bg-[#3156A3] rounded-full pointer-events-none z-[100] hidden md:flex items-center justify-center mix-blend-difference transition-transform duration-100 ease-out"
+        className="fixed top-0 left-0 w-20 h-20 bg-black rounded-full pointer-events-none z-[9999] hidden md:flex items-center justify-center mix-blend-difference"
         style={{
-          transform: `translate3d(${mousePos.x - 16}px, ${mousePos.y - 16}px, 0)`,
+          // O segredo do efeito Invbit: translate3d para performance e transition para o atraso suave
+          transform: `translate3d(${mousePos.x - 40}px, ${mousePos.y - 40}px, 0)`,
+          transition: 'transform 0.15s ease-out' 
         }}
       >
-        <div className="w-1 h-1 bg-white rounded-full"></div>
+        <span className="text-[10px] text-white font-bold tracking-[0.2em]">SCROLL</span>
       </div>
 
       <Navbar />
 
-      {/* ELEMENTOS DE FUNDO ANIMADOS */}
+      {/* ELEMENTOS DE FUNDO */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div 
           className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40 transition-transform duration-700 ease-out"
@@ -86,11 +83,11 @@ const App: React.FC = () => {
       </div>
 
       <main className="relative z-10">
-        {/* HERO COM ANIMAÇÕES DE ENTRADA */}
+        {/* HERO */}
         <section id="inicio" className="relative pt-40 pb-20 px-4 sm:px-6 lg:px-8 min-h-[95vh] flex items-center">
           <div className="max-w-7xl mx-auto w-full">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-10 duration-1000">
                 <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
                   <Sparkles className="w-4 h-4 text-[#00A89F]" />
                   Marketing Médico em Barcelona
@@ -107,13 +104,16 @@ const App: React.FC = () => {
                   <button className="bg-[#3156A3] hover:bg-[#25417b] text-white px-8 py-5 rounded-2xl font-bold flex items-center transition-all transform hover:scale-105 shadow-xl shadow-[#3156A3]/20">
                     Análise Gratuita <ArrowRight className="ml-2 w-5 h-5" />
                   </button>
+                  <button className="bg-white border-2 border-slate-200 hover:border-[#3156A3] hover:text-[#3156A3] text-slate-600 px-8 py-5 rounded-2xl font-bold transition-all">
+                    Ver Casos
+                  </button>
                 </div>
               </div>
 
-              {/* CARD DE RESULTADOS COM PULSE */}
-              <div className="hidden lg:block relative animate-in zoom-in duration-1000 delay-300">
+              {/* CARD DE RESULTADOS */}
+              <div className="hidden lg:block relative animate-in zoom-in duration-1000 delay-200">
                 <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden text-center text-white border border-white/10">
-                  <div className="mb-8 inline-flex p-5 bg-white/10 rounded-[2rem] backdrop-blur-xl animate-pulse">
+                  <div className="mb-8 inline-flex p-5 bg-white/10 rounded-[2rem] backdrop-blur-xl">
                     <Award size={48} className="text-[#00A89F]" />
                   </div>
                   <p className="text-8xl font-black mb-4 tracking-tighter">+340%</p>
@@ -127,6 +127,10 @@ const App: React.FC = () => {
         {/* SERVIÇOS */}
         <section id="servicios" className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-20 space-y-4">
+              <h2 className="text-[#00A89F] font-bold uppercase tracking-[0.2em] text-sm">Nossas Soluções</h2>
+              <h3 className="text-4xl lg:text-5xl font-black text-[#3156A3]">Especialidades que dominamos</h3>
+            </div>
             <div className="grid md:grid-cols-3 gap-8">
               {services.map((service, i) => (
                 <div key={i} className="bg-[#F8F9FB] p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all group hover:-translate-y-2 duration-300">
@@ -142,11 +146,10 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <footer className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 text-center text-slate-500">
-          <p className="font-black text-2xl text-[#3156A3] mb-4">Betterfly Media</p>
-          <p>© 2026 Feito com ❤️ em Barcelona.</p>
-        </div>
+      {/* FOOTER */}
+      <footer className="py-20 bg-white border-t border-slate-100 text-center">
+        <p className="font-black text-2xl text-[#3156A3] mb-4">Betterfly Media</p>
+        <p className="text-slate-500">© 2026 Feito com ❤️ em Barcelona.</p>
       </footer>
     </div>
   );
