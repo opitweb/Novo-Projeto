@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { 
   Sparkles, 
-  Zap, 
   ArrowRight, 
-  CheckCircle2, 
   TrendingUp, 
-  Users, 
   Award, 
   MessageCircle,
-  ShieldCheck,
-  Stethoscope,
   ChevronDown,
   Globe,
   Star,
@@ -43,11 +38,11 @@ const App = () => {
       {/* BACKGROUND ELEMENTS */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div 
-          className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40"
+          className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40 transition-transform duration-700 ease-out"
           style={{ transform: `translate(${20 + scrollY * 0.02}%, ${-10 + scrollY * -0.05}%)` }}
         />
         <div 
-          className="absolute w-[600px] h-[600px] rounded-full blur-[120px] bg-[#00A89F]/10 opacity-30 bottom-0 left-0"
+          className="absolute w-[600px] h-[600px] rounded-full blur-[120px] bg-[#00A89F]/10 opacity-30 bottom-0 left-0 transition-transform duration-700 ease-out"
           style={{ transform: `translate(-20%, ${50 + scrollY * 0.05}%)` }}
         />
       </div>
@@ -57,8 +52,8 @@ const App = () => {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
-            <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000">
-              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm animate-fade-in">
                 <Sparkles className="w-4 h-4 text-[#00A89F]" />
                 Estúdio de Marketing em Barcelona
               </div>
@@ -99,7 +94,8 @@ const App = () => {
               </div>
             </div>
 
-            <div className="hidden lg:block relative animate-in fade-in zoom-in duration-1000 delay-300">
+            {/* CARD DIREITO */}
+            <div className="hidden lg:block relative">
               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden group border border-white/10">
                 <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
                   <TrendingUp size={160} className="text-white" />
@@ -110,20 +106,7 @@ const App = () => {
                     <Award size={48} className="text-[#00A89F]" />
                   </div>
                   <p className="text-8xl font-black mb-4 tracking-tighter">+340%</p>
-                  <p className="text-blue-100/90 text-xl font-medium max-w-[300px] mx-auto leading-relaxed">Aumento médio de novos pacientes e faturamento</p>
-                  
-                  <div className="mt-12 grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 px-6 py-5 rounded-3xl backdrop-blur-md border border-white/5 hover:bg-white/10 transition-all">
-                      <ShieldCheck className="w-6 h-6 mx-auto mb-2 text-[#00A89F]" />
-                      <p className="text-[10px] uppercase tracking-widest opacity-60 mb-1">Confiança</p>
-                      <p className="font-bold text-sm">100% Ético</p>
-                    </div>
-                    <div className="bg-white/5 px-6 py-5 rounded-3xl backdrop-blur-md border border-white/5 hover:bg-white/10 transition-all">
-                      <Globe className="w-6 h-6 mx-auto mb-2 text-[#00A89F]" />
-                      <p className="text-[10px] uppercase tracking-widest opacity-60 mb-1">Alcance</p>
-                      <p className="font-bold text-sm">Google Ads</p>
-                    </div>
-                  </div>
+                  <p className="text-blue-100/90 text-xl font-medium max-w-[300px] mx-auto leading-relaxed">Crescimento médio em faturamento anual</p>
                 </div>
               </div>
             </div>
@@ -132,7 +115,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* SERVICES SECTION */}
+      {/* SEÇÃO DE SERVIÇOS */}
       <section id="servicios" className="py-32 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="mb-20 space-y-4 max-w-3xl mx-auto">
@@ -162,46 +145,22 @@ const App = () => {
         </div>
       </section>
 
-      {/* METODOLOGIA SECTION */}
-      <section className="py-32 bg-[#F8F9FB]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl lg:text-4xl font-black text-[#3156A3]">Nuestra Metodología</h3>
-            <div className="w-20 h-1 bg-[#00A89F] mx-auto mt-4"></div>
-          </div>
-          <div className="grid md:grid-cols-4 gap-4 relative">
-            {[
-              { n: "01", t: "Diagnóstico", d: "Analizamos su presencia actual." },
-              { n: "02", t: "Estrategia", d: "Plan a medida de su especialidad." },
-              { n: "03", t: "Ejecución", d: "Lanzamiento de campañas y SEO." },
-              { n: "04", t: "Optimización", d: "Escalamos resultados mensualmente." }
-            ].map((step, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:border-[#3156A3] transition-colors">
-                <p className="text-4xl font-black text-[#00A89F]/20 mb-4">{step.n}</p>
-                <h4 className="font-bold text-[#3156A3] mb-2">{step.t}</h4>
-                <p className="text-sm text-slate-500">{step.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ SECTION */}
-      <section className="py-32 bg-white">
+      <section className="py-32 bg-[#F8F9FB]">
         <div className="max-w-3xl mx-auto px-4">
           <h3 className="text-4xl font-black text-[#3156A3] text-center mb-12">Preguntas Frecuentes</h3>
           <div className="space-y-4">
             {faqData.map((item, i) => (
-              <div key={i} className="border border-slate-100 rounded-2xl overflow-hidden">
+              <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden">
                 <button 
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full p-6 flex justify-between items-center text-left font-bold text-[#3156A3] hover:bg-slate-50 transition-colors"
                 >
                   {item.q}
-                  <ChevronDown className={`transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
                 {openFaq === i && (
-                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50">
+                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50 animate-in fade-in slide-in-from-top-2 duration-300">
                     {item.a}
                   </div>
                 )}
@@ -231,39 +190,24 @@ const App = () => {
       {/* FOOTER */}
       <footer className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div className="col-span-1 md:col-span-2 space-y-6 text-left">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#3156A3] rounded-xl flex items-center justify-center text-white font-black text-2xl italic">B</div>
-                <span className="text-3xl font-black text-[#3156A3]">Betterfly <span className="text-[#00A89F]">Media</span></span>
-              </div>
-              <p className="text-slate-500 max-w-sm text-lg leading-relaxed">
-                Estúdio boutique especializado em marketing médico e odontológico em Barcelona.
-              </p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="space-y-4 text-center md:text-left">
+              <span className="text-3xl font-black text-[#3156A3]">Betterfly <span className="text-[#00A89F]">Media</span></span>
+              <p className="text-slate-500">Estúdio boutique especializado em marketing médico em Barcelona.</p>
             </div>
-            <div className="text-left">
-              <h4 className="font-bold text-[#3156A3] mb-8 text-lg">Navegação</h4>
-              <ul className="space-y-4 text-slate-500 font-bold">
-                <li><a href="#inicio" className="hover:text-[#00A89F]">Início</a></li>
-                <li><a href="#servicios" className="hover:text-[#00A89F]">Serviços</a></li>
-                <li><a href="#contacto" className="hover:text-[#00A89F]">Contato</a></li>
-              </ul>
-            </div>
-            <div className="text-left">
-              <h4 className="font-bold text-[#3156A3] mb-8 text-lg">Redes</h4>
-              <ul className="space-y-4 text-slate-500 font-bold">
-                <li>Instagram</li>
-                <li>LinkedIn</li>
-              </ul>
+            <div className="flex gap-8 font-bold text-[#3156A3]">
+              <a href="#inicio" className="hover:text-[#00A89F]">Início</a>
+              <a href="#servicios" className="hover:text-[#00A89F]">Serviços</a>
+              <a href="#contacto" className="hover:text-[#00A89F]">Contato</a>
             </div>
           </div>
-          <div className="pt-12 border-t border-slate-100 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-slate-400 text-sm">© 2024 Betterfly Media. Feito em Barcelona.</p>
+          <div className="pt-12 mt-12 border-t border-slate-100 text-center text-slate-400 text-sm">
+            © 2024 Betterfly Media. Feito em Barcelona.
           </div>
         </div>
       </footer>
 
-      {/* FLOATING ACTION BUTTON */}
+      {/* BOTÃO WHATSAPP FLUTUANTE */}
       <a 
         href="#" 
         className="fixed bottom-10 right-10 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce"
