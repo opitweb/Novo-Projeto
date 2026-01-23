@@ -1,126 +1,38 @@
+/* 1. O @import PRECISA ser a primeira coisa no arquivo */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 60% 18%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 60% 18%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 60% 18%;
-    --primary: 200 80% 35%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 260 60% 55%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 20% 94%;
-    --muted-foreground: 220 15% 45%;
-    --accent: 25 95% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 200 80% 35%;
-    --radius: 0.75rem;
-
-    --healthcare-teal: 180 65% 45%;
-    --healthcare-blue: 200 80% 35%;
-    --healthcare-purple: 260 60% 55%;
-    --healthcare-coral: 25 95% 55%;
-    --healthcare-green: 160 60% 45%;
-    --soft-blue: 210 100% 96%;
-    --soft-purple: 260 100% 97%;
-    --soft-coral: 25 100% 96%;
-  }
-
-  .dark {
-    --background: 220 25% 10%;
-    --foreground: 220 20% 95%;
-    --card: 220 25% 12%;
-    --card-foreground: 220 20% 95%;
-    --popover: 220 25% 12%;
-    --popover-foreground: 220 20% 95%;
-    --primary: 200 80% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 260 60% 60%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 15% 60%;
-    --accent: 25 95% 60%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62% 40%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 200 80% 45%;
+    --foreground: 222.2 84% 4.9%;
+    /* Adicione aqui suas outras variáveis se houver */
   }
 }
 
-@layer base {
-  * { @apply border-border; }
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-  }
-}
-
-@layer components {
-  /* ANIMAÇÃO DE GRADIENTE (BETTERFLY PREMIUM) */
-  .animate-gradient-x {
-    background-size: 200% 200%;
-    animation: gradient-x 4s ease infinite;
-  }
-
-  /* BOTÃO PREMIUM INSPIRADO NA INVBIT */
-  .btn-premium {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-full
-           bg-gradient-to-r from-primary via-healthcare-teal to-healthcare-green 
-           text-white font-bold tracking-wide transition-all duration-300
-           animate-gradient-x hover:scale-105 hover:shadow-[0_0_25px_rgba(34,211,238,0.4)];
-  }
-
-  /* CARD COM EFEITO DE VIDRO (GLASSMORPHISM) */
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl
-           transition-all duration-500 hover:bg-white/10;
-  }
-
-  /* ESTILOS ORIGINAIS MANTIDOS */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-full
-           bg-gradient-to-r from-primary to-healthcare-teal text-primary-foreground 
-           font-sans font-semibold transition-all duration-300 
-           hover:shadow-lg hover:scale-105;
-  }
-
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-healthcare-teal via-healthcare-green to-primary animate-gradient-x;
-  }
-}
-
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-html { scroll-behavior: smooth; }
-  #custom-cursor {
+/* 2. Estilo do Cursor (Para o efeito que você quer) */
+#custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
-  background-color: white; /* Ou a cor que preferir */
+  width: 40px;
+  height: 40px;
+  background-color: black;
   border-radius: 50%;
-  pointer-events: none; /* Importante: para não clicar na bolinha em vez dos botões */
+  pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference; /* Faz a bolinha mudar de cor conforme o fundo, igual ao site que você viu */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
   transition: transform 0.1s ease-out;
+}
+
+#custom-cursor span {
+  color: white;
+  font-size: 8px;
+  font-weight: bold;
 }
