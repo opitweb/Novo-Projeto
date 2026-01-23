@@ -111,3 +111,16 @@
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 html { scroll-behavior: smooth; }
+  #custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white; /* Ou a cor que preferir */
+  border-radius: 50%;
+  pointer-events: none; /* Importante: para não clicar na bolinha em vez dos botões */
+  z-index: 9999;
+  mix-blend-mode: difference; /* Faz a bolinha mudar de cor conforme o fundo, igual ao site que você viu */
+  transition: transform 0.1s ease-out;
+}
