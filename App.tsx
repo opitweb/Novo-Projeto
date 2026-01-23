@@ -6,7 +6,6 @@ import {
   Award, 
   MessageCircle,
   ChevronDown,
-  Globe,
   Star,
   Search,
   MousePointer2,
@@ -35,7 +34,7 @@ const App = () => {
       
       <Navbar />
 
-      {/* BACKGROUND ELEMENTS */}
+      {/* ELEMENTOS DE FUNDO */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div 
           className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40 transition-transform duration-700 ease-out"
@@ -94,7 +93,6 @@ const App = () => {
               </div>
             </div>
 
-            {/* CARD DIREITO */}
             <div className="hidden lg:block relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden group border border-white/10">
                 <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
@@ -115,7 +113,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DE SERVIÇOS */}
+      {/* SERVIÇOS */}
       <section id="servicios" className="py-32 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="mb-20 space-y-4 max-w-3xl mx-auto">
@@ -125,7 +123,7 @@ const App = () => {
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 text-left">
              {[
                { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
                { icon: MousePointer2, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
@@ -145,13 +143,13 @@ const App = () => {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
+      {/* FAQ */}
       <section className="py-32 bg-[#F8F9FB]">
         <div className="max-w-3xl mx-auto px-4">
           <h3 className="text-4xl font-black text-[#3156A3] text-center mb-12">Preguntas Frecuentes</h3>
           <div className="space-y-4">
             {faqData.map((item, i) => (
-              <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-sm">
                 <button 
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full p-6 flex justify-between items-center text-left font-bold text-[#3156A3] hover:bg-slate-50 transition-colors"
@@ -170,7 +168,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* CTA SECTION */}
+      {/* CTA */}
       <section id="contacto" className="py-24 px-4">
         <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] rounded-[3.5rem] p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl border border-white/10">
           <div className="relative z-10 space-y-10 max-w-4xl mx-auto">
@@ -207,7 +205,7 @@ const App = () => {
         </div>
       </footer>
 
-      {/* BOTÃO WHATSAPP FLUTUANTE */}
+      {/* WHATSAPP FLOAT */}
       <a 
         href="#" 
         className="fixed bottom-10 right-10 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce"
