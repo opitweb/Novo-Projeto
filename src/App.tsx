@@ -162,7 +162,7 @@ const App: React.FC = () => {
         </section>
 
         {/* 6. FOOTER ESTILO VOOMA (Dark Mode) */}
-        <footer id="contacto" className="bg-[#050505] text-white pt-32 pb-10 px-6 border-t border-white/5">
+        <footer id="contacto" className="bg-[#3156A3] text-white pt-32 pb-10 px-6 border-t border-white/5">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-12">
               <h2 className="text-6xl md:text-8xl font-medium tracking-tighter">Get started today</h2>
