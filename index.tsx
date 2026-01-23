@@ -1,1 +1,1 @@
-
+import './src/main.tsx'
