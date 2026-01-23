@@ -52,8 +52,8 @@ const App = () => {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm animate-fade-in">
+            <div className="space-y-8 animate-fade-in">
+              <div className="inline-flex items-center gap-3 bg-white border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
                 <Sparkles className="w-4 h-4 text-[#00A89F]" />
                 Estúdio de Marketing em Barcelona
               </div>
@@ -95,7 +95,7 @@ const App = () => {
             </div>
 
             {/* CARD DIREITO */}
-            <div className="hidden lg:block relative">
+            <div className="hidden lg:block relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden group border border-white/10">
                 <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
                   <TrendingUp size={160} className="text-white" />
@@ -151,7 +151,7 @@ const App = () => {
           <h3 className="text-4xl font-black text-[#3156A3] text-center mb-12">Preguntas Frecuentes</h3>
           <div className="space-y-4">
             {faqData.map((item, i) => (
-              <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden">
+              <div key={i} className="border border-slate-200 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <button 
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full p-6 flex justify-between items-center text-left font-bold text-[#3156A3] hover:bg-slate-50 transition-colors"
@@ -160,7 +160,7 @@ const App = () => {
                   <ChevronDown className={`transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
                 {openFaq === i && (
-                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50">
                     {item.a}
                   </div>
                 )}
@@ -196,9 +196,9 @@ const App = () => {
               <p className="text-slate-500">Estúdio boutique especializado em marketing médico em Barcelona.</p>
             </div>
             <div className="flex gap-8 font-bold text-[#3156A3]">
-              <a href="#inicio" className="hover:text-[#00A89F]">Início</a>
-              <a href="#servicios" className="hover:text-[#00A89F]">Serviços</a>
-              <a href="#contacto" className="hover:text-[#00A89F]">Contato</a>
+              <a href="#inicio" className="hover:text-[#00A89F] transition-colors">Início</a>
+              <a href="#servicios" className="hover:text-[#00A89F] transition-colors">Serviços</a>
+              <a href="#contacto" className="hover:text-[#00A89F] transition-colors">Contato</a>
             </div>
           </div>
           <div className="pt-12 mt-12 border-t border-slate-100 text-center text-slate-400 text-sm">
