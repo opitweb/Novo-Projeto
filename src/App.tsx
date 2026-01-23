@@ -46,14 +46,13 @@ export default function App() {
 
   const faqData = [
     { q: "¿Es ético hacer publicidad médica?", a: "Absolutamente. Seguimos todas las normativas del sector en Barcelona, enfocándonos en información útil y profesionalismo." },
-    { q: "¿Quanto tempo tardan en verse los resultados?", a: "Las campañas de Ads generan tráfico inmediato. El posicionamiento orgánico (SEO) suele dar frutos sólidos entre 3 y 6 meses." },
-    { q: "¿Trabajan con todas las especialidades?", a: "Sí, estamos especializados en Odontología estética, Cirugía, Dermatología y clínicas premium." }
+    { q: "¿Quanto tempo tardan en verse los resultados?", a: "Las campañas de Ads generan tráfico inmediato. El posicionamiento orgánico (SEO) suele dar frutos sólidos entre 3 y 6 meses." }
   ];
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-slate-900 relative overflow-x-hidden md:cursor-none font-['Poppins']">
       
-      {/* 1. CURSOR DINÂMICO AZUL */}
+      {/* CURSOR */}
       <div 
         className={`fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center rounded-full transition-all duration-300 ease-out shadow-lg
           ${isScrolling ? 'w-5 h-5 bg-[#3156A3]' : 'w-24 h-24 bg-[#3156A3]'}`}
@@ -69,8 +68,8 @@ export default function App() {
       <Navbar />
 
       <main>
-        {/* 2. HERO SECTION COM ANIMAÇÃO REVEAL */}
-        <section id="inicio" className="pt-40 pb-20 px-4 min-h-screen flex items-center bg-white relative">
+        {/* HERO SECTION COM O BLOCO +34% */}
+        <section id="inicio" className="pt-40 pb-20 px-4 min-h-screen flex items-center bg-white">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-reveal">
               <div className="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
@@ -87,17 +86,19 @@ export default function App() {
               </button>
             </div>
             
+            {/* BLOCO HERO 340% - RESTAURADO */}
             <div className="hidden lg:block animate-reveal delay-200">
-               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden">
+               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden group hover:scale-[1.02] transition-transform">
                   <Award size={64} className="mx-auto mb-6 text-[#00A89F]" />
                   <p className="text-8xl font-black mb-2 tracking-tighter">+340%</p>
                   <p className="text-blue-100 text-xl font-medium">Crescimento Faturamento</p>
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:bg-[#00A89F]/20 transition-colors"></div>
                </div>
             </div>
           </div>
         </section>
 
-        {/* 3. SERVIÇOS */}
+        {/* SERVIÇOS */}
         <section id="servicios" className="py-32 bg-[#F8F9FB]">
           <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8">
             {services.map((s, i) => (
@@ -105,14 +106,14 @@ export default function App() {
                 <div className="w-16 h-16 bg-[#F8F9FB] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#3156A3] transition-colors">
                   <s.icon size={32} className="text-[#3156A3] group-hover:text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-[#3156A3] group-hover:text-[#00A89F] transition-colors">{s.title}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#3156A3]">{s.title}</h3>
                 <p className="text-slate-500 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 4. SEÇÃO BARCELONA (COM TEXTOS ORIGINAIS E BOLINHAS ANIMADAS) */}
+        {/* SEÇÃO BARCELONA COM BOLINHAS ANIMADAS */}
         <section className="py-32 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <h2 className="text-5xl md:text-7xl font-bold mb-20 leading-tight">
@@ -124,22 +125,22 @@ export default function App() {
                 <p>En 2010 iniciamos nuestra andadura en el mundo digital, diseñando y desarrollando páginas web desde nuestra oficina de Santiago de Compostela.</p>
               </div>
               <div className="text-lg space-y-6">
-                <p>Poco a poco, nuestro equipo ha ido creciendo, lo que nos ha permitido ampliar nuestra oferta de servicios, entre los que destaca el de <span className="font-bold text-[#3156A3]">marketing digital</span>.</p>
-                <p>Actualmente, trabajamos de forma conjunta para ofrecerte un servicio completamente personalizado y dar visibilidad a tu empresa en el mundo digital.</p>
+                <p>Poco a poco, nuestro equipo ha ido creciendo, o que nos permitiu ampliar nossa oferta de serviços, entre os que destaca o de <span className="font-bold text-[#3156A3]">marketing digital</span>.</p>
+                <p>Actualmente, trabalhamos de forma conjunta para oferecerte um serviço completamente personalizado e dar visibilidade à sua empresa no mundo digital.</p>
               </div>
             </div>
 
-            {/* GRID DE BOLINHAS COM ANIMAÇÃO DE COR */}
+            {/* BOLINHAS QUE PREENCHEM COM COR */}
             <div className="mt-24 flex flex-wrap justify-center gap-3 px-10">
               {Array.from({ length: 48 }).map((_, i) => (
                 <div 
                   key={i} 
                   className="w-8 h-8 md:w-11 md:h-11 rounded-full bg-slate-100 transition-colors duration-1000"
                   style={{ 
-                    animation: `pulseColor 3s ease-in-out infinite`,
+                    animation: `pulseColor 4s ease-in-out infinite`,
                     animationDelay: `${i * 0.1}s`,
                     '--target-color': i % 7 === 0 ? '#00A89F' : i % 5 === 0 ? '#FF4D00' : '#3156A3'
-                  } as any}
+                  } as React.CSSProperties}
                 />
               ))}
             </div>
@@ -148,12 +149,12 @@ export default function App() {
           <style>{`
             @keyframes pulseColor {
               0%, 100% { background-color: #f1f5f9; transform: scale(1); }
-              50% { background-color: var(--target-color); transform: scale(1.05); }
+              50% { background-color: var(--target-color); transform: scale(1.1); }
             }
           `}</style>
         </section>
 
-        {/* 5. FAQ (POSICIONADO APÓS BARCELONA) */}
+        {/* FAQ */}
         <section className="py-32 bg-[#F8F9FB]">
           <div className="max-w-3xl mx-auto px-4">
             <h3 className="text-4xl font-black text-[#3156A3] text-center mb-12">Perguntas Frequentes</h3>
@@ -177,7 +178,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 6. FOOTER AZUL BETTERFLY ESTILO VOOMA */}
+        {/* FOOTER AZUL BETTERFLY */}
         <footer id="contacto" className="bg-[#3156A3] text-white pt-32 pb-10 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-12">
@@ -192,10 +193,6 @@ export default function App() {
             </div>
             <div className="flex justify-between items-center text-[9px] uppercase tracking-[0.3em] font-bold text-white/40 pt-10 border-t border-white/5">
                <p>© Betterfly Media 2026</p>
-               <div className="flex gap-10">
-                  <a href="#" className="hover:text-white transition-colors">Services</a>
-                  <a href="#" className="hover:text-white transition-colors">Privacy</a>
-               </div>
             </div>
           </div>
         </footer>
