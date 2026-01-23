@@ -9,17 +9,27 @@ import {
   Star,
   Search,
   MousePointer2,
-  HeartPulse
+  HeartPulse,
+  LucideIcon // Adicionado para tipagem
 } from 'lucide-react';
 import Navbar from './components/Navbar';
 
-const App = () => {
+// Interface para garantir que os ícones funcionem corretamente com TS
+interface ServiceItem {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+}
+
+const App: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Cleanup funcional
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,12 +39,18 @@ const App = () => {
     { q: "¿Trabajan con todas las especialidades?", a: "Sí, aunque estamos especializados en Odontología estética, Cirugía, Dermatología y clínicas de bienestar premium." }
   ];
 
+  const services: ServiceItem[] = [
+    { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
+    { icon: MousePointer2, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
+    { icon: HeartPulse, title: "Ads Éticos", desc: "Campanhas de conversão focadas em agendamentos reais e qualificados." }
+  ];
+
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-slate-900 selection:bg-[#3156A3]/10 selection:text-[#3156A3]">
       
       <Navbar />
 
-      {/* ELEMENTOS DE FUNDO */}
+      {/* ELEMENTOS DE FUNDO (Efeito Parallax) */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div 
           className="absolute w-[800px] h-[800px] rounded-full blur-[140px] bg-[#3156A3]/10 opacity-40 transition-transform duration-700 ease-out"
@@ -76,6 +92,7 @@ const App = () => {
                 </button>
               </div>
 
+              {/* Prova Social */}
               <div className="flex items-center gap-6 pt-6">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
@@ -93,6 +110,7 @@ const App = () => {
               </div>
             </div>
 
+            {/* Card de Destaque Estatístico */}
             <div className="hidden lg:block relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden group border border-white/10">
                 <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
@@ -124,12 +142,8 @@ const App = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 text-left">
-             {[
-               { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
-               { icon: MousePointer2, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
-               { icon: HeartPulse, title: "Ads Éticos", desc: "Campanhas de conversão focadas em agendamentos reais e qualificados." }
-             ].map((service, i) => (
-               <div key={i} className="bg-[#F8F9FB] p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl hover:border-[#00A89F]/30 transition-all text-left group">
+              {services.map((service, i) => (
+                <div key={i} className="bg-[#F8F9FB] p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl hover:border-[#00A89F]/30 transition-all text-left group">
                   <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#3156A3] shadow-sm transition-all duration-500">
                     <span className="text-[#3156A3] group-hover:text-white">
                       <service.icon size={32} />
@@ -137,8 +151,8 @@ const App = () => {
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-[#3156A3]">{service.title}</h3>
                   <p className="text-slate-500 leading-relaxed font-medium">{service.desc}</p>
-               </div>
-             ))}
+                </div>
+              ))}
           </div>
         </div>
       </section>
@@ -158,7 +172,7 @@ const App = () => {
                   <ChevronDown className={`transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
                 {openFaq === i && (
-                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50">
+                  <div className="p-6 pt-0 text-slate-500 leading-relaxed bg-slate-50/50 animate-accordion-down">
                     {item.a}
                   </div>
                 )}
@@ -168,7 +182,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA SECTION */}
       <section id="contacto" className="py-24 px-4">
         <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] rounded-[3.5rem] p-12 lg:p-20 text-center text-white relative overflow-hidden shadow-2xl border border-white/10">
           <div className="relative z-10 space-y-10 max-w-4xl mx-auto">
@@ -200,14 +214,16 @@ const App = () => {
             </div>
           </div>
           <div className="pt-12 mt-12 border-t border-slate-100 text-center text-slate-400 text-sm">
-            © 2024 Betterfly Media. Feito em Barcelona.
+            © 2026 Betterfly Media. Feito em Barcelona.
           </div>
         </div>
       </footer>
 
       {/* WHATSAPP FLOAT */}
       <a 
-        href="#" 
+        href="https://wa.me/seunumerodecelular" 
+        target="_blank" 
+        rel="noopener noreferrer"
         className="fixed bottom-10 right-10 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce"
       >
         <MessageCircle size={32} fill="currentColor" />
