@@ -11,7 +11,7 @@ const Navbar = () => (
       <div className="hidden md:flex gap-8 font-bold text-[#3156A3]">
         <a href="#inicio" className="hover:text-[#00A89F] transition-colors text-sm">Início</a>
         <a href="#servicios" className="hover:text-[#00A89F] transition-colors text-sm">Serviços</a>
-        <a href="#contacto" className="bg-[#3156A3] text-white px-5 py-2 rounded-xl hover:bg-[#25417b] transition-all text-sm text-center">Contato</a>
+        <a href="#contacto" className="bg-[#3156A3] text-white px-5 py-2 rounded-xl hover:bg-[#25417b] transition-all text-sm">Contato</a>
       </div>
     </div>
   </nav>
@@ -35,7 +35,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-[#1A2B4B] relative overflow-x-hidden md:cursor-none">
       
-      {/* CURSOR AZUL */}
+      {/* CURSOR */}
       <div 
         className={`fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center rounded-full transition-all duration-300 ease-out shadow-lg
           ${isScrolling ? 'w-5 h-5 bg-[#3156A3]' : 'w-24 h-24 bg-[#3156A3]'}`}
@@ -47,8 +47,8 @@ export default function App() {
       <Navbar />
 
       <main>
-        {/* HERO SECTION */}
-        <section id="inicio" className="pt-40 pb-20 px-4 min-h-[90vh] flex items-center bg-white">
+        {/* HERO SECTION - COM BLOCO +340% */}
+        <section id="inicio" className="pt-40 pb-20 px-4 min-h-screen flex items-center bg-white">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8 animate-reveal">
               <div className="inline-flex items-center gap-3 bg-slate-50 border border-slate-200 text-[#3156A3] px-5 py-2 rounded-full text-sm font-bold shadow-sm">
@@ -73,7 +73,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SEÇÃO BARCELONA (A do Print) */}
+        {/* SEÇÃO BARCELONA COM BOLINHAS RESTAURADAS */}
         <section className="py-32 bg-white relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <h2 className="text-5xl md:text-7xl font-extrabold mb-20 leading-[1.1] tracking-tight text-[#1A2B4B]">
@@ -85,64 +85,65 @@ export default function App() {
                 <p>En 2010 iniciamos nuestra andadura en el mundo digital, diseñando y desarrollando páginas web desde nuestra oficina de Santiago de Compostela.</p>
               </div>
               <div className="text-lg text-slate-600 space-y-6">
-                <p>Poco a poco, nuestro equipo ha ido creciendo, ampliando nuestra oferta de servicios, destacando el de <span className="font-bold text-[#3156A3]">marketing digital</span>.</p>
+                <p>Poco a poco, nuestro equipo ha ido creciendo, ampliando nuestra oferta de servicios, destacando o de <span className="font-bold text-[#3156A3]">marketing digital</span>.</p>
                 <p>Actualmente, trabalhamos de forma conjunta para oferecerte um serviço completamente personalizado.</p>
               </div>
             </div>
-            {/* BOLINHAS */}
-            <div className="mt-24 flex flex-wrap justify-center gap-3">
-              {Array.from({ length: 40 }).map((_, i) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-slate-100 animate-pulse-color"
-                  style={{ '--target-color': i % 3 === 0 ? '#3156A3' : '#00A89F', animationDelay: `${i * 0.1}s` } as any} />
+
+            {/* GRID DE BOLINHAS COM ANIMAÇÃO COMPLETA */}
+            <div className="mt-24 flex flex-wrap justify-center gap-3 px-10">
+              {Array.from({ length: 48 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className="w-8 h-8 md:w-11 md:h-11 rounded-full bg-slate-100 transition-colors"
+                  style={{ 
+                    animation: `fullPulse 4s ease-in-out infinite`,
+                    animationDelay: `${i * 0.1}s`,
+                    '--dot-color': i % 7 === 0 ? '#00A89F' : i % 5 === 0 ? '#FF4D00' : '#3156A3'
+                  } as React.CSSProperties}
+                />
               ))}
             </div>
           </div>
+          
+          <style>{`
+            @keyframes fullPulse {
+              0%, 100% { background-color: #f1f5f9; transform: scale(1); }
+              50% { background-color: var(--dot-color); transform: scale(1.1); }
+            }
+          `}</style>
         </section>
 
-        {/* NOVA SEÇÃO: SOCIAL MEDIA */}
+        {/* SEÇÃO SOCIAL MEDIA */}
         <section className="py-32 bg-[#F8F9FB]">
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="bg-[#3156A3] p-12 rounded-[3rem] text-white shadow-2xl relative z-10">
-                <Share2 size={48} className="mb-6 text-[#00A89F]" />
-                <h3 className="text-4xl font-black mb-6 leading-tight">Social <span className="font-elegant-italic">Elegance</span></h3>
-                <p className="text-blue-100 text-lg opacity-80 leading-relaxed">Criamos uma presença digital que reflete a autoridade do seu consultório. Design de alto padrão para Instagram e LinkedIn.</p>
+            <div className="space-y-8 animate-reveal">
+              <h2 className="text-6xl font-black text-[#3156A3] tracking-tighter">Social <br/><span className="font-elegant-italic text-[#00A89F] lowercase text-5xl">Intelligence</span></h2>
+              <p className="text-xl text-slate-600 leading-relaxed border-l-4 border-[#3156A3] pl-6">Criamos autoridade digital que transforma seguidores em pacientes. Estratégia visual de alto padrão para clínicas exclusivas.</p>
+              <div className="grid gap-4 font-bold text-[#1A2B4B]">
+                <div className="flex items-center gap-3"><div className="w-2 h-2 bg-[#00A89F] rounded-full"/> Curadoria de Conteúdo Premium</div>
+                <div className="flex items-center gap-3"><div className="w-2 h-2 bg-[#00A89F] rounded-full"/> Short Video Strategy</div>
               </div>
-              <div className="absolute -top-6 -left-6 w-full h-full border-2 border-[#3156A3]/10 rounded-[3rem] -z-10" />
             </div>
-            <div className="order-1 lg:order-2 space-y-8">
-              <h2 className="text-6xl font-black text-[#3156A3] tracking-tighter">Mídias Sociais <br/><span className="text-[#00A89F]">Estratégicas</span></h2>
-              <div className="grid gap-6">
-                {[
-                  { t: "Curadoria Visual", d: "Estética premium para atrair pacientes de alto ticket." },
-                  { t: "Gestão de Reputação", d: "Monitoramento constante da sua imagem médica." },
-                  { t: "Short Video", d: "Vídeos educativos com edição cinematográfica." }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="mt-1 w-5 h-5 bg-[#00A89F] rounded-full flex-shrink-0" />
-                    <div>
-                      <h4 className="font-bold text-xl">{item.t}</h4>
-                      <p className="text-slate-500">{item.d}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="bg-[#3156A3] p-12 rounded-[3rem] text-white shadow-2xl rotate-2">
+              <Share2 size={48} className="mb-6 text-[#00A89F]" />
+              <h3 className="text-3xl font-bold mb-4">Presença de Elite</h3>
+              <p className="opacity-80">Design cinematográfico para mídias sociais que comunicam excelência médica.</p>
             </div>
           </div>
         </section>
 
-        {/* NOVA SEÇÃO: SEO UX & AUTOMAÇÃO */}
+        {/* SEÇÃO SEO & AUTOMAÇÃO */}
         <section className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <h2 className="text-6xl font-black text-[#3156A3] tracking-tighter">SEO, UX <span className="font-elegant-italic text-[#00A89F]">&</span> Automação</h2>
-              <p className="text-slate-500 text-xl mt-4 max-w-2xl mx-auto">Eficiência operacional para empresas que buscam escala sem perder a qualidade.</p>
+              <h2 className="text-6xl font-black text-[#3156A3] tracking-tighter">SEO <span className="font-elegant-italic text-[#00A89F]">&</span> Automação</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 { icon: Layers, title: "UX Design", desc: "Interfaces focadas na jornada de agendamento do paciente." },
-                { icon: BarChart3, title: "SEO Performance", desc: "Primeira página do Google para os termos mais rentáveis." },
-                { icon: Zap, title: "Automação", desc: "Integração total do marketing com o seu software de gestão." }
+                { icon: BarChart3, title: "SEO Performance", desc: "Primeira página do Google para termos de alto ticket." },
+                { icon: Zap, title: "Automação", desc: "Integração total do marketing com o seu fluxo de atendimento." }
               ].map((card, i) => (
                 <div key={i} className="p-12 bg-[#F8F9FB] rounded-[3rem] border border-slate-100 group hover:bg-[#3156A3] transition-all duration-500">
                   <card.icon size={40} className="text-[#00A89F] mb-6 group-hover:text-white transition-colors" />
@@ -154,25 +155,20 @@ export default function App() {
           </div>
         </section>
 
-        {/* FOOTER VOOMA ESTILO PRINT */}
+        {/* FOOTER */}
         <footer id="contacto" className="bg-[#3156A3] text-white pt-32 pb-10 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-12">
-              <h2 className="text-6xl md:text-8xl font-medium tracking-tighter">Get started today</h2>
-              <button className="bg-[#ff4d00] hover:bg-[#e64500] text-white px-8 py-5 rounded-full flex items-center gap-4 transition-all group">
-                <span className="font-bold uppercase tracking-wider text-xs">Agendar Diagnóstico</span>
-                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+            <div className="flex flex-col md:flex-row justify-between items-start mb-24 gap-12 text-6xl md:text-8xl font-medium tracking-tighter">
+              <h2>Get started today</h2>
+              <button className="bg-[#ff4d00] text-white px-8 py-5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-4 transition-all hover:scale-105">
+                Agendar Diagnóstico <ArrowRight size={18} />
               </button>
             </div>
-            <div className="py-20 border-t border-white/10 overflow-hidden text-center">
+            <div className="py-20 border-t border-white/10 text-center overflow-hidden">
               <h1 className="text-[18vw] font-black leading-none tracking-tighter opacity-10 select-none">betterfly</h1>
             </div>
-            <div className="flex justify-between items-center text-[9px] uppercase tracking-[0.3em] font-bold text-white/40 pt-10 border-t border-white/5">
+            <div className="pt-10 border-t border-white/5 text-[9px] uppercase tracking-[0.3em] font-bold text-white/40 flex justify-between">
                <p>© Betterfly Media 2026</p>
-               <div className="flex gap-10">
-                  <a href="#" className="hover:text-white transition-colors">Services</a>
-                  <a href="#" className="hover:text-white transition-colors">Privacy</a>
-               </div>
             </div>
           </div>
         </footer>
