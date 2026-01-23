@@ -149,25 +149,69 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA SECTION */}
-        <section id="contacto" className="py-24 px-4">
-          <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#3156A3] to-[#1e3a7a] rounded-[3.5rem] p-12 lg:p-20 text-center text-white shadow-2xl">
-            <h2 className="text-4xl lg:text-6xl font-black mb-10">Pronto para elevar sua <span className="text-[#00A89F]">Clínica</span>?</h2>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a href="#" className="bg-[#00A89F] text-white px-12 py-6 rounded-2xl font-black text-lg flex items-center justify-center hover:scale-105 transition-all">
-                <MessageCircle className="mr-3" /> WhatsApp
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="py-20 bg-white border-t text-center text-slate-500">
-        <p className="font-black text-2xl text-[#3156A3] mb-4">Betterfly Media</p>
-        <p>© 2026 Feito com ❤️ em Barcelona.</p>
-      </footer>
+       {/* FOOTER ESTILO VOOMA */}
+<footer className="bg-[#050505] text-white pt-24 pb-10 px-4 border-t border-white/5">
+  <div className="max-w-7xl mx-auto">
+    
+    {/* PARTE SUPERIOR: GET STARTED */}
+    <div className="flex flex-col md:flex-row justify-between items-start mb-20 gap-10">
+      <div>
+        <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-8">
+          Get started today
+        </h2>
+        <p className="text-gray-400 text-xl max-w-sm">
+          Marketing estratégico para médicos que buscam o próximo nível de autoridade.
+        </p>
+      </div>
+      
+      <button className="bg-[#ff4d00] hover:bg-[#e64500] text-white px-8 py-4 rounded-full flex items-center gap-4 transition-all group">
+        <span className="font-bold uppercase tracking-wider text-sm">Agendar Diagnóstico</span>
+        <div className="bg-white/20 p-2 rounded-full group-hover:translate-x-1 transition-transform">
+          <ArrowRight size={20} />
+        </div>
+      </button>
     </div>
-  );
-};
+
+    {/* LOGO GIGANTE CENTRAL */}
+    <div className="py-20 border-t border-white/10">
+      <h1 className="text-[15vw] font-black leading-none tracking-tighter text-white opacity-90">
+        betterfly
+      </h1>
+    </div>
+
+    {/* GRID DE INFORMAÇÕES */}
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 py-12 border-t border-white/10 text-sm text-gray-400 uppercase tracking-widest font-medium">
+      <div>
+        <p className="text-white mb-6">Contact Us</p>
+        <p>Barcelona, Espanha</p>
+        <p className="mt-2 text-[#00A89F]">hello@betterfly.media</p>
+      </div>
+      
+      <div>
+        <p className="text-white mb-6">Stay up to date</p>
+        <div className="relative">
+          <input 
+            type="email" 
+            placeholder="Your email" 
+            className="bg-transparent border-b border-white/20 w-full py-2 focus:outline-none focus:border-[#00A89F] transition-colors"
+          />
+          <button className="absolute right-0 top-2 text-white hover:text-[#00A89F]">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+
+    {/* LINKS FINAIS ESTILO TABELA */}
+    <div className="flex flex-wrap justify-between gap-4 pt-10 border-t border-white/10 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">
+      <div className="flex flex-wrap gap-8">
+        <a href="#" className="hover:text-white transition-colors">Build</a>
+        <a href="#" className="hover:text-white transition-colors">Services</a>
+        <a href="#" className="hover:text-white transition-colors">About</a>
+        <a href="#" className="hover:text-white transition-colors">Privacy</a>
+        <a href="#" className="hover:text-white transition-colors">Terms</a>
+      </div>
+      <p>© Betterfly Media. All Rights Reserved 2026</p>
+    </div>
+  </div>
+</footer>
 
 export default App;
