@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { 
   Sparkles, 
@@ -18,7 +17,7 @@ import {
   MousePointer2,
   HeartPulse
 } from 'lucide-react';
-import Navbar from './components/Navbar';
+import Navbar from './Navbar';
 
 const App = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -145,13 +144,15 @@ const App = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
              {[
-               { icon: <Search />, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
-               { icon: <MousePointer2 />, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
-               { icon: <HeartPulse />, title: "Ads Éticos", desc: "Campanhas de conversão focadas em agendamentos reais e qualificados." }
+               { icon: Search, title: "SEO Médico", desc: "Apareça quando o paciente busca por tratamentos no Google em Barcelona." },
+               { icon: MousePointer2, title: "Gestão de Autoridade", desc: "Transformamos seu CRM em conteúdo estratégico que gera admiração." },
+               { icon: HeartPulse, title: "Ads Éticos", desc: "Campanhas de conversão focadas em agendamentos reais e qualificados." }
              ].map((service, i) => (
                <div key={i} className="bg-[#F8F9FB] p-10 rounded-[2.5rem] border border-slate-100 hover:shadow-2xl hover:border-[#00A89F]/30 transition-all text-left group">
                   <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#3156A3] shadow-sm transition-all duration-500">
-                    <span className="text-[#3156A3] group-hover:text-white">{React.cloneElement(service.icon as React.ReactElement, { size: 32 })}</span>
+                    <span className="text-[#3156A3] group-hover:text-white">
+                      <service.icon size={32} />
+                    </span>
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-[#3156A3]">{service.title}</h3>
                   <p className="text-slate-500 leading-relaxed font-medium">{service.desc}</p>
