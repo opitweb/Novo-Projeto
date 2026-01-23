@@ -9,30 +9,42 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    /* Adicione aqui suas outras variáveis se houver */
   }
 }
 
-/* 2. Estilo do Cursor (Para o efeito que você quer) */
+/* 2. Estilo do Cursor (Ajustado para o seu efeito azul) */
 #custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  background-color: black;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  mix-blend-mode: difference;
-  transition: transform 0.1s ease-out;
+  mix-blend-mode: normal; /* Mudamos para normal para manter o azul vivo */
 }
 
-#custom-cursor span {
-  color: white;
-  font-size: 8px;
-  font-weight: bold;
+/* 3. ANIMAÇÕES DE TÍTULO (O que estava faltando) */
+@layer utilities {
+  /* Classe que faz o elemento subir e aparecer */
+  .animate-reveal {
+    animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  /* Definição do movimento: começa 40px abaixo e invisível */
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Delays para efeito cascata (Título, depois parágrafo, depois botão) */
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-400 { animation-delay: 0.4s; }
 }
