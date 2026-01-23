@@ -20,9 +20,9 @@ import {
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 p-4">
     <div className="max-w-7xl mx-auto flex justify-between items-center">
-      <span className="text-xl font-black text-[#3156A3]">Betterfly <span className="text-[#00A89F]">Media</span></span>
+      <span className="text-xl font-black text-bg-[#1A2B4B]">Betterfly <span className="text-[#00A89F]">Media</span></span>
       <div className="hidden md:flex gap-8 font-bold text-[#3156A3]">
-        <a href="#inicio" className="hover:text-[#00A89F] transition-colors">Início</a>
+        <a href="#inicio" className="hover:text-[#00D1C1] transition-colors">Início</a>
         <a href="#servicios" className="hover:text-[#00A89F] transition-colors">Serviços</a>
         <a href="#contacto" className="bg-[#3156A3] text-white px-5 py-2 rounded-xl hover:bg-[#25417b] transition-all">Contato</a>
       </div>
