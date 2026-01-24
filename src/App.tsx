@@ -69,7 +69,7 @@ export default function Index() {
       <main className="relative z-10">
         
         {/* HERO SECTION */}
-       <section className="pt-32 pb-12 px-6 h-screen flex items-center">
+        <section className="pt-32 pb-12 px-6 h-screen flex items-center">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-12 animate-reveal">
               <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
@@ -77,7 +77,7 @@ export default function Index() {
               </div>
               
               <div className="space-y-4">
-                <h1 className="text-7xl lg:text-9xl font-bold text-[#0A1738] tracking-tighter leading-[0.8] transition-all">
+                <h1 className="text-7xl lg:text-9xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
                   Betterfly <br/>
                   <span className="font-light italic text-[#0DBAAC] text-6xl lg:text-8xl lowercase">media</span>
                 </h1>
@@ -105,39 +105,24 @@ export default function Index() {
             </div>
           </div>
         </section>
-       {/* SEÇÃO BARCELONA - CORRIGIDA */}
-       <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
-       <div className="max-w-7xl mx-auto px-6">
-       {/* Ajuste de Alinhamento e Tamanho do Título */}
-       <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
-      Somos una agencia de <span className="text-[#0DBAAC]">desarrollo web</span> y <span className="text-[#0DBAAC]">marketing digital</span> en Barcelona
-    </h2>
-    
-    <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-      <div className="text-xl md:text-2xl font-semibold text-[#0A1738] leading-snug">
-        <p>
-          En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde nuestra oficina de Barcelona.
-        </p>
-      </div>
-      <div className="text-base md:text-lg text-slate-500 space-y-6 leading-relaxed">
-        <p>Nuestra metodología combina la estética médica con el rigor técnico necesario para convertir visitantes en pacientes.</p>
-        <p>Actualmente, trabajamos con clínicas que buscan dar el salto al siguiente nivel de facturación.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-            <div 
-              className="mt-24 flex flex-wrap justify-center gap-4 opacity-20"
-              style={{ transform: `translateY(${offset * -0.08}px)` }}
-            >
-              {Array.from({ length: 42 }).map((_, i) => (
-                <div 
-                  key={i} 
-                  className="w-8 h-8 rounded-full bg-[#0A1738]"
-                  style={{ animation: `fullPulse 4s ease-in-out infinite`, animationDelay: `${i * 0.1}s` }}
-                />
-              ))}
+        {/* SEÇÃO BARCELONA - CORRIGIDA E ALINHADA */}
+        <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
+              Somos una agencia de <span className="text-[#0DBAAC]">desarrollo web</span> y <span className="text-[#0DBAAC]">marketing digital</span> en Barcelona
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+              <div className="text-xl md:text-2xl font-semibold text-[#0A1738] leading-snug">
+                <p>
+                  En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde nuestra oficina de Barcelona.
+                </p>
+              </div>
+              <div className="text-base md:text-lg text-slate-500 space-y-6 leading-relaxed">
+                <p>Nuestra metodología combina la estética médica con el rigor técnico necesario para convertir visitantes en pacientes.</p>
+                <p>Actualmente, trabajamos con clínicas que buscan dar el salto al siguiente nivel de facturación.</p>
+              </div>
             </div>
           </div>
         </section>
