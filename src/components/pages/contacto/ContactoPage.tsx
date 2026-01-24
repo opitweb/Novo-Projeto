@@ -73,12 +73,20 @@ export default function ContactoPage() {
               </div>
             </div>
 
-            {/* MAPA ESTILIZADO */}
-            <div className="bg-[#0A1738] w-full h-[350px] rounded-[3rem] flex items-center justify-center text-white/20 font-bold border border-slate-100 shadow-2xl overflow-hidden relative group">
-               <div className="absolute inset-0 bg-[#0DBAAC]/5 group-hover:opacity-20 transition-opacity"></div>
-               <span className="relative z-10 tracking-widest uppercase text-sm">Barcelona Operations Center</span>
-            </div>
-          </div>
+         {/* GOOGLE MAPS INTEGRADO */}
+<div className="w-full h-[350px] rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl relative z-10">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.123456789!2d2.189!3d41.389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2f123456789%3A0x1234567890abcdef!2sCarrer%20de%20la%20Marina%2C%20Barcelona%2C%20Espa%C3%B1a!5e0!3m2!1spt!2spt!4v1620000000000!5m2!1spt!2spt" 
+    width="100%" 
+    height="100%" 
+    style={{ border: 0 }} 
+    allowFullScreen={true} 
+    loading="lazy" 
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Betterfly Media Location"
+    className="grayscale hover:grayscale-0 transition-all duration-500"
+  />
+</div>
 
           {/* COLUNA: FORMULÁRIO - Focado em Contraste e Elegância */}
           <div className="bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl border border-slate-50 animate-reveal delay-300">
