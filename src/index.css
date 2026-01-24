@@ -1,5 +1,5 @@
-/* 1. O @import PRECISA ser a primeira coisa no arquivo */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+/* 1. Importação com pesos específicos (adicionado 900 e pesos intermediários) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,9 +10,18 @@
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
   }
+
+  body {
+    /* ESTA LINHA É A CHAVE: Remove o aspecto serrilhado e grosso das letras */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #1A2B4B;
+  }
 }
 
-/* 2. Estilo do Cursor (Ajustado para o seu efeito azul) */
+/* 2. Estilo do Cursor Personalizado */
 #custom-cursor {
   position: fixed;
   top: 0;
@@ -22,21 +31,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  mix-blend-mode: normal; /* Mudamos para normal para manter o azul vivo */
+  mix-blend-mode: normal; 
 }
 
-/* 3. ANIMAÇÕES DE TÍTULO (O que estava faltando) */
+/* 3. ANIMAÇÕES E UTILITÁRIOS (Refinados para suavidade) */
 @layer utilities {
-  /* Classe que faz o elemento subir e aparecer */
+  /* Animação que faz o elemento subir suavemente */
   .animate-reveal {
-    animation: reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
 
-  /* Definição do movimento: começa 40px abaixo e invisível */
   @keyframes reveal {
     0% {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px);
     }
     100% {
       opacity: 1;
@@ -44,7 +52,14 @@
     }
   }
 
-  /* Delays para efeito cascata (Título, depois parágrafo, depois botão) */
+  /* Delays para efeito cascata */
   .delay-200 { animation-delay: 0.2s; }
   .delay-400 { animation-delay: 0.4s; }
+
+  /* Utilitário para fonte elegante (opcional para o seu h1) */
+  .font-elegant-italic {
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+  }
 }
