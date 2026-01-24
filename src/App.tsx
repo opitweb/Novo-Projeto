@@ -78,13 +78,13 @@ export default function Index() {
               
               <div className="space-y-4">
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
-               Marketing Digital para Clínicas em <br/>
+              Estratégias de marketing digital <br/>
                   <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
                 </h1>
               </div>
               
               <p className="text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
-                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">dominan su mercado</span>.
+                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">para aumentar a visibilidade e os agendamentos da sua clínica</span>.
               </p>
 
               <Link 
