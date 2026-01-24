@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nosotros | SaludMark</title>
+    <meta name="description"
+        content="Conozca a SaludMark, la agencia de marketing líder para el sector salud en Barcelona. Nuestro equipo de expertos ayuda a clínicas a crecer." />
+</head>
+<body>
+    <div id="app">
+        <header id="header" class="header"></header>
+        <main>
+            <section class="page-header section bg-light text-center">
+                <div class="container">
+                    <h1 class="section-title">Nuestra Misión</h1>
+                    <p class="section-subtitle">Humanizar la tecnología para conectar doctores y pacientes.</p>
+                </div>
+            </section>
+            <section class="about-story section container">
+                <div class="card">
+                    <h2>Nuestra Historia</h2>
+                    <p class="mb-md">Fundada en 2025 en el corazón de Barcelona, SaludMark nació de una necesidad
+                        simple: los profesionales de la salud necesitaban alguien que entendiera tanto de medicina como
+                        de algoritmos.</p>
+                    <p>No somos una agencia generalista. Hablamos su idioma, entendemos la ética médica y sabemos cómo
+                        comunicar sin vender humo.</p>
+                </div>
+            </section>
+            <section class="team section container text-center">
+                <h2 class="section-title">El Equipo</h2>
+                <div class="services-grid"> <!-- Reusing grid layout -->
+                    <div class="card">
+                        <div class="service-icon">👩‍⚕️</div>
+                        <h3>Dra. Elena Gómez</h3>
+                        <p>Consultora Médica</p>
+                    </div>
+                    <div class="card">
+                        <div class="service-icon">👨‍💻</div>
+                        <h3>Marc Torres</h3>
+                        <p>Director Técnico</p>
+                    </div>
+                    <div class="card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Sofia Riera</h3>
+                        <p>Directora Creativa</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer id="footer" class="footer"></footer>
+        <div id="chatbot-container"></div>
+        <div id="booking-modal-container"></div>
+    </div>
+    <script type="module" src="/src/js/global.js"></script>
+</body>
+</html>
