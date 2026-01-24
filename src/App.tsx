@@ -78,8 +78,8 @@ export default function Index() {
               
               <div className="space-y-4">
                 <h1 className="text-7xl lg:text-9xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
-                  Betterfly <br/>
-                  <span className="font-light italic text-[#0DBAAC] text-6xl lg:text-8xl lowercase">media</span>
+                  Marketing Digital Especializado para Clínicas e Médicos em <br/>
+                  <span className="font-light italic text-[#0DBAAC] text-6xl lg:text-8xl lowercase">Barcelona</span>
                 </h1>
               </div>
               
