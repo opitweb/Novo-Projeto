@@ -109,7 +109,7 @@ export default function Index() {
         {/* SEÇÃO BARCELONA - CORRIGIDA E ALINHADA */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
               Somos una agencia de <span className="text-[#0DBAAC]">desarrollo web</span> y <span className="text-[#0DBAAC]">marketing digital</span> en Barcelona
             </h2>
             
