@@ -110,7 +110,7 @@ export default function Index() {
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
-              Atraímos Mais Pacientes para <span className="text-[#0DBAAC]">Sua Clínica com Estratégias web</span> y <span className="text-[#0DBAAC]">Digitais Comprovadas</span> en Barcelona
+              Atraímos Mais Pacientes para <span className="text-[#0DBAAC]">Sua Clínica com Estratégias </span>  <span className="text-[#0DBAAC]">Digitais Comprovadas</span> 
             </h2>
             
             <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
