@@ -21,49 +21,59 @@ export default function App() {
           style={{
             backgroundImage: `linear-gradient(to right, #0A1738 1px, transparent 1px)`,
             backgroundSize: '80px 100%',
-            transform: `translateY(${offset * -0.1}px)`, // Move suavemente ao rolar
+            transform: `translateY(${offset * -0.1}px)`, 
           }}
         />
       </div>
 
       <main className="relative z-10">
-        {/* HERO SECTION */}
-        <section className="pt-48 pb-24 px-4 min-h-[90vh] flex items-center">
+        {/* HERO SECTION - CORRIGIDA: Aumentado pt-48 para pt-64 para descer o conteúdo */}
+        <section className="pt-64 pb-24 px-6 min-h-screen flex items-start lg:items-center">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-10 animate-reveal">
-              <div className="inline-flex items-center gap-3 bg-white/50 backdrop-blur-sm border border-white text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+            
+            <div className="space-y-12 animate-reveal">
+              {/* Badge com mais destaque e respiro superior */}
+              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
               
-              <h1 className="text-7xl lg:text-8xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
-                Betterfly <br/>
-                <span className="font-light italic text-[#0DBAAC] text-6xl lg:text-7xl lowercase">media</span>
-              </h1>
+              <div className="space-y-4">
+                <h1 className="text-7xl lg:text-9xl font-bold text-[#0A1738] tracking-tighter leading-[0.8] transition-all">
+                  Betterfly <br/>
+                  <span className="font-light italic text-[#0DBAAC] text-6xl lg:text-8xl lowercase">media</span>
+                </h1>
+              </div>
               
               <p className="text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">dominan su mercado</span>.
               </p>
 
-              <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
+              <Link 
+                to="/contacto" 
+                className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1"
+              >
                 Análisis Gratuito <ArrowRight className="ml-2" size={20} />
               </Link>
             </div>
             
-            {/* CARD COM EFEITO FLUTUANTE */}
+            {/* CARD COM EFEITO FLUTUANTE - Ajustado para sincronia com o fundo */}
             <div className="hidden lg:block animate-reveal delay-200" style={{ transform: `translateY(${offset * 0.05}px)` }}>
                <div className="bg-[#0A1738] p-20 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm">
                   <Award size={48} className="mx-auto mb-8 text-[#0DBAAC]" />
                   <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
                   <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest">Crecimiento en Facturación</p>
+                  
+                  {/* Detalhe visual interno */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
                </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO BARCELONA - Design sobre #f5f5f5 */}
+        {/* SEÇÃO BARCELONA */}
         <section className="py-32 relative">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <h2 className="text-5xl md:text-6xl font-bold mb-20 leading-[1.1] tracking-tight text-[#0A1738] animate-reveal">
+            <h2 className="text-5xl md:text-7xl font-bold mb-20 leading-[1.1] tracking-tight text-[#0A1738] animate-reveal">
               Somos una agencia de <span className="text-[#0DBAAC]">desarrollo web</span> <br/>
               y <span className="text-[#0DBAAC]">marketing digital</span> en Barcelona
             </h2>
