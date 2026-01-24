@@ -6,54 +6,60 @@ export default function ServiciosPage() {
   const services = [
     {
       title: "SEO Médico Local",
-      icon: <Search className="text-[#00A89F]" size={32} />,
-      desc: "Aparezca cuando sus pacientes buscan especialistas en Barcelona.",
+      icon: <Search className="text-[#0DBAAC]" size={32} />,
+      desc: "Aparezca cuando sus pacientes buscan especialistas en Barcelona y optimice su visibilidad orgánica.",
       features: ["Optimización de Google My Business", "Contenido médico verificado", "Linkbuilding ético"]
     },
     {
       title: "Diseño Web Especializado",
-      icon: <Monitor className="text-[#00A89F]" size={32} />,
-      desc: "Webs rápidas, seguras y que cumplen con la RGPD sanitaria.",
-      features: ["Reserva de citas online", "Experiencia móvil perfecta", "Diseño limpio y tranquilizador"]
+      icon: <Monitor className="text-[#0DBAAC]" size={32} />,
+      desc: "Webs rápidas, seguras y que cumplen con la RGPD sanitaria para una conversión impecable.",
+      features: ["Reserva de citas online", "Experiencia móvil perfecta", "Arquitectura de alta velocidad"]
     },
     {
       title: "Publicidad PPC",
-      icon: <BarChart3 className="text-[#00A89F]" size={32} />,
-      desc: "Campañas de Google Ads y Social Ads con alto retorno.",
+      icon: <BarChart3 className="text-[#0DBAAC]" size={32} />,
+      desc: "Campañas de Google Ads y Social Ads con segmentación precisa para captar pacientes de alto valor.",
       features: ["Segmentación por patología", "Remarketing ético", "Informes mensuales transparentes"]
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] font-['Poppins']">
+    <div className="min-h-screen bg-white">
       <main>
-        {/* HEADER DA PÁGINA */}
-        <section className="pt-40 pb-20 bg-white text-center px-6 border-b border-slate-100">
+        {/* HEADER DA PÁGINA - Cores de Contraste 7.24:1 */}
+        <section className="pt-48 pb-24 bg-white text-center px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-black text-[#3156A3] tracking-tighter mb-6">
-              Nuestros <span className="font-elegant-italic text-[#00A89F]">Servicios</span>
+            <h1 className="text-7xl md:text-8xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
+              Nuestros <span className="font-light italic text-[#0DBAAC]">servicios</span>
             </h1>
-            <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-              Estrategias integrales diseñadas exclusivamente para cada etapa de crecimiento de su clínica.
+            <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed animate-reveal delay-100">
+              Estrategias integrales diseñadas exclusivamente para cada etapa de crecimiento de su clínica o centro médico.
             </p>
           </div>
         </section>
 
-        {/* GRID DE SERVIÇOS */}
+        {/* GRID DE SERVIÇOS - Layout Limpo */}
         <section className="py-24 max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {services.map((service, index) => (
-              <div key={index} className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-500 group">
-                <div className="mb-6 bg-slate-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#3156A3]/5 transition-colors">
-                  {service.icon}
+              <div 
+                key={index} 
+                className="bg-white p-12 rounded-[3.5rem] shadow-sm border border-slate-50 hover:shadow-2xl transition-all duration-500 group animate-reveal"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="mb-8 bg-slate-50 w-20 h-20 rounded-[2rem] flex items-center justify-center group-hover:bg-[#0A1738] transition-all duration-500 group-hover:scale-110">
+                  <div className="group-hover:text-white transition-colors duration-500">
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#1A2B4B] mb-4">{service.title}</h3>
-                <p className="text-slate-500 mb-8 leading-relaxed">{service.desc}</p>
+                <h3 className="text-2xl font-bold text-[#0A1738] mb-4 tracking-tight">{service.title}</h3>
+                <p className="text-slate-500 mb-10 leading-relaxed text-lg">{service.desc}</p>
                 
-                <ul className="space-y-3 mb-10">
+                <ul className="space-y-4 mb-2 border-t border-slate-50 pt-8">
                   {service.features.map((feature, fIndex) => (
-                    <li key={fIndex} className="flex items-center gap-3 text-sm font-medium text-slate-600">
-                      <CheckCircle2 size={16} className="text-[#00A89F]" />
+                    <li key={fIndex} className="flex items-center gap-4 text-sm font-semibold text-slate-700">
+                      <CheckCircle2 size={18} className="text-[#0DBAAC]" />
                       {feature}
                     </li>
                   ))}
@@ -63,24 +69,24 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* CTA SECTION */}
-        <section className="py-20 px-6">
-          <div className="max-w-5xl mx-auto bg-[#3156A3] rounded-[4rem] p-12 md:p-20 text-center text-white shadow-2xl relative overflow-hidden">
+        {/* CTA SECTION - Fundo Azul Noite com Destaque Verde Oceano */}
+        <section className="py-32 px-6">
+          <div className="max-w-6xl mx-auto bg-[#0A1738] rounded-[4rem] p-12 md:p-24 text-center text-white shadow-2xl relative overflow-hidden">
             {/* Elemento decorativo de fundo */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#0DBAAC]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
             
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter italic">
-                ¿Listo para llenar su agenda?
+              <h2 className="text-4xl md:text-7xl font-bold mb-10 tracking-tighter">
+                ¿Listo para llenar <br/><span className="text-[#0DBAAC] italic font-light">su agenda?</span>
               </h2>
-              <p className="text-blue-100 text-lg mb-12 max-w-xl mx-auto">
-                Analizamos su situación actual y crecemos su volumen de pacientes de forma ética y constante.
+              <p className="text-blue-100/70 text-xl mb-14 max-w-2xl mx-auto font-medium">
+                Analizamos su situación actual sin compromiso y trazamos una hoja de ruta para escalar su volumen de pacientes.
               </p>
               <Link 
                 to="/contacto" 
-                className="inline-flex bg-[#00A89F] text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-[#008f88] transition-all hover:scale-105 shadow-xl"
+                className="inline-flex bg-[#0DBAAC] text-white px-12 py-6 rounded-2xl font-bold text-xl hover:bg-[#0a8d82] transition-all hover:-translate-y-2 shadow-xl shadow-[#0DBAAC]/20 group"
               >
-                Agendar Consultoría <ArrowRight className="ml-2" />
+                Agendar Consultoría <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>
