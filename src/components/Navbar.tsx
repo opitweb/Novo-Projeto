@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-// IMPORTAÇÃO OFICIAL DA LOGO CARREGADA
-import logoBetterfly from './Logotipo-1024x329.png'; 
+
+// CORREÇÃO DO CAMINHO: Recuar uma pasta para encontrar a logo na raiz de src
+import logoBetterfly from '../Logotipo-1024x329.png'; 
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,20 +22,20 @@ export const Navbar = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
-        {/* LOGOTIPO COM IMPORTAÇÃO GARANTIDA */}
+        {/* LOGOTIPO COM CAMINHO CORRIGIDO */}
         <Link to="/" className="flex items-center group">
           <img 
             src={logoBetterfly} 
             alt="Betterfly Media" 
-            className="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105" 
+            className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
           />
         </Link>
 
-        {/* LINKS COM CORES DE ALTO CONTRASTE */}
+        {/* MENU COM CORES DE ALTO CONTRASTE (#0A1738) */}
         <div className="hidden md:flex items-center gap-10">
-          <Link to="/" className={`text-sm font-bold uppercase tracking-widest ${location.pathname === '/' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Inicio</Link>
-          <Link to="/sobre" className={`text-sm font-bold uppercase tracking-widest ${location.pathname === '/sobre' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Sobre Nosotros</Link>
-          <Link to="/servicios" className={`text-sm font-bold uppercase tracking-widest ${location.pathname === '/servicios' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Servicios</Link>
+          <Link to="/" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-[#0DBAAC] ${location.pathname === '/' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Inicio</Link>
+          <Link to="/sobre" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-[#0DBAAC] ${location.pathname === '/sobre' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Sobre Nosotros</Link>
+          <Link to="/servicios" className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-[#0DBAAC] ${location.pathname === '/servicios' ? 'text-[#0DBAAC]' : 'text-[#0A1738]'}`}>Servicios</Link>
           
           <Link
             to="/contacto"
