@@ -21,21 +21,26 @@ export const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-[100] transition-all duration-300 ${
-      scrolled ? 'bg-[#F5F5F5]/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
+      scrolled ? 'bg-[#F5F5F5]/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        {/* LOGOTIPO */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <img src="/Logotipo-1024x329.png" alt="Betterfly Media" className="h-10 w-auto" />
+        
+        {/* LOGOTIPO RECUPERADO */}
+        <Link to="/" className="flex items-center group transition-transform hover:scale-105">
+          <img 
+            src="/Logotipo-1024x329.png" 
+            alt="Betterfly Media Logo" 
+            className="h-12 md:h-14 w-auto object-contain" // Tamanho otimizado para visibilidade
+          />
         </Link>
 
-        {/* MENU DESKTOP */}
+        {/* MENU DESKTOP - Cores de Alto Contraste */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors hover:text-[#0DBAAC] ${
+              className={`text-sm font-bold uppercase tracking-[0.15em] transition-all hover:text-[#0DBAAC] ${
                 location.pathname === link.path ? 'text-[#0DBAAC]' : 'text-[#0A1738]'
               }`}
             >
@@ -44,7 +49,7 @@ export const Navbar = () => {
           ))}
           <Link
             to="/contacto"
-            className="bg-[#0A1738] text-white px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#0DBAAC] transition-all shadow-lg shadow-[#0A1738]/10 active:scale-95"
+            className="bg-[#0A1738] text-white px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#0DBAAC] transition-all shadow-lg shadow-[#0A1738]/20 hover:-translate-y-0.5"
           >
             Contacto
           </Link>
@@ -56,15 +61,17 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {/* MENU MOBILE */}
+      {/* MENU MOBILE - Fundo Off-White */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#F5F5F5] border-t border-slate-100 p-6 flex flex-col gap-6 md:hidden shadow-xl">
+        <div className="absolute top-full left-0 w-full bg-[#F5F5F5] border-t border-slate-200 p-8 flex flex-col gap-8 md:hidden shadow-2xl animate-reveal">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
               onClick={() => setIsOpen(false)}
-              className="text-[#0A1738] text-lg font-bold uppercase tracking-tighter"
+              className={`text-xl font-bold uppercase tracking-tighter ${
+                location.pathname === link.path ? 'text-[#0DBAAC]' : 'text-[#0A1738]'
+              }`}
             >
               {link.name}
             </Link>
@@ -72,7 +79,7 @@ export const Navbar = () => {
           <Link
             to="/contacto"
             onClick={() => setIsOpen(false)}
-            className="bg-[#0DBAAC] text-white p-4 rounded-2xl text-center font-bold uppercase tracking-widest"
+            className="bg-[#0DBAAC] text-white p-5 rounded-2xl text-center font-bold uppercase tracking-widest text-sm"
           >
             Contacto
           </Link>
