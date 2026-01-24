@@ -78,7 +78,7 @@ export default function Index() {
               
               <div className="space-y-4">
                 <h1 className="text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
-                  Marketing Digital Especializado para Clínicas e Médicos em <br/>
+               Marketing Digital para Clínicas em <br/>
                   <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
                 </h1>
               </div>
