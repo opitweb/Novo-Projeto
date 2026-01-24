@@ -58,7 +58,7 @@ export default function ContactoPage() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-[#0A1738] uppercase tracking-widest mb-1">Teléfono</p>
-                    <p className="text-lg text-slate-600">+34 930 000 000</p>
+                    <p className="text-lg text-slate-600">+34 632 76 28 21</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-6 group">
