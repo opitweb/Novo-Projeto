@@ -5,13 +5,14 @@ import App from './App.tsx'
 import SobrePage from './components/pages/sobre/SobrePage.tsx'
 import ServiciosPage from './components/pages/servicios/ServiciosPage.tsx'
 import ContactoPage from './components/pages/contacto/ContactoPage.tsx'
-import { Navbar } from './components/components/Navbar' // Ajuste o caminho se necessário
-import { Footer } from './components/components/Footer' // Ajuste o caminho se necessário
+import { Navbar } from './components/Navbar' // Caminho corrigido aqui
+import { Footer } from './components/Footer' // Caminho corrigido aqui
 import './index.css' 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
+      {/* Navbar global */}
       <Navbar /> 
       
       <div className="flex flex-col min-h-screen">
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Routes>
       </div>
 
+      {/* Footer global */}
       <Footer />
     </BrowserRouter>
   </React.StrictMode>,
