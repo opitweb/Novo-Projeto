@@ -84,7 +84,7 @@ export default function Index() {
               </div>
               
               <p className="text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
-                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">para aumentar a visibilidade e os agendamentos da sua clínica</span>.
+                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">que desean aumentar la visibilidad y las citas de su clínica.</span>.
               </p>
 
               <Link 
