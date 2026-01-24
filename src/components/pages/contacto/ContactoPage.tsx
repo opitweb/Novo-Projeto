@@ -1,97 +1,114 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function ContactoPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Mensaje enviado (demo)');
+    alert('Mensaje enviado a Betterfly Media');
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] font-['Poppins']">
+    <div className="min-h-screen bg-white">
       <main>
-        {/* HEADER DA PÁGINA */}
-        <section className="pt-40 pb-20 bg-white text-center px-6">
+        {/* HEADER DA PÁGINA - Cores Ajustadas */}
+        <section className="pt-48 pb-24 bg-white text-center px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-black text-[#3156A3] tracking-tighter mb-6">
+            <h1 className="text-7xl md:text-8xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
               Hablemos
             </h1>
-            <p className="text-xl text-slate-500 italic border-l-4 border-[#00A89F] inline-block pl-4">
-              Estamos a un mensaje de distancia de transformar su presencia digital.
+            <p className="text-xl text-slate-500 italic border-l-2 border-[#0DBAAC] inline-block pl-6 max-w-2xl text-left animate-reveal delay-100">
+              Estamos a un mensaje de distancia de transformar su presencia digital con estrategias de alto impacto.
             </p>
           </div>
         </section>
 
         {/* SEÇÃO DE CONTATO PRINCIPAL */}
-        <section className="py-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+        <section className="py-20 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
           
           {/* COLUNA: INFORMAÇÕES */}
-          <div className="space-y-12">
+          <div className="space-y-12 animate-reveal delay-200">
             <div>
-              <h3 className="text-3xl font-bold text-[#1A2B4B] mb-8">Información de Contacto</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white rounded-xl shadow-sm text-[#00A89F]"><MapPin size={24}/></div>
-                  <p className="text-lg text-slate-600">Carrer de la Marina, 123, 08013 Barcelona, España</p>
+              <h3 className="text-3xl font-bold text-[#0A1738] mb-10">Información de Contacto</h3>
+              <div className="space-y-8">
+                <div className="flex items-start gap-6 group">
+                  <div className="p-4 bg-slate-50 rounded-2xl text-[#0DBAAC] group-hover:bg-[#0DBAAC] group-hover:text-white transition-all">
+                    <MapPin size={24}/>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#0A1738] uppercase tracking-widest mb-1">Ubicación</p>
+                    <p className="text-lg text-slate-600">Carrer de la Marina, Barcelona, España</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white rounded-xl shadow-sm text-[#00A89F]"><Phone size={24}/></div>
-                  <p className="text-lg text-slate-600">+34 93 123 45 67</p>
+                <div className="flex items-start gap-6 group">
+                  <div className="p-4 bg-slate-50 rounded-2xl text-[#0DBAAC] group-hover:bg-[#0DBAAC] group-hover:text-white transition-all">
+                    <Phone size={24}/>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#0A1738] uppercase tracking-widest mb-1">Teléfono</p>
+                    <p className="text-lg text-slate-600">+34 930 000 000</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white rounded-xl shadow-sm text-[#00A89F]"><Mail size={24}/></div>
-                  <p className="text-lg text-slate-600">info@saludmark.es</p>
+                <div className="flex items-start gap-6 group">
+                  <div className="p-4 bg-slate-50 rounded-2xl text-[#0DBAAC] group-hover:bg-[#0DBAAC] group-hover:text-white transition-all">
+                    <Mail size={24}/>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-[#0A1738] uppercase tracking-widest mb-1">Email</p>
+                    <p className="text-lg text-slate-600">info@betterfly.media</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* MAPA (PLACEHOLDER ESTILIZADO) */}
-            <div className="bg-slate-200 w-full h-[300px] rounded-[3rem] flex items-center justify-center text-slate-500 font-bold border-4 border-white shadow-lg overflow-hidden relative">
-               <div className="absolute inset-0 bg-[#3156A3]/10"></div>
-               <span className="relative z-10">Mapa de Barcelona (Google Maps)</span>
+            {/* MAPA ESTILIZADO */}
+            <div className="bg-[#0A1738] w-full h-[350px] rounded-[3rem] flex items-center justify-center text-white/20 font-bold border border-slate-100 shadow-2xl overflow-hidden relative group">
+               <div className="absolute inset-0 bg-[#0DBAAC]/5 group-hover:opacity-20 transition-opacity"></div>
+               <span className="relative z-10 tracking-widest uppercase text-sm">Barcelona Operations Center</span>
             </div>
           </div>
 
-          {/* COLUNA: FORMULÁRIO */}
-          <div className="bg-white p-10 md:p-12 rounded-[3.5rem] shadow-xl border border-slate-100">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#3156A3] ml-2">Nombre</label>
-                <input type="text" placeholder="Su nombre" required className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#00A89F] transition-all outline-none" />
+          {/* COLUNA: FORMULÁRIO - Focado em Contraste e Elegância */}
+          <div className="bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl border border-slate-50 animate-reveal delay-300">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#0A1738] uppercase tracking-widest ml-1">Nombre</label>
+                  <input type="text" placeholder="Su nombre" required className="w-full p-5 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#0DBAAC] transition-all outline-none text-[#0A1738]" />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-xs font-bold text-[#0A1738] uppercase tracking-widest ml-1">Email</label>
+                  <input type="email" placeholder="su@email.com" required className="w-full p-5 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#0DBAAC] transition-all outline-none text-[#0A1738]" />
+                </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#3156A3] ml-2">Email</label>
-                <input type="email" placeholder="su@email.com" required className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#00A89F] transition-all outline-none" />
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#0A1738] uppercase tracking-widest ml-1">Especialidad</label>
+                <input type="text" placeholder="Ej: Odontología, Estética..." className="w-full p-5 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#0DBAAC] transition-all outline-none text-[#0A1738]" />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#3156A3] ml-2">Teléfono</label>
-                <input type="tel" placeholder="+34 600 000 000" className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#00A89F] transition-all outline-none" />
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-[#0A1738] uppercase tracking-widest ml-1">Mensaje</label>
+                <textarea rows={4} placeholder="¿Cómo podemos potenciar su clínica?" required className="w-full p-5 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#0DBAAC] transition-all outline-none resize-none text-[#0A1738]"></textarea>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#3156A3] ml-2">Mensaje</label>
-                <textarea rows={4} placeholder="¿En qué podemos ayudarle?" required className="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 focus:ring-[#00A89F] transition-all outline-none resize-none"></textarea>
-              </div>
-              <button type="submit" className="w-full bg-[#3156A3] text-white py-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#1e3a7a] transition-all shadow-lg shadow-[#3156A3]/20">
-                ENVIAR MENSAJE <Send size={18} />
+              <button type="submit" className="w-full bg-[#0A1738] text-white py-6 rounded-2xl font-bold flex items-center justify-center gap-4 hover:bg-[#152a61] transition-all shadow-xl shadow-[#0A1738]/20 group">
+                ENVIAR CONSULTA <Send size={18} className="group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
           </div>
         </section>
 
-        {/* SEÇÃO FAQ (PERGUNTAS FREQUENTES) */}
-        <section className="py-24 max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-black text-[#3156A3] text-center mb-12 tracking-tight">Preguntas Frecuentes</h2>
-          <div className="space-y-4">
+        {/* SEÇÃO FAQ - Cores do Ratio 7.24:1 */}
+        <section className="py-32 max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-[#0A1738] text-center mb-16 tracking-tight">Preguntas Frecuentes</h2>
+          <div className="space-y-6">
             {[
-              { q: "¿Ofrecen exclusividad geográfica?", a: "Sí, para servicios de SEO, solo trabajamos con una clínica por especialidad en cada código postal para evitar conflictos de interés." },
-              { q: "¿Tienen permanencia?", a: "No creemos en las ataduras. Nuestros clientes se quedan por los resultados, no por contrato." }
+              { q: "¿Ofrecen exclusividad geográfica?", a: "Sí, trabajamos bajo un estricto código de exclusividade por especialidad y zona, garantizando que su competencia não use nossas mesmas estratégias." },
+              { q: "¿Cómo miden el éxito de las campañas?", a: "Transparencia total. Ofrecemos un dashboard en tiempo real donde verá el retorno de inversión (ROI) y el crecimiento de su facturación." }
             ].map((item, i) => (
-              <details key={i} className="group bg-white border border-slate-100 rounded-3xl p-6 cursor-pointer shadow-sm hover:shadow-md transition-all">
-                <summary className="font-bold text-[#1A2B4B] flex justify-between items-center list-none">
+              <details key={i} className="group bg-white border border-slate-100 rounded-[2rem] p-8 cursor-pointer shadow-sm hover:shadow-xl transition-all">
+                <summary className="font-bold text-xl text-[#0A1738] flex justify-between items-center list-none">
                   {item.q}
-                  <span className="text-[#00A89F] group-open:rotate-180 transition-transform">↓</span>
+                  <span className="text-[#0DBAAC] group-open:rotate-45 transition-transform text-3xl font-light">+</span>
                 </summary>
-                <p className="mt-4 text-slate-600 leading-relaxed border-t pt-4">
+                <p className="mt-6 text-slate-500 text-lg leading-relaxed border-t border-slate-50 pt-6">
                   {item.a}
                 </p>
               </details>
