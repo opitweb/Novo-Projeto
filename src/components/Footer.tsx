@@ -26,7 +26,7 @@ export const Footer = () => {
         {/* Nome da marca em marca d'água gigante */}
         <h1
           ref={brandRef}
-          className="text-[18vw] font-bold leading-none tracking-tighter opacity-[0.01] select-none mb-10 text-white pointer-events-none brand"
+          className="text-[18vw] font-bold leading-none tracking-tighter opacity-[0.01] select-none mb-10 relative overflow-visible pointer-events-none brand"
         >
           betterfly
         </h1>
