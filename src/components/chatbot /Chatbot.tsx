@@ -7,7 +7,7 @@ export default function MarbleChatbot() {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState([
-    { role: 'bot', text: 'Olá! Sou o consultor da Stone & Wood. Como posso ajudar no seu projeto de mármores ou planejados?' }
+    { role: 'bot', text: '¡Hola! Soy el consultor de Betterfly . ¿Cómo puedo ayudarte con tu estrategia de marketing digital?' }
   ]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function MarbleChatbot() {
       const botText = data.choices[0].message.content;
       setMessages(prev => [...prev, { role: 'bot', text: botText }]);
     } catch (e) {
-      setMessages(prev => [...prev, { role: 'bot', text: "Estou com instabilidade agora. Por favor, use o WhatsApp abaixo para falar com o vendedor!" }]);
+      setMessages(prev => [...prev, { role: 'bot', text: "Estoy teniendo problemas de conexión en este momento. Por favor, utiliza el WhatsApp que aparece abajo para ponerte en contacto con el agente.!" }]);
     } finally {
       setLoading(false);
     }
