@@ -6,7 +6,7 @@ export const Footer = () => {
   useEffect(() => {
     if (!brandRef.current) return;
 
-    // Transformar cada letra em span
+    // Letras separadas em spans
     const text = brandRef.current.textContent || "";
     brandRef.current.textContent = "";
     const letters = text.split("").map((char) => {
@@ -16,14 +16,12 @@ export const Footer = () => {
       return span;
     });
 
-    // IntersectionObserver para disparar animação quando footer aparecer
+    // Observer para disparar animação ao aparecer
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           letters.forEach((span, i) => {
-            setTimeout(() => {
-              span.classList.add("animate");
-            }, i * 100); // Delay progressivo por letra
+            setTimeout(() => span.classList.add("animate"), i * 100);
           });
         } else {
           letters.forEach((span) => span.classList.remove("animate"));
@@ -31,10 +29,9 @@ export const Footer = () => {
       },
       { threshold: 0.3 }
     );
-
     observer.observe(brandRef.current);
 
-    // Parallax leve baseado no scroll
+    // Parallax leve
     const handleScroll = () => {
       const rect = brandRef.current!.getBoundingClientRect();
       const offset = window.innerHeight - rect.top;
@@ -43,7 +40,6 @@ export const Footer = () => {
         span.style.transform = `translateY(${20 - move}px)`;
       });
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
@@ -54,7 +50,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#0A1738] text-white pt-32 pb-10 px-6 mt-20 relative overflow-visible">
+    <footer className="bg-[#0A1738] text-white pt-32 pb-10 px-6 mt-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto text-center">
         <h1
           ref={brandRef}
@@ -73,30 +69,7 @@ export const Footer = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        /* Loop de cores em onda */
-        @keyframes neonWave {
-          0% { color: rgba(255,255,255,0.05); text-shadow: none; }
-          20% { color: white; text-shadow: 0 0 10px white, 0 0 20px white; }
-          40% { color: #00ff88; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
-          60% { color: white; text-shadow: 0 0 10px white, 0 0 20px white; }
-          80% { color: rgba(255,255,255,0.05); text-shadow: none; }
-          100% { color: rgba(255,255,255,0.05); text-shadow: none; }
-        }
-
-        .brand span {
-          display: inline-block;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .brand span.animate {
-          opacity: 1;
-          animation: neonWave 4s linear infinite;
-          transform: translateY(0);
-        }
-      `}</style>
-    </footer>
-  );
-};
+      {/* Borboletas */}
+      <div className="butterflies">
+        <div className="butterfly" style={{ "--i": 1 } as React.CSSProperties} />
+        <div className="butterfly" style={{ "--i": 2 } as React.CSS
