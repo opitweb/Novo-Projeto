@@ -1,16 +1,58 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Betterfly Media | Marketing Médico</title>
-    <!-- Adicione o link para o GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-    <!-- Adicione o link para o ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-  </head>
-  <body>
+    
+    <!-- Tailwind CSS para estilização rápida e moderna -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts para tipografia premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- 
+      O IMPORTMAP é o que corrige o erro de "Failed to resolve module specifier".
+      Ele mapeia os nomes das bibliotecas para as URLs reais (CDN).
+    -->
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
+    "@google/genai": "https://esm.sh/@google/genai@0.21.0",
+    "gsap": "https://esm.sh/gsap@3.12.5",
+    "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/"
+  }
+}
+</script>
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        scroll-behavior: smooth;
+        background-color: #F5F5F5;
+      }
+      /* Previne FOUC (Flash of Unstyled Content) nas animações GSAP */
+      .service-card {
+        opacity: 0;
+      }
+    </style>
+</head>
+<body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <!-- 
+      Não precisamos da tag <script src="/src/main.tsx">. 
+      Neste ambiente, o index.tsx é injetado automaticamente como módulo.
+    -->
+</body>
 </html>
