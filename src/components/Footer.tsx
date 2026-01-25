@@ -1,49 +1,33 @@
 import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Mova o registro para dentro ou garanta que ele rode apenas uma vez
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export const Footer = () => {
   const brandRef = useRef<HTMLHeadingElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Verificação de segurança
-    if (!brandRef.current) return;
+    const el = brandRef.current;
+    if (!el) return;
 
-    // 2. Use o context do GSAP (limpa automaticamente a memória no React)
-    let ctx = gsap.context(() => {
-      gsap.to(brandRef.current, {
-        scrollTrigger: {
-          trigger: brandRef.current,
-          start: "top 95%", // Inicia quando o topo do texto entra quase no fim da tela
-          end: "bottom bottom",
-          scrub: 1, // Suaviza o movimento (número em vez de true)
-          markers: true, // Se não aparecer, o problema é o overflow do elemento pai
-        },
-        opacity: 0.25,
-        y: -20, // Pequeno movimento para confirmar que funcionou
-        ease: "power1.out",
-      });
-    }, containerRef); // Escopo da animação
+    // IntersectionObserver para disparar a animação quando o footer aparecer
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("visible");
+        }
+      },
+      { threshold: 0.3 } // dispara quando ~30% do footer aparecer
+    );
 
-    return () => ctx.revert(); // 3. Limpeza obrigatória para evitar bugs de duplicidade
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <footer 
-      ref={containerRef} 
-      className="bg-[#0A1738] text-white pt-32 pb-10 px-6 mt-20 relative overflow-visible"
-    >
+    <footer className="bg-[#0A1738] text-white pt-32 pb-10 px-6 mt-20 relative overflow-visible">
       <div className="max-w-7xl mx-auto text-center">
         {/* Nome da marca em marca d'água gigante */}
         <h1
           ref={brandRef}
-          className="text-[18vw] font-bold leading-none tracking-tighter opacity-[0.03] select-none mb-10 text-white pointer-events-none"
+          className="text-[18vw] font-bold leading-none tracking-tighter opacity-[0.03] select-none mb-10 text-white pointer-events-none brand"
         >
           betterfly
         </h1>
@@ -57,6 +41,21 @@ export const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* CSS inline ou Tailwind custom */}
+      <style jsx>{`
+        .brand span {
+          display: inline-block;
+          color: rgba(255, 255, 255, 0.05);
+          transform: translateY(10px);
+          transition: color 0.6s ease, transform 0.6s ease;
+        }
+        .brand.visible {
+          color: rgba(255, 255, 255, 1);
+          transform: translateY(0);
+          transition: color 0.8s ease, transform 0.8s ease;
+        }
+      `}</style>
     </footer>
   );
 };
