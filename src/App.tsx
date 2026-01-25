@@ -69,7 +69,7 @@ export default function Index() {
   ];
 
  const socialStats = [
-  { icon: Users, value: 2000000, suffix: "M", prefix: "+", label: "Alcance Mensual" },
+  { icon: Users, value: 200, suffix: "M", prefix: "+", label: "Alcance Mensual" },
   { icon: Heart, value: 98, suffix: "%", prefix: "", label: "Engagement Rate" },
   { icon: TrendingUp, value: 180, suffix: "%", prefix: "+", label: "Crecimiento Seguidores" },
 ];
