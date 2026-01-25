@@ -28,7 +28,6 @@ const StatItem = ({ stat }: { stat: any }) => {
     if (countRef.current) observer.observe(countRef.current);
     return () => observer.disconnect();
   }, []);
-  
 
   useEffect(() => {
     // 2. REGISTRO E CONFIGURAÇÃO
