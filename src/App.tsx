@@ -67,14 +67,14 @@ export default function Index() {
       
       {/* EFEITO PARALLAX DE LINHAS */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0">
-        <div 
-          className="absolute inset-0 w-full h-[200%]"
-          style={{
-            backgroundImage: `linear-gradient(to right, #0A1738 1px, transparent 1px)`,
-            backgroundSize: '80px 100%',
-            transform: `translateY(${offset * -0.1}px)`, 
-          }}
-        />
+       <div
+  id="parallax-lines"
+  className="absolute inset-0 w-full h-[200%]"
+  style={{
+    backgroundImage: `linear-gradient(to right, #0A1738 1px, transparent 1px)`,
+    backgroundSize: '80px 100%',
+  }}
+/>
       </div>
 
       <main className="relative z-10">
