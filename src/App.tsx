@@ -68,11 +68,11 @@ export default function Index() {
     { icon: Linkedin, title: "LinkedIn", description: "Posicionamiento profesional para especialistas y clínicas de referencia." },
   ];
 
-  const socialStats = [
-    { icon: Users, value: "+2M", label: "Alcance Mensual" },
-    { icon: Heart, value: "98%", label: "Engagement Rate" },
-    { icon: TrendingUp, value: "+180%", label: "Crecimiento Seguidores" },
-  ];
+ const socialStats = [
+  { icon: Users, value: 2000000, suffix: "M", prefix: "+", label: "Alcance Mensual" },
+  { icon: Heart, value: 98, suffix: "%", prefix: "", label: "Engagement Rate" },
+  { icon: TrendingUp, value: 180, suffix: "%", prefix: "+", label: "Crecimiento Seguidores" },
+];
 
   const webFeatures = [
     { icon: Globe, title: "Diseño Web Premium", description: "Websites que convierten visitantes en pacientes con diseño profesional." },
