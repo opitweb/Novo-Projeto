@@ -1,31 +1,45 @@
-import { useRef, useState, useEffect, ReactNode } from "react";
+import { useRef, useEffect, ReactNode } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface FadeUpProps {
   children: ReactNode;
-  delay?: string; // ex: "0.2s"
+  delay?: number; // em segundos, ex: 0.2
 }
 
-export function FadeUp({ children, delay = "0s" }: FadeUpProps) {
+export function FadeUp({ children, delay = 0 }: FadeUpProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+    if (!ref.current) return;
+
+    // Registrar o ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Criar a animação
+    const anim = gsap.from(ref.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.7,
+      delay: delay,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ref.current,
+        start: "top 90%", // quando o topo do elemento alcançar 90% da viewport
+        toggleActions: "play none none none",
+        markers: false, // coloque true só para debug
       },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    });
+
+    return () => {
+      // Limpar a animação e ScrollTrigger
+      if (anim.scrollTrigger) anim.scrollTrigger.kill();
+      anim.kill();
+    };
+  }, [delay]);
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ${visible ? "animate-fade-up" : "opacity-0 translate-y-8"}`}
-      style={{ animationDelay: delay }}
-    >
+    <div ref={ref}>
       {children}
     </div>
   );
