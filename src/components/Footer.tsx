@@ -4,20 +4,19 @@ export const Footer = () => {
   const brandRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    const el = brandRef.current;
-    if (!el) return;
+    if (!brandRef.current) return;
 
-    // IntersectionObserver para disparar a animação quando o footer aparecer
+    // IntersectionObserver para disparar animação quando o footer aparecer
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.classList.add("visible");
+          brandRef.current!.classList.add("visible");
         }
       },
-      { threshold: 0.3 } // dispara quando ~30% do footer aparecer
+      { threshold: 0.3 } // quando ~30% do footer estiver visível
     );
 
-    observer.observe(el);
+    observer.observe(brandRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -42,18 +41,16 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* CSS inline ou Tailwind custom */}
+      {/* CSS inline para animação */}
       <style jsx>{`
-        .brand span {
-          display: inline-block;
-          color: rgba(255, 255, 255, 0.05);
+        .brand {
+          opacity: 0.03;
           transform: translateY(10px);
-          transition: color 0.6s ease, transform 0.6s ease;
+          transition: opacity 0.8s ease, transform 0.8s ease;
         }
         .brand.visible {
-          color: rgba(255, 255, 255, 1);
+          opacity: 1;
           transform: translateY(0);
-          transition: color 0.8s ease, transform 0.8s ease;
         }
       `}</style>
     </footer>
