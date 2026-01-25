@@ -1,10 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Search, Monitor, BarChart3, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ServiciosPage() {
-  const services = [
-    {
+  useEffect(() => {
+    gsap.from(".service-card", {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".service-card",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }, []);
+
+  // restante do código...
+}
+
       title: "SEO Médico Local",
       icon: <Search className="text-[#0DBAAC]" size={32} />,
       desc: "Aparezca cuando sus pacientes buscan especialistas en Barcelona y optimice su visibilidad orgánica.",
