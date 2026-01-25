@@ -6,6 +6,7 @@ import {
   BarChart3, Bot, Workflow, Calendar, MessageSquare, Cog, Clock, 
   Target, Star 
 } from 'lucide-react';
+import { gsap } from 'gsap'; // <--- Import do GSAP adicionado
 
 export default function Index() {
   const [offset, setOffset] = useState(0);
@@ -50,6 +51,7 @@ export default function Index() {
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo administrativo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
+
   // Animação do hero com GSAP
   useEffect(() => {
     const tl = gsap.timeline();
@@ -59,6 +61,7 @@ export default function Index() {
       .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1, delay: 0.1 }, "-=0.7")
       .from(".hero-button", { opacity: 0, y: 30, duration: 1, delay: 0.2 }, "-=0.7");
   }, []);
+
   return (
     <div className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
