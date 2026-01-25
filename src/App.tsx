@@ -7,11 +7,8 @@ import {
   Target, Star 
 } from 'lucide-react';
 
-// IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// IMPORTAÇÃO DO CHATBOT (Verifique se o caminho está correto conforme seu projeto)
 import Chatbot from './components/chatbot/Chatbot';
 
 // --- COMPONENTE DE CONTADOR (Puro React - Sem GSAP) ---
