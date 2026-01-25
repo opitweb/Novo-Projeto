@@ -7,24 +7,16 @@ import {
   Target, Star 
 } from 'lucide-react';
 
+// 1. IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// ADIÇÃO: Importação do seu componente Chatbot
 import Chatbot from './components/chatbot/Chatbot';
 
-// --- COMPONENTE DE CONTADOR (Puro React - Sem GSAP) ---
-const StatItem = ({ stat }: { stat: any }) => {
-  const [count, setCount] = useState(0);
-  const countRef = useRef<HTMLDivElement>(null);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) setHasStarted(true);
-    }, { threshold: 0.5 });
-
-    if (countRef.current) observer.observe(countRef.current);
-    return () => observer.disconnect();
-  }, []);
+export default function Index() {
+  const [offset, setOffset] = useState(0);
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 2. REGISTRO E CONFIGURAÇÃO
