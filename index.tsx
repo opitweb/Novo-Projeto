@@ -24,13 +24,26 @@ export default function Index() {
   }, []);
 
   // ======== GSAP ANIMATION ========
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { duration: 1, ease: 'power3.out' } });
-    tl.from(heroTitleRef.current, { y: 50, opacity: 0 })
-      .from(heroSubtitleRef.current, { y: 20, opacity: 0 }, "-=0.5")
-      .from(heroTextRef.current, { y: 20, opacity: 0 }, "-=0.5")
-      .from(heroButtonRef.current, { y: 20, opacity: 0 }, "-=0.5");
-  }, []);
+useEffect(() => {
+  const animate = () => {
+    if (
+      heroTitleRef.current &&
+      heroSubtitleRef.current &&
+      heroTextRef.current &&
+      heroButtonRef.current
+    ) {
+      const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
+      tl.from(heroTitleRef.current, { y: 50, opacity: 0 })
+        .from(heroSubtitleRef.current, { y: 20, opacity: 0 }, "-=0.5")
+        .from(heroTextRef.current, { y: 20, opacity: 0 }, "-=0.5")
+        .from(heroButtonRef.current, { y: 20, opacity: 0 }, "-=0.5");
+    }
+  };
+
+  // Garantir que o DOM está montado
+  window.requestAnimationFrame(animate);
+}, []);
+
 
   // ======== SEUS DADOS ========
   const socialServices = [
