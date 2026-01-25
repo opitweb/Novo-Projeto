@@ -46,7 +46,7 @@ export const Footer = () => {
         .brand {
           opacity: 0.03;
           transform: translateY(10px);
-          transition: opacity 0.8s ease, transform 0.8s ease;
+          transition: opacity 0.6s ease, transform 0.6s ease;
         }
         .brand.visible {
           opacity: 1;
