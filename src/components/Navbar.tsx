@@ -27,7 +27,7 @@ export const Navbar = () => {
           <img 
             src={logoBetterfly} 
             alt="Betterfly Media" 
-            className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+            className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105" 
           />
         </Link>
 
