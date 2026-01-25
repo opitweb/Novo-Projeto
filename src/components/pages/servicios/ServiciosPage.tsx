@@ -1,52 +1,34 @@
-import { useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Search, Monitor, BarChart3, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 export default function ServiciosPage() {
-  useEffect(() => {
-    gsap.from(".service-card", {
-      opacity: 0,
-      y: 50,
-      duration: 0.8,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: ".service-card",
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-  }, []);
-
-  // restante do código...
-}
-
+  // Lista de serviços
+  const services = [
+    {
       title: "SEO Médico Local",
-      icon: <Search className="text-[#0DBAAC]" size={32} />,
+      Icon: Search,
       desc: "Aparezca cuando sus pacientes buscan especialistas en Barcelona y optimice su visibilidad orgánica.",
       features: ["Optimización de Google My Business", "Contenido médico verificado", "Linkbuilding ético"]
     },
     {
       title: "Diseño Web Especializado",
-      icon: <Monitor className="text-[#0DBAAC]" size={32} />,
+      Icon: Monitor,
       desc: "Webs rápidas, seguras y que cumplen con la RGPD sanitaria para una conversión impecable.",
       features: ["Reserva de citas online", "Experiencia móvil perfecta", "Arquitectura de alta velocidad"]
     },
     {
       title: "Publicidad PPC",
-      icon: <BarChart3 className="text-[#0DBAAC]" size={32} />,
+      Icon: BarChart3,
       desc: "Campañas de Google Ads y Social Ads con segmentación precisa para captar pacientes de alto valor.",
       features: ["Segmentación por patología", "Remarketing ético", "Informes mensuales transparentes"]
     }
   ];
 
   return (
-/* FUNDO CORRIGIDO: De bg-white para bg-[#F5F5F5] com relative */
     <div className="min-h-screen bg-[#F5F5F5] relative font-['Poppins'] overflow-x-hidden">
-      
-      {/* TEXTURA DE FUNDO FIXA - Igual à Home */}
+
+      {/* TEXTURA DE FUNDO FIXA */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0">
         <div 
           className="absolute inset-0 w-full h-full"
@@ -58,7 +40,7 @@ export default function ServiciosPage() {
       </div>
 
       <main className="relative z-10">
-        {/* HEADER DA PÁGINA - Com respiro para a Navbar */}
+        {/* HEADER DA PÁGINA */}
         <section className="pt-48 pb-24 text-center px-6">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-7xl md:text-8xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
@@ -70,7 +52,7 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* GRID DE SERVIÇOS - Layout Limpo */}
+        {/* GRID DE SERVIÇOS */}
         <section className="py-24 max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-12">
             {services.map((service, index) => (
@@ -80,9 +62,7 @@ export default function ServiciosPage() {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="mb-8 bg-slate-50 w-20 h-20 rounded-[2rem] flex items-center justify-center group-hover:bg-[#0A1738] transition-all duration-500 group-hover:scale-110">
-                  <div className="group-hover:text-white transition-colors duration-500">
-                    {service.icon}
-                  </div>
+                  <service.Icon className="group-hover:text-white transition-colors duration-500 text-[#0DBAAC]" size={32} />
                 </div>
                 <h3 className="text-2xl font-bold text-[#0A1738] mb-4 tracking-tight">{service.title}</h3>
                 <p className="text-slate-500 mb-10 leading-relaxed text-lg">{service.desc}</p>
@@ -100,10 +80,9 @@ export default function ServiciosPage() {
           </div>
         </section>
 
-        {/* CTA SECTION - Fundo Azul Noite com Destaque Verde Oceano */}
+        {/* CTA SECTION */}
         <section className="py-32 px-6">
           <div className="max-w-6xl mx-auto bg-[#0A1738] rounded-[4rem] p-12 md:p-24 text-center text-white shadow-2xl relative overflow-hidden">
-            {/* Elemento decorativo de fundo */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#0DBAAC]/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
             
             <div className="relative z-10">
