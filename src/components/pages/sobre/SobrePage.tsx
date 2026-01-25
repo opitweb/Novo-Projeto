@@ -39,7 +39,7 @@ export default function SobrePage() {
         {/* HEADER DA PÁGINA - Com respiro para a Navbar */}
         <section className="pt-48 pb-24 text-center px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-7xl md:text-8xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
+            <h1 className="text-6xl md:text-7xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
              Agencia de Marketing Digital en Barcelona
 
             </h1>
