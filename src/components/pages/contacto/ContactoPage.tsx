@@ -25,8 +25,8 @@ export default function ContactoPage() {
         {/* HEADER DA PÁGINA */}
         <section className="pt-48 pb-24 text-center px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-7xl md:text-8xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
-              Hablemos
+            <h1 className="text-6xl md:text-7xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
+                Contáctanos | Hablemos de Tu Proyecto
             </h1>
             <p className="text-xl text-slate-500 italic border-l-2 border-[#0DBAAC] inline-block pl-6 max-w-2xl text-left animate-reveal">
               Estamos a un mensaje de distancia de transformar su presencia digital con estrategias de alto impacto.
