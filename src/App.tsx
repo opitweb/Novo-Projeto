@@ -15,8 +15,6 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
   
-  // IMPORTAÇÃO DO CHATBOT (Verifique se o caminho está correto conforme seu projeto)
-import Chatbot from './components/chatbot/Chatbot';
 
   useEffect(() => {
     // 2. REGISTRO E CONFIGURAÇÃO
