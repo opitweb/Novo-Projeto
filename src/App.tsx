@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Sparkles, ArrowRight, Award, Instagram, Facebook, Linkedin, 
@@ -6,15 +6,60 @@ import {
   BarChart3, Bot, Workflow, Calendar, MessageSquare, Cog, Clock, 
   Target, Star 
 } from 'lucide-react';
-import { gsap } from 'gsap'; // <--- Import do GSAP adicionado
+
+// 1. IMPORTAÇÕES GSAP
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Index() {
   const [offset, setOffset] = useState(0);
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 2. REGISTRO E CONFIGURAÇÃO
+    gsap.registerPlugin(ScrollTrigger);
+    
     const handleScroll = () => setOffset(window.pageYOffset);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // 3. GSAP CONTEXT (Garante que a animação funcione no React 18+)
+    let ctx = gsap.context(() => {
+      
+      // Animação dos cards de serviço ao scroll
+      const cards = gsap.utils.toArray('.service-card');
+      cards.forEach((card: any) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            markers: true, // Se não aparecer, verifique o overflow do pai no index.css
+          },
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power3.out"
+        });
+      });
+
+      // Animação da Seção Barcelona
+      gsap.from(".barcelona-content", {
+        scrollTrigger: {
+          trigger: ".barcelona-content",
+          start: "top 80%",
+        },
+        opacity: 0,
+        x: -50,
+        duration: 1.2,
+        ease: "power2.out"
+      });
+
+    }, mainRef);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      ctx.revert(); // Limpa memória ao sair da página
+    };
   }, []);
 
   const socialServices = [
