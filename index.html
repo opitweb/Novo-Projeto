@@ -1,58 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Betterfly Media | Marketing Médico</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
-    "@google/genai": "https://esm.sh/@google/genai@0.21.0",
-    "gsap": "https://esm.sh/gsap@3.12.5",
-    "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "gsap/": "https://esm.sh/gsap@^3.14.2/"
-  }
-}
-</script>
-
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #F5F5F5;
-        margin: 0;
-        overflow-x: hidden;
-      }
-      .service-card {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      @keyframes chat-reveal {
-        from { opacity: 0; transform: translateY(20px) scale(0.95); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
-      }
-      .animate-reveal {
-        animation: chat-reveal 0.3s ease-out forwards;
-      }
-    </style>
-</head>
-<body>
+    <!-- Adicione o link para o GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <!-- Adicione o link para o ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  </head>
+  <body>
     <div id="root"></div>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
