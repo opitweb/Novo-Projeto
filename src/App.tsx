@@ -21,6 +21,7 @@ export default function Index() {
   const bannerRef = useRef<HTMLDivElement>(null);
   const fbRef = useRef<HTMLDivElement>(null);
   const igRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLParagraphElement>(null);
 
   // 1. Lógica de Scroll e GSAP
   useEffect(() => {
@@ -61,10 +62,29 @@ export default function Index() {
         ease: "power2.out"
       });
 
+      // NOVA ANIMAÇÃO: Contador de 0 até 340
+      if (counterRef.current) {
+        gsap.from(counterRef.current, {
+          scrollTrigger: {
+            trigger: counterRef.current,
+            start: "top 80%",
+          },
+          textContent: 0,
+          duration: 2.5,
+          ease: "power1.inOut",
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            if (counterRef.current) {
+              counterRef.current.textContent = `+${Math.ceil(parseFloat(counterRef.current.textContent))}%`;
+            }
+          }
+        });
+      }
+
       // Timeline do carrossel banner +340% / Facebook / Instagram
       if (bannerRef.current && fbRef.current && igRef.current) {
         const carouselTl = gsap.timeline({
-          repeat: -1, // loop infinito
+          repeat: -1,
           defaults: { duration: 1, ease: "power1.inOut" }
         });
 
@@ -123,18 +143,31 @@ export default function Index() {
 return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* EFEITO DE BOLINHAS (DOT GRID) - VERDE SUAVE */}
+      {/* EFEITO DE BOLINHAS ANIMADAS (DOT GRID) - VERDE SUAVE */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 w-full h-full opacity-[0.50]"
+          className="absolute inset-0 w-full h-full opacity-[0.50] animate-dots"
           style={{
             backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
             backgroundSize: '40px 40px',
-            maskImage: 'linear-gradient(to bottom, black 50%, transparent)', // Desvanece as bolinhas para o final da página
-            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent)'
+            maskImage: 'linear-gradient(to bottom, black 50%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent)',
+            animation: 'moveDots 20s linear infinite'
           }}
         />
       </div>
+
+      {/* Estilos CSS para animação das bolinhas */}
+      <style>{`
+        @keyframes moveDots {
+          0% {
+            background-position: 0 0;
+          }
+          100% {
+            background-position: 40px 40px;
+          }
+        }
+      `}</style>
 
       <main className="relative z-10">
         
@@ -168,7 +201,7 @@ return (
               <div ref={bannerRef} className="hero-banner absolute z-20 opacity-1">
                 <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 max-w-[480px] aspect-square flex flex-col justify-center items-center">
                   <Award size={48} className="mb-6 text-[#0DBAAC]" />
-                  <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+                  <p ref={counterRef} className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
                   <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">
                     Crecimiento en <br/> Facturación
                   </p>
