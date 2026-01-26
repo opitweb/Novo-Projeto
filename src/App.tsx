@@ -137,41 +137,80 @@ export default function Index() {
               </div>
             </div>
 
-            {/* O NOVO BANNER DINÂMICO QUADRADO */}
-            <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
-              <div className="relative w-[500px] h-[500px] bg-[#0A1738] rounded-[4rem] text-white shadow-2xl overflow-hidden border-8 border-white/50 backdrop-blur-sm flex items-center justify-center">
-                
-                {/* SLIDE 1: +340% */}
-                <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-1000 ${activeSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <Award size={60} className="mb-6 text-[#0DBAAC]" />
-                  <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
-                  <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest text-center leading-tight">Crecimiento en <br/> Facturación</p>
-                </div>
+          // 1. No topo, adicione este estado para o contador
+const [count, setCount] = useState(0);
 
-                {/* SLIDE 2: FACEBOOK */}
-                <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-1000 ${activeSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <div className="bg-[#1877F2] p-8 rounded-[2.5rem] mb-6 shadow-xl"><Facebook size={70} fill="white" /></div>
-                  <h3 className="text-3xl font-bold mb-2">Facebook Ads</h3>
-                  <p className="text-center text-slate-300">Captación inteligente de pacientes cualificados.</p>
-                </div>
+// 2. Ajuste o useEffect do Slider (Velocidade aumentada para 3.5s)
+useEffect(() => {
+  const timer = setInterval(() => {
+    setActiveSlide((prev) => (prev + 1) % 3);
+  }, 3500); 
+  return () => clearInterval(timer);
+}, []);
 
-                {/* SLIDE 3: INSTAGRAM */}
-                <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-1000 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                  <div className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-8 rounded-[2.5rem] mb-6 shadow-xl"><Instagram size={70} /></div>
-                  <h3 className="text-3xl font-bold mb-2">Social Content</h3>
-                  <p className="text-center text-slate-300">Humaniza tu marca y conecta con tu audiencia.</p>
-                </div>
+// 3. Efeito para resetar e iniciar o contador do +340% toda vez que o slide 0 ativa
+useEffect(() => {
+  if (activeSlide === 0) {
+    let start = 0;
+    const end = 340;
+    const duration = 1500; // 1.5 segundos para contar
+    const increment = end / (duration / 16);
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  } else {
+    setCount(0); // Reseta para a próxima vez
+  }
+}, [activeSlide]);
 
-                {/* PONTINHOS NAVEGAÇÃO */}
-                <div className="absolute bottom-10 flex gap-2">
-                  {[0,1,2].map(i => (
-                    <div key={i} className={`h-2 rounded-full transition-all duration-500 ${activeSlide === i ? 'w-8 bg-[#0DBAAC]' : 'w-2 bg-white/30'}`} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+// ... Dentro do return, na coluna do Banner:
+
+<div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
+  <div className="relative w-[500px] h-[500px] bg-[#0A1738] rounded-[4rem] text-white shadow-2xl overflow-hidden border-8 border-white/50 backdrop-blur-sm flex items-center justify-center">
+    
+    {/* SLIDE 1: CONTADOR DINÂMICO +340% */}
+    <div className={`absolute inset-0 flex flex-col items-center justify-center p-12 transition-all duration-700 ${activeSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <Award size={60} className="mb-6 text-[#0DBAAC]" />
+      <p className="text-8xl font-bold mb-2 tracking-tighter">+{count}%</p>
+      <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest text-center leading-tight">Crecimiento en <br/> Facturación</p>
+    </div>
+
+    {/* SLIDE 2: FOTO FACEBOOK (Substitua 'sua-foto-face.jpg' pelo nome do seu arquivo) */}
+    <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+      <img src="/foto-facebook.jpg" alt="Facebook Ads Results" className="w-full h-full object-cover opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738] via-[#0A1738]/40 to-transparent flex flex-col items-center justify-center p-12">
+        <div className="bg-[#1877F2] p-4 rounded-2xl mb-4 shadow-lg"><Facebook size={40} fill="white" /></div>
+        <h3 className="text-3xl font-bold mb-2 text-white">Facebook Ads</h3>
+        <p className="text-center text-slate-200 font-medium">Resultados reais em campanhas de tráfego pago.</p>
+      </div>
+    </div>
+
+    {/* SLIDE 3: FOTO INSTAGRAM (Substitua 'sua-foto-insta.jpg' pelo nome do seu arquivo) */}
+    <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+      <img src="/foto-instagram.jpg" alt="Instagram Management" className="w-full h-full object-cover opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738] via-[#0A1738]/40 to-transparent flex flex-col items-center justify-center p-12">
+        <div className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-4 rounded-2xl mb-4 shadow-lg"><Instagram size={40} /></div>
+        <h3 className="text-3xl font-bold mb-2 text-white">Social Media</h3>
+        <p className="text-center text-slate-200 font-medium">Gestão de autoridade e engajamento médico.</p>
+      </div>
+    </div>
+
+    {/* PONTINHOS NAVEGAÇÃO - MAIS VISÍVEIS */}
+    <div className="absolute bottom-10 flex gap-3 z-20">
+      {[0,1,2].map(i => (
+        <div key={i} className={`h-2 rounded-full transition-all duration-500 ${activeSlide === i ? 'w-10 bg-[#0DBAAC]' : 'w-2 bg-white/50'}`} />
+      ))}
+    </div>
+  </div>
+</div>
 
         {/* SEÇÃO BARCELONA */}
         <section className="py-24 barcelona-content bg-white/40 backdrop-blur-sm border-y border-slate-100">
