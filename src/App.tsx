@@ -128,10 +128,12 @@ export default function Index() {
       <main className="relative z-10">
         
         {/* HERO SECTION */}
-        <section className="pt-32 pb-12 px-6 h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-12 animate-reveal">
+       <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center relative">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
+           <div className="space-y-6 md:space-y-8 animate-reveal"> {/* Reduzi space-y-12 para space-y-6 */}
               <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+        <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
+      </div>
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
               
