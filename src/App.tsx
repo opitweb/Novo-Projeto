@@ -117,7 +117,7 @@ export default function Index() {
                 <Sparkles size={16} /> AGENCIA DE MARKETING MÉDICO
               </span>
             <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight">
-             <span className="block leading-[1.15] mb-[0.15em]">
+             <span className="block leading-[1.10] mb-[0.15em]">
              Estratégias de
             </span>
 
