@@ -9,7 +9,7 @@ import {
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Importação do Chatbot - Certifique-se de que o arquivo Chatbot.tsx está nesta pasta
+// Importação do Chatbot - Mantenha este caminho
 import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Index() {
@@ -123,7 +123,7 @@ export default function Index() {
 
   const reviews = [
     { name: "Dr. María García", role: "Cirujana Plástica", rating: 5, text: "Betterfly transformó nuestra presencia digital.", avatar: "MG" },
-    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "Nuestro SEO pasó de la página 5 a los primeros resultados.", avatar: "CS" },
+    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "Nuestro SEO pasó de la página 5 a los primeiros resultados.", avatar: "CS" },
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio y engagement en redes sociales.", avatar: "CM" },
   ];
@@ -183,7 +183,6 @@ export default function Index() {
                       {steps[activeStep].label}
                     </p>
                   </div>
-                  {/* Indicadores de Progresso */}
                   <div className="flex gap-2 mt-8">
                     {steps.map((_, i) => (
                       <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === activeStep ? 'bg-[#0DBAAC] w-10' : 'bg-white/20 w-4'}`} />
@@ -268,6 +267,7 @@ export default function Index() {
           </div>
         </section>
 
+        {/* Chamada do Componente Chatbot */}
         <Chatbot />
       </main>
 
