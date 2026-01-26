@@ -11,7 +11,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Importação do Chatbot
-import Chatbot from './components/chatbot/Chatbot';
+import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Index() {
   const [offset, setOffset] = useState(0);
