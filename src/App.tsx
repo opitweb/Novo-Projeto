@@ -156,15 +156,25 @@ export default function Index() {
                   </div>
                 </div>
 
-                {/* SLIDE 3: INSTAGRAM COM FOTO */}
-                <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
-                  <img src="/foto-instagram.jpg" alt="Instagram Results" className="w-full h-full object-cover opacity-50" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738] via-transparent to-transparent flex flex-col items-center justify-center p-12">
-                    <div className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-4 rounded-2xl mb-4 shadow-lg"><Instagram size={40} /></div>
-                    <h3 className="text-3xl font-bold mb-2">Social Media</h3>
-                    <p className="text-center text-slate-200">Autoridad visual para tu clínica.</p>
-                  </div>
-                </div>
+               {/* SLIDE 3: INSTAGRAM / MARKETING COM SEU LINK DO SUPABASE */}
+               <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+               {/* AQUI ESTÁ O SEU LINK */}
+                <img 
+                 src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/Marketing.PNG" 
+                 alt="Marketing Digital" 
+                  className="w-full h-full object-cover opacity-50" 
+                 />
+  
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738] via-transparent to-transparent flex flex-col items-center justify-center p-12">
+                   <div className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-4 rounded-2xl mb-4 shadow-lg">
+                   <Instagram size={40} />
+                 </div>
+              <h3 className="text-3xl font-bold mb-2 text-white">Instagram Ads</h3>
+            <p className="text-center text-slate-200 font-medium">
+               Transformamos seguidores em pacientes reais.
+              </p>
+            </div>
+          </div>
 
                 {/* PONTINHOS */}
                 <div className="absolute bottom-10 flex gap-3 z-20">
