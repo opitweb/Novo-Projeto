@@ -7,45 +7,46 @@ import {
   Target, Star 
 } from 'lucide-react';
 
+// 1. IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Importação do Chatbot
+// IMPORTAÇÃO DO CHATBOT
 import Chatbot from './components/chatbot/Chatbot';
 
 export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
-  // 1. Lógica de Scroll e GSAP
   useEffect(() => {
+    // 2. REGISTRO E CONFIGURAÇÃO
     gsap.registerPlugin(ScrollTrigger);
     
     const handleScroll = () => setOffset(window.pageYOffset);
     window.addEventListener('scroll', handleScroll);
 
+    // 3. GSAP CONTEXT
     let ctx = gsap.context(() => {
-      // Animação Hero
+      
+      // Animação da Seção Barcelona
+      gsap.from(".barcelona-content", {
+        scrollTrigger: {
+          trigger: ".barcelona-content",
+          start: "top 80%",
+        },
+        opacity: 0,
+        x: -50,
+        duration: 1.2,
+        ease: "power2.out"
+      });
+
+      // Animação do Hero
       const tl = gsap.timeline();
       tl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
         .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
         .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
-        .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
-        .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
+        .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7");
 
-      // Animação dos cards ao scroll
-      gsap.utils.toArray('.service-card').forEach((card: any) => {
-        gsap.from(card, {
-          scrollTrigger: { trigger: card, start: "top 85%" },
-          opacity: 0, y: 50, duration: 1, ease: "power3.out"
-        });
-      });
-
-      // Animação Seção Barcelona
-      gsap.from(".barcelona-content", {
-        scrollTrigger: { trigger: ".barcelona-content", start: "top 80%" },
-        opacity: 0, x: -50, duration: 1.2, ease: "power2.out"
-      });
     }, mainRef);
 
     return () => {
@@ -54,7 +55,7 @@ export default function Index() {
     };
   }, []);
 
-  // Dados das Seções
+  // Dados das seções
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
@@ -62,9 +63,9 @@ export default function Index() {
   ];
 
   const socialStats = [
-    { icon: Users, value: "+200M", label: "Alcance Mensual" },
-    { icon: Heart, value: "98%", label: "Engagement Rate" },
-    { icon: TrendingUp, value: "+180%", label: "Crecimiento Seguidores" },
+    { icon: Users, value: 200, suffix: "M", prefix: "+", label: "Alcance Mensual" },
+    { icon: Heart, value: 98, suffix: "%", prefix: "", label: "Engagement Rate" },
+    { icon: TrendingUp, value: 180, suffix: "%", prefix: "+", label: "Crecimiento Seguidores" },
   ];
 
   const webFeatures = [
@@ -93,9 +94,11 @@ export default function Index() {
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* BACKGROUND PARALLAX */}
+      {/* EFEITO PARALLAX DE LINHAS */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0">
-        <div className="absolute inset-0 w-full h-[200%]"
+        <div
+          id="parallax-lines"
+          className="absolute inset-0 w-full h-[200%]"
           style={{
             backgroundImage: `linear-gradient(to right, #0A1738 1px, transparent 1px)`,
             backgroundSize: '80px 100%',
@@ -107,54 +110,48 @@ export default function Index() {
       <main className="relative z-10">
         
         {/* HERO SECTION */}
-        <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
-            
+        <section className="pt-32 pb-20 px-6">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
-                <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
-              </div>
-              
-              <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight leading-[1.1]">
-                Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
+              <span className="hero-badge inline-flex items-center gap-2 bg-[#0DBAAC]/10 text-[#0DBAAC] px-4 py-2 rounded-full text-sm font-bold tracking-wide">
+                <Sparkles size={16} /> AGENCIA DE MARKETING MÉDICO
+              </span>
+              <h1 className="hero-title text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-[#0A1738]">
+                Elevamos tu <br />
+                <span className="text-[#0DBAAC]">Reputación.</span>
               </h1>
-              
               <p className="hero-subtitle text-lg md:text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
-
               <div className="hero-button">
-                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-4 md:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
                   Análisis Gratuito <ArrowRight className="ml-2" size={20} />
                 </Link>
               </div>
             </div>
 
-            {/* BOX +340% CORRIGIDO */}
-            <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
-              <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
+            <div className="hidden lg:flex justify-end animate-reveal delay-200">
+              <div className="bg-[#0A1738] p-12 lg:p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
                 <Award size={48} className="mb-6 text-[#0DBAAC]" />
-                <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
-                <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
+                <p className="text-7xl lg:text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+                <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
               </div>
             </div>
-
           </div>
         </section>
 
         {/* SEÇÃO BARCELONA */}
-        <section className="py-24 barcelona-content bg-white/40 backdrop-blur-sm border-y border-slate-100">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl md:text-6xl font-bold mb-16 text-[#0A1738] max-w-5xl leading-tight">
-              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales probadas.
+        <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
+          <div className="max-w-7xl mx-auto px-6 barcelona-content">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
+              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> <span className="text-[#0DBAAC]">estrategias digitales probadas.</span> 
             </h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <p className="text-2xl font-semibold text-[#0A1738]">
-                En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde Barcelona.
-              </p>
-              <div className="text-slate-500 space-y-6 text-lg">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+              <div className="text-xl md:text-2xl font-semibold text-[#0A1738] leading-snug">
+                <p>En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde nuestra oficina de Barcelona.</p>
+              </div>
+              <div className="text-base md:text-lg text-slate-500 space-y-6 leading-relaxed">
                 <p>Nuestra metodología combina la estética médica con el rigor técnico necesario para convertir visitantes en pacientes.</p>
                 <p>Actualmente, trabajamos con clínicas que buscan dar el salto al siguiente nivel de facturación.</p>
               </div>
@@ -162,68 +159,78 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO REDES SOCIAIS */}
-        <section className="py-32 bg-[#0A1738] text-white relative">
+        {/* SEÇÃO MÍDIA SOCIAL */}
+        <section className="py-32 relative bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-              <span className="text-[#0DBAAC] text-sm font-bold uppercase tracking-widest mb-4 block">Redes Sociales</span>
-              <h2 className="text-5xl md:text-7xl font-bold mb-12">Tu presencia que <span className="text-[#0DBAAC]">genera resultados</span></h2>
-              
-              <div className="grid md:grid-cols-3 gap-8 mb-20">
-                {socialServices.map((s, i) => (
-                  <div key={i} className="bg-white/5 p-10 rounded-3xl border border-white/10 text-left service-card">
-                    <s.icon size={40} className="text-[#0DBAAC] mb-6" />
-                    <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
-                    <p className="text-white/70">{s.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {socialStats.map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <stat.icon size={32} className="mx-auto text-[#0DBAAC] mb-4" />
-                    <p className="text-6xl font-bold mb-2">{stat.value}</p>
-                    <p className="text-[#0DBAAC] uppercase tracking-widest text-sm">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="text-center mb-20 animate-reveal">
+              <span className="inline-flex items-center gap-2 text-[#0DBAAC] text-sm font-semibold uppercase tracking-widest mb-6">
+                <Instagram size={16} /> Redes Sociales
+              </span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+                Tu presencia en <span className="text-[#0DBAAC]">redes sociales</span><br/>
+                que genera resultados
+              </h2>
             </div>
-          </div>
-        </section>
-
-        {/* SEÇÃO WEB & SEO */}
-        <section className="py-32 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-6xl font-bold text-[#0A1738] mb-6">Websites que <span className="text-[#0DBAAC]">dominan</span> Google</h2>
-              <p className="text-xl text-slate-500 max-w-2xl mx-auto">Diseño premium y SEO técnico para que tu clínica sea la primera opción.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {webFeatures.map((f, i) => (
-                <div key={i} className="p-8 rounded-3xl border border-slate-100 hover:border-[#0DBAAC]/30 transition-all bg-[#F8FAFC]">
-                  <f.icon size={36} className="text-[#0DBAAC] mb-6" />
-                  <h3 className="text-xl font-bold mb-3">{f.title}</h3>
-                  <p className="text-slate-500">{f.description}</p>
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
+              {socialServices.map((service, index) => (
+                <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-2 group">
+                  <service.icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
+                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                  <p className="text-white/70 leading-relaxed">{service.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO REVIEWS GOOGLE */}
-        <section className="py-32 bg-[#F5F5F5]">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-16">Lo que dicen <span className="text-[#0DBAAC]">nuestros clientes</span></h2>
-            <div className="grid md:grid-cols-4 gap-6">
-              {reviews.map((r, i) => (
-                <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 text-left">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(r.rating)].map((_, idx) => <Star key={idx} size={16} className="fill-[#0DBAAC] text-[#0DBAAC]" />)}
+        {/* SEÇÃO AUTOMAÇÃO */}
+        <section className="py-32 relative bg-[#0A1738] overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-20">
+              <span className="inline-flex items-center gap-2 text-[#0DBAAC] text-sm font-semibold uppercase tracking-widest mb-6">
+                <Bot size={16} /> Automatización
+              </span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
+                <span className="text-[#0DBAAC]">Automatiza</span> tu clínica<br/>
+                y multiplica resultados
+              </h2>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+              <div className="grid sm:grid-cols-2 gap-6">
+                {automations.map((item, index) => (
+                  <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-1 group">
+                    <item.icon size={32} className="text-[#0DBAAC] mb-4 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
                   </div>
-                  <p className="text-slate-600 mb-6 text-sm italic">"{r.text}"</p>
-                  <div className="font-bold text-[#0A1738]">{r.name}</div>
-                  <div className="text-xs text-slate-400">{r.role}</div>
+                ))}
+              </div>
+              <div className="bg-white p-16 rounded-[3rem] shadow-2xl relative overflow-hidden text-center">
+                <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
+                <p className="text-5xl font-bold text-[#0A1738]">85%</p>
+                <p className="text-[#0DBAAC] uppercase tracking-widest text-sm font-medium">Ahorro de Tiempo</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO GOOGLE REVIEWS */}
+        <section className="py-32 relative">
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <h2 className="text-5xl md:text-7xl font-bold text-[#0A1738] mb-16">
+              Lo que dicen <span className="text-[#0DBAAC]">nuestros clientes</span>
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {reviews.map((review, index) => (
+                <div key={index} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-[#0DBAAC]/10 flex items-center justify-center font-bold text-[#0DBAAC]">{review.avatar}</div>
+                    <div>
+                      <h4 className="font-bold text-[#0A1738]">{review.name}</h4>
+                      <p className="text-xs text-slate-500">{review.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-slate-500 text-sm italic">"{review.text}"</p>
                 </div>
               ))}
             </div>
@@ -232,9 +239,19 @@ export default function Index() {
 
       </main>
 
-      {/* COMPONENTE CHATBOT */}
+      {/* CHATBOT ADICIONADO AQUI */}
       <Chatbot />
 
+      <style>{`
+        .animate-reveal {
+          animation: reveal 1s cubic-bezier(0, 0, 0.2, 1) forwards;
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        @keyframes reveal {
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }
