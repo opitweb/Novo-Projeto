@@ -7,26 +7,40 @@ import {
   Target, Star 
 } from 'lucide-react';
 
-// 1. IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// IMPORTAÇÃO DO CHATBOT
-import Chatbot from './components/Chatbot/Chatbot';
+// Importação do Chatbot
+import Chatbot from './components/chatbot/Chatbot';
 
 export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
+  // 1. Lógica de Scroll e GSAP
   useEffect(() => {
-    // 2. REGISTRO E CONFIGURAÇÃO
     gsap.registerPlugin(ScrollTrigger);
     
     const handleScroll = () => setOffset(window.pageYOffset);
     window.addEventListener('scroll', handleScroll);
 
-    // 3. GSAP CONTEXT
     let ctx = gsap.context(() => {
+      // Animação Hero
+      const tl = gsap.timeline();
+      tl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
+        .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
+        .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
+        .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
+        .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
+
+      // Animação dos cards ao scroll
+      gsap.utils.toArray('.service-card').forEach((card: any) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 85%" },
+          opacity: 0, y: 50, duration: 1, ease: "power3.out"
+        });
+      });
+
       
       // Animação da Seção Barcelona
       gsap.from(".barcelona-content", {
