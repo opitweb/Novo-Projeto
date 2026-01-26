@@ -115,14 +115,15 @@ export default function Index() {
 
   const reviews = [
     { name: "Dr. María García", role: "Cirujana Plástica", rating: 5, text: "Betterfly transformó completamente nuestra presencia digital. En 6 meses duplicamos las consultas.", avatar: "MG" },
-    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "El equipo es increíble. Nuestro SEO pasó de la página 5 a los primeros resultados.", avatar: "CS" },
+    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "El equipo es increíble. Nuestro SEO pasó de la página 5 a los primeiros resultados.", avatar: "CS" },
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo administrativo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
+
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* BACKGROUND IMAGE - BARCELONA SOFT WALLPAPER */}
+      {/* BACKGROUND IMAGE - BARCELONA SUAVE (Substituindo as linhas originais) */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute inset-0 w-full h-full"
@@ -130,27 +131,9 @@ export default function Index() {
             backgroundImage: `url('https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/barcelona.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundAttachment: 'fixed', // Faz a imagem ficar fixa enquanto o conteúdo rola
-            filter: 'grayscale(100%) brightness(1.2)', // Remove cor e clareia um pouco mais
-            opacity: 0.05, // Ajuste aqui para mais ou menos visibilidade (0.01 a 0.10)
-          }}
-        />
-      </div>
-
-      <main className="relative z-10">
-
-  return (
-    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
-      
-      {/* EFEITO PARALLAX DE LINHAS */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0">
-        <div
-          id="parallax-lines"
-          className="absolute inset-0 w-full h-[200%]"
-          style={{
-            backgroundImage: `linear-gradient(to right, #0A1738 1px, transparent 1px)`,
-            backgroundSize: '80px 100%',
-            transform: `translateY(${offset * -0.1}px)`
+            backgroundAttachment: 'fixed',
+            filter: 'grayscale(100%) brightness(1.5)', // Remove cor e deixa bem claro/branco
+            opacity: 0.04, // Quase invisível, como um papel de parede suave
           }}
         />
       </div>
@@ -184,7 +167,6 @@ export default function Index() {
 
             {/* BANNER + CARROSSEL */}
             <div className="relative w-full flex justify-center items-center overflow-visible">
-              {/* Banner +340% */}
               <div ref={bannerRef} className="hero-banner absolute z-20 opacity-1">
                 <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 max-w-[480px] aspect-square flex flex-col justify-center items-center">
                   <Award size={48} className="mb-6 text-[#0DBAAC]" />
@@ -196,7 +178,6 @@ export default function Index() {
                 </div>
               </div>
 
-              {/* Imagem Facebook */}
               <div ref={fbRef} className="absolute z-10 opacity-0">
                 <img
                   src="https://images.unsplash.com/photo-1532570122812-6c53b4cdd5f7?auto=format&fit=crop&q=80"
@@ -205,7 +186,6 @@ export default function Index() {
                 />
               </div>
 
-              {/* Imagem Instagram */}
               <div ref={igRef} className="absolute z-10 opacity-0">
                 <img
                   src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
@@ -214,7 +194,6 @@ export default function Index() {
                 />
               </div>
             </div>
-
           </div>
         </section>
 
