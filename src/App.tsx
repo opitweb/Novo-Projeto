@@ -126,7 +126,7 @@ return (
       {/* EFEITO DE BOLINHAS (DOT GRID) - VERDE SUAVE */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 w-full h-full opacity-[0.15]"
+          className="absolute inset-0 w-full h-full opacity-[0.50]"
           style={{
             backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
             backgroundSize: '40px 40px',
