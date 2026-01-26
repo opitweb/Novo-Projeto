@@ -116,10 +116,13 @@ export default function Index() {
               <span className="hero-badge inline-flex items-center gap-2 bg-[#0DBAAC]/10 text-[#0DBAAC] px-4 py-2 rounded-full text-sm font-bold tracking-wide">
                 <Sparkles size={16} /> AGENCIA DE MARKETING MÉDICO
               </span>
-             <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight leading-[1.1]">
-                Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
-              </h1>
+            <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight leading-[1.2]">
+              Estratégias de <br />
+              marketing digital <br />
+             <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">
+               Barcelona
+             </span>
+           </h1>
               <p className="hero-subtitle text-lg md:text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
