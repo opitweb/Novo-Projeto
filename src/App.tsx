@@ -133,7 +133,7 @@ export default function Index() {
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
             filter: 'grayscale(100%) brightness(1.5)', // Remove cor e deixa bem claro/branco
-            opacity: 0.15, // Quase invisível, como um papel de parede suave
+            opacity: 0.10, // Quase invisível, como um papel de parede suave
           }}
         />
       </div>
