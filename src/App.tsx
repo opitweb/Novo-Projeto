@@ -134,7 +134,7 @@ export default function Index() {
                 </Link>
               </div>
             </div>
-{/* BANNER DINÂMICO - APENAS ESTE BLOCO FOI AJUSTADO */}
+{/* BANNER DINÂMICO QUADRADO CORRIGIDO */}
 <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
   <div className="relative w-[500px] h-[500px] bg-[#0A1738] rounded-[4rem] text-white shadow-2xl overflow-hidden border-8 border-white/50 backdrop-blur-sm flex items-center justify-center">
     
@@ -145,33 +145,42 @@ export default function Index() {
       <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest text-center leading-tight">Crecimiento en <br/> Facturación</p>
     </div>
 
-    {/* SLIDE 2: FACEBOOK COM LINK SUPABASE */}
+    {/* SLIDE 2: FACEBOOK - IMAGEM NÍTIDA */}
     <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
       <img 
         src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/04.PNG" 
         alt="Facebook Ads" 
         className="w-full h-full object-cover opacity-100" 
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738]/70 via-transparent to-transparent flex flex-col items-center justify-center p-12">
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738]/80 via-transparent to-transparent flex flex-col items-center justify-center p-12">
         <div className="bg-[#1877F2] p-4 rounded-2xl mb-4 shadow-lg"><Facebook size={40} fill="white" /></div>
-        <h3 className="text-3xl font-bold mb-2 text-white shadow-md">Facebook Ads</h3>
-        <p className="text-center text-white font-medium shadow-md">Resultados reales en campañas.</p>
+        <h3 className="text-3xl font-bold mb-2 text-white">Facebook Ads</h3>
+        <p className="text-center text-slate-200 font-medium">Resultados reales en campañas.</p>
       </div>
     </div>
 
-    {/* SLIDE 3: INSTAGRAM COM LINK SUPABASE */}
+    {/* SLIDE 3: INSTAGRAM - IMAGEM NÍTIDA */}
     <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
       <img 
         src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/Marketing.PNG" 
         alt="Marketing Digital" 
         className="w-full h-full object-cover opacity-100" 
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738]/70 via-transparent to-transparent flex flex-col items-center justify-center p-12">
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738]/80 via-transparent to-transparent flex flex-col items-center justify-center p-12">
         <div className="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-4 rounded-2xl mb-4 shadow-lg"><Instagram size={40} /></div>
-        <h3 className="text-3xl font-bold mb-2 text-white shadow-md">Social Media</h3>
-        <p className="text-center text-white font-medium shadow-md">Autoridad y compromiso médico.</p>
+        <h3 className="text-3xl font-bold mb-2 text-white">Instagram Ads</h3>
+        <p className="text-center text-slate-200 font-medium">Transformamos seguidores em pacientes reais.</p>
       </div>
     </div>
+
+    {/* PONTINHOS DE NAVEGAÇÃO */}
+    <div className="absolute bottom-10 flex gap-3 z-20">
+      {[0, 1, 2].map(i => (
+        <div key={i} className={`h-2 rounded-full transition-all duration-500 ${activeSlide === i ? 'w-10 bg-[#0DBAAC]' : 'w-2 bg-white/50'}`} />
+      ))}
+    </div>
+  </div>
+</div>
 
     {/* PONTINHOS DE NAVEGAÇÃO */}
     <div className="absolute bottom-10 flex gap-3 z-20">
