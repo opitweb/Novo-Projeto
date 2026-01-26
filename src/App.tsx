@@ -20,28 +20,30 @@ export default function Index() {
   // 1. Lógica de Scroll e GSAP
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const handleScroll = () => setOffset(window.pageYOffset);
     window.addEventListener('scroll', handleScroll);
 
-    let ctx = gsap.context(() => {
-      // Animação Hero
-      const tl = gsap.timeline();
-      tl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
-        .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
-        .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
-        .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
-        .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
+    const ctx = gsap.context(() => {
+      // Timeline do Hero
+      const heroTl = gsap.timeline();
+      heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
+            .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
+            .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
+            .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
+            .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
 
       // Animação dos cards ao scroll
       gsap.utils.toArray('.service-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
-          opacity: 0, y: 50, duration: 1, ease: "power3.out"
+          opacity: 0, 
+          y: 50, 
+          duration: 1, 
+          ease: "power3.out"
         });
       });
 
-      
       // Animação da Seção Barcelona
       gsap.from(".barcelona-content", {
         scrollTrigger: {
@@ -53,13 +55,6 @@ export default function Index() {
         duration: 1.2,
         ease: "power2.out"
       });
-
-      // Animação do Hero
-      const tl = gsap.timeline();
-      tl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
-        .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
-        .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
-        .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7");
 
     }, mainRef);
 
@@ -123,7 +118,7 @@ export default function Index() {
 
       <main className="relative z-10">
         
-             {/* HERO SECTION */}
+        {/* HERO SECTION */}
         <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
             
@@ -148,7 +143,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* BOX +340% CORRIGIDO */}
             <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
               <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
                 <Award size={48} className="mb-6 text-[#0DBAAC]" />
@@ -192,13 +186,16 @@ export default function Index() {
               </h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8 mb-20">
-              {socialServices.map((service, index) => (
-                <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-2 group">
-                  <service.icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-white/70 leading-relaxed">{service.description}</p>
-                </div>
-              ))}
+              {socialServices.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <div key={index} className="service-card bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-2 group">
+                    <Icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                    <p className="text-white/70 leading-relaxed">{service.description}</p>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -217,13 +214,16 @@ export default function Index() {
             </div>
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
               <div className="grid sm:grid-cols-2 gap-6">
-                {automations.map((item, index) => (
-                  <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-1 group">
-                    <item.icon size={32} className="text-[#0DBAAC] mb-4 group-hover:scale-110 transition-transform" />
-                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                ))}
+                {automations.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-1 group">
+                      <Icon size={32} className="text-[#0DBAAC] mb-4 group-hover:scale-110 transition-transform" />
+                      <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  )
+                })}
               </div>
               <div className="bg-white p-16 rounded-[3rem] shadow-2xl relative overflow-hidden text-center">
                 <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
