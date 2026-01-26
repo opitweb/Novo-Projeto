@@ -1,4 +1,4 @@
- import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Sparkles, ArrowRight, Award, Instagram, Facebook, Linkedin, 
@@ -6,12 +6,10 @@ import {
   BarChart3, Bot, Workflow, Calendar, MessageSquare, Cog, Clock, 
   Target, Star 
 } from 'lucide-react';
-
-// 1. IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// ADIÇÃO: Importação do seu componente Chatbot
+// Unica mudança: Importação ajustada para o build não falhar
 import Chatbot from './components/chatbot/Chatbot';
 
 export default function Index() {
@@ -22,6 +20,9 @@ export default function Index() {
     gsap.registerPlugin(ScrollTrigger);
     const handleScroll = () => setOffset(window.pageYOffset);
     window.addEventListener('scroll', handleScroll);
+
+    let ctx = gsap.context(() => {
+      // Suas animações GSAP originais
 
     let ctx = gsap.context(() => {
       // Animação do Hero e Elementos Visuais
