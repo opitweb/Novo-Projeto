@@ -135,6 +135,7 @@ export default function Index() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
                 </div>
               </div>
+        
             </div>
            </section>
             
