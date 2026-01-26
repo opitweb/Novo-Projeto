@@ -9,7 +9,7 @@ import {
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Importação do Chatbot - Caminho verificado conforme seu projeto
+// Importação do Chatbot - Certifique-se de que o arquivo Chatbot.tsx está nesta pasta
 import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Index() {
@@ -18,7 +18,7 @@ export default function Index() {
   const dotsRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
 
-  // Estado para o Banner Rotativo (3 setores)
+  // Estado para o Banner Rotativo
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
     { value: 340, label: "Crecimiento en \n Facturación", icon: Award, suffix: "%" },
@@ -33,7 +33,7 @@ export default function Index() {
     window.addEventListener('scroll', handleScroll);
 
     const ctx = gsap.context(() => {
-      // 1. Animação suave das Bolinhas de Fundo
+      // 1. Animação das Bolinhas de Fundo
       if (dotsRef.current) {
         gsap.to(dotsRef.current, {
           y: -20,
@@ -44,7 +44,7 @@ export default function Index() {
         });
       }
 
-      // 2. Animação de Flutuação do Banner Central
+      // 2. Animação de Flutuação do Banner
       gsap.to(".hero-banner", {
         y: -15,
         duration: 3,
@@ -53,7 +53,7 @@ export default function Index() {
         ease: "sine.inOut"
       });
 
-      // 3. Função do Contador Animado (0 até o alvo)
+      // 3. Função do Contador (0 até o alvo)
       const animateNumber = (target: number) => {
         const obj = { val: 0 };
         gsap.to(obj, {
@@ -66,10 +66,10 @@ export default function Index() {
         });
       };
 
-      // Inicia o primeiro contador ao carregar
+      // Inicia o primeiro contador
       animateNumber(steps[0].value);
 
-      // 4. Intervalo para trocar os dados do banner a cada 5 segundos
+      // 4. Loop de Troca de Banner (cada 5 segundos)
       const bannerTimer = setInterval(() => {
         setActiveStep((prev) => {
           const next = (prev + 1) % steps.length;
@@ -79,7 +79,7 @@ export default function Index() {
         });
       }, 5000);
 
-      // 5. Timeline de Entrada dos elementos (Hero)
+      // 5. Timeline de Entrada (Hero)
       const heroTl = gsap.timeline();
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
             .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
@@ -87,7 +87,7 @@ export default function Index() {
             .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
             .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
 
-      // 6. Animação dos cards de serviço ao fazer Scroll
+      // 6. Animação dos cards ao scroll
       gsap.utils.toArray('.service-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
@@ -133,7 +133,7 @@ export default function Index() {
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* FUNDO DE BOLINHAS (DOT GRID) */}
+      {/* FUNDO DE BOLINHAS ANIMADO */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
           ref={dotsRef}
@@ -183,7 +183,7 @@ export default function Index() {
                       {steps[activeStep].label}
                     </p>
                   </div>
-                  {/* Indicadores Visuais de qual meta está ativa */}
+                  {/* Indicadores de Progresso */}
                   <div className="flex gap-2 mt-8">
                     {steps.map((_, i) => (
                       <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === activeStep ? 'bg-[#0DBAAC] w-10' : 'bg-white/20 w-4'}`} />
@@ -203,7 +203,7 @@ export default function Index() {
             </h2>
             <div className="grid md:grid-cols-2 gap-12">
               <p className="text-xl font-semibold">Diseñando e innovando desde Barcelona.</p>
-              <p className="text-slate-500">Nuestra metodología combina estética médica con rigor técnico y resultados medibles.</p>
+              <p className="text-slate-500">Nuestra metodología combina estética médica con rigor técnico.</p>
             </div>
           </div>
         </section>
@@ -243,16 +243,16 @@ export default function Index() {
               <div className="bg-white p-16 rounded-[3rem] text-center">
                 <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin-slow" />
                 <p className="text-6xl font-bold text-[#0A1738]">85%</p>
-                <p className="text-[#0DBAAC] font-bold">Ahorro de Tiempo Mensual</p>
+                <p className="text-[#0DBAAC] font-bold">Ahorro de Tiempo</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO REVIEWS */}
+        {/* REVIEWS */}
         <section className="py-32">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold text-[#0A1738] mb-16">Opiniones de Especialistas</h2>
+            <h2 className="text-5xl font-bold text-[#0A1738] mb-16">Opiniones</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {reviews.map((r, i) => (
                 <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
@@ -268,11 +268,9 @@ export default function Index() {
           </div>
         </section>
 
-        {/* CHATBOT INTEGRADO */}
         <Chatbot />
       </main>
 
-      {/* ESTILOS DE ANIMAÇÃO EXTRAS */}
       <style>{`
         .animate-spin-slow { animation: spin 8s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
