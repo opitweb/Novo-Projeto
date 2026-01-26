@@ -154,16 +154,18 @@ export default function Index() {
               </div>
             </div>
             
-            <div className="hidden lg:block animate-reveal delay-200" style={{ transform: `translateY(${offset * 0.05}px)` }}>
-              <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm">
-                <Award size={48} className="mx-auto mb-6 text-[#0DBAAC]" />
-                <p className="text-7xl font-bold mb-2 tracking-tighter">+340%</p>
-                <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest">Crecimiento en Facturación</p>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
-              </div>
-            </div>
-          </div>
-        </section>
+            {/* AJUSTE NO BOX +340% PARA VOLTAR AO FORMATO ORIGINAL */}
+    <div className="hidden lg:flex justify-end animate-reveal delay-200" style={{ transform: `translateY(${offset * 0.05}px)` }}>
+      <div className="bg-[#0A1738] p-12 lg:p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
+        <Award size={48} className="mb-6 text-[#0DBAAC]" />
+        <p className="text-7xl lg:text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+        <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+        </div>
+        </div>
+
+         </div>
+          </section>
 
         {/* SEÇÃO BARCELONA - CORRIGIDA E ALINHADA */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
