@@ -51,12 +51,12 @@ export default function MarbleChatbot() {
   return (
     <div className="fixed bottom-6 right-6 z-[9999]">
       {!isOpen ? (
-        <button onClick={() => setIsOpen(true)} className="bg-[#0DBAAC ] hover:bg-[#d97706] text-white p-4 rounded-full shadow-2xl transition-all scale-110">
+        <button onClick={() => setIsOpen(true)} className="bg-[#0DBAAC ] hover:bg-[#0a8d82] text-white p-4 rounded-full shadow-2xl transition-all scale-110">
           <MessageCircle size={30} />
         </button>
       ) : (
-        <div className="bg-[#0f172a] border border-[#0DBAAC ]/30 w-80 sm:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
-          <div className="bg-[#0DBAAC ] p-4 flex justify-between text-white font-bold items-center shadow-lg">
+        <div className="bg-[#0DBAAC] border border-[#0DBAAC ]/30 w-80 sm:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+          <div className="bg-[#0f172a] p-4 flex justify-between text-white font-bold items-center shadow-lg">
             <span className="flex items-center gap-2"><Bot size={20}/> Stone & Wood IA</span>
             <button onClick={() => setIsOpen(false)} className="hover:bg-black/10 rounded-full p-1"><X size={20}/></button>
           </div>
