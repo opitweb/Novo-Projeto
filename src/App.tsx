@@ -120,20 +120,18 @@ export default function Index() {
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
 
-  return (
+return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* BACKGROUND IMAGE - BARCELONA SUAVE (Substituindo as linhas originais) */}
+      {/* EFEITO DE BOLINHAS (DOT GRID) - VERDE SUAVE */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full opacity-[0.15]"
           style={{
-            backgroundImage: `url('https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/barcelona.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-            filter: 'grayscale(100%) brightness(1.5)', // Remove cor e deixa bem claro/branco
-            opacity: 0.10, // Quase invisível, como um papel de parede suave
+            backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
+            backgroundSize: '40px 40px',
+            maskImage: 'linear-gradient(to bottom, black 50%, transparent)', // Desvanece as bolinhas para o final da página
+            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent)'
           }}
         />
       </div>
