@@ -109,44 +109,41 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        {/* HERO SECTION */}
-        <section className="pt-32 pb-20 px-6">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+             {/* HERO SECTION */}
+        <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
+            
             <div className="space-y-8">
-              <span className="hero-badge inline-flex items-center gap-2 bg-[#0DBAAC]/10 text-[#0DBAAC] px-4 py-2 rounded-full text-sm font-bold tracking-wide">
-                <Sparkles size={16} /> AGENCIA DE MARKETING MÉDICO
-              </span>
-            <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight">
-             <span className="block leading-[1.10] mb-[0.15em]">
-             Estratégias de
-            </span>
-
-            <span className="block leading-[1.15]">
-            marketing digital
-            </span>
-
-            <span className="block font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase mt-[0.25em]">
-            Barcelona
-            </span>
-            </h1>
+              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+                <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
+              </div>
+              
+              <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight leading-[1.1]">
+                Estratégias de <br/> marketing digital <br/>
+                <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
+              </h1>
+              
               <p className="hero-subtitle text-lg md:text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
+
               <div className="hero-button">
-                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-4 md:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
                   Análisis Gratuito <ArrowRight className="ml-2" size={20} />
                 </Link>
               </div>
             </div>
 
-            <div className="hidden lg:flex justify-end animate-reveal delay-200">
-              <div className="bg-[#0A1738] p-12 lg:p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
+            {/* BOX +340% CORRIGIDO */}
+            <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
+              <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
                 <Award size={48} className="mb-6 text-[#0DBAAC]" />
-                <p className="text-7xl lg:text-8xl font-bold mb-2 tracking-tighter">+340%</p>
-                <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
+                <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+                <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
               </div>
             </div>
+
           </div>
         </section>
 
