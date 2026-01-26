@@ -127,37 +127,37 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        {/* HERO SECTION */}
-        <section className="pt-32 pb-12 px-6 h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-12 animate-reveal">
-              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+       {/* HERO SECTION - AJUSTADA */}
+        <section className="pt-20 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
+            <div className="space-y-8 animate-reveal">
+              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
               
               <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tighter leading-[0.85]">
-              Estratégias de marketing digital <br/>
+                <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tight leading-[1.1]">
+                  Estratégias de <br/>
+                  marketing digital <br/>
                   <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
                 </h1>
               </div>
               
-              <p className="text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
-                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">que desean aumentar la visibilidad y las citas de su clínica.</span>.
+              <p className="hero-subtitle text-lg md:text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
+                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
 
-              <Link 
-                to="/contacto" 
-                className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1"
-              >
-                Análisis Gratuito <ArrowRight className="ml-2" size={20} />
-              </Link>
+              <div className="hero-button">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-4 md:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 hover:-translate-y-1">
+                  Análisis Gratuito <ArrowRight className="ml-2" size={20} />
+                </Link>
+              </div>
             </div>
             
             <div className="hidden lg:block animate-reveal delay-200" style={{ transform: `translateY(${offset * 0.05}px)` }}>
-              <div className="bg-[#0A1738] p-20 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm">
-                <Award size={48} className="mx-auto mb-8 text-[#0DBAAC]" />
-                <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+              <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm">
+                <Award size={48} className="mx-auto mb-6 text-[#0DBAAC]" />
+                <p className="text-7xl font-bold mb-2 tracking-tighter">+340%</p>
                 <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest">Crecimiento en Facturación</p>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
               </div>
