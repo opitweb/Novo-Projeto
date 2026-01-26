@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Sparkles, ArrowRight, Award, Instagram, Facebook, Linkedin, 
@@ -7,10 +7,11 @@ import {
   Target, Star 
 } from 'lucide-react';
 
+// 1. IMPORTAÇÕES GSAP
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Importação do Chatbot já validada
+// ADIÇÃO: Importação do seu componente Chatbot
 import Chatbot from './components/chatbot/Chatbot';
 
 export default function Index() {
