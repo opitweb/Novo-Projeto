@@ -119,6 +119,25 @@ export default function Index() {
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo administrativo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
+  return (
+    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
+      
+      {/* BACKGROUND IMAGE - BARCELONA SOFT WALLPAPER */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `url('https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/barcelona.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed', // Faz a imagem ficar fixa enquanto o conteúdo rola
+            filter: 'grayscale(100%) brightness(1.2)', // Remove cor e clareia um pouco mais
+            opacity: 0.05, // Ajuste aqui para mais ou menos visibilidade (0.01 a 0.10)
+          }}
+        />
+      </div>
+
+      <main className="relative z-10">
 
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
