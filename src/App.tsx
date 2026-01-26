@@ -133,11 +133,11 @@ export default function Index() {
                 <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
                 <p className="text-[#0DBAAC] text-lg font-medium opacity-90 uppercase tracking-widest">Crecimiento en Facturación</p>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-              
+           </section>
+            
               <p className="hero-subtitle text-lg md:text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
