@@ -136,10 +136,10 @@ export default function Index() {
               </div>
               
               <div className="space-y-4">
-                <h1 className="text-5xl lg:text-7xl font-bold text-[#0A1738] tracking-tighter leading-tight">
-              Estratégias de marketing digital <br/>
-                  <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
-                </h1>
+             <h1 className="text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.15] md:leading-[1.1] tracking-tight">
+  Estratégias de marketing digital <br/>
+  <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
+</h1>
               </div>
               
               <p className="text-xl text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md leading-relaxed">
