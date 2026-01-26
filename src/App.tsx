@@ -17,6 +17,11 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
+  // Refs do banner/carrossel
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const fbRef = useRef<HTMLDivElement>(null);
+  const igRef = useRef<HTMLDivElement>(null);
+
   // 1. Lógica de Scroll e GSAP
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -55,6 +60,21 @@ export default function Index() {
         duration: 1.2,
         ease: "power2.out"
       });
+
+      // Timeline do carrossel banner +340% / Facebook / Instagram
+      if (bannerRef.current && fbRef.current && igRef.current) {
+        const carouselTl = gsap.timeline({
+          repeat: -1, // loop infinito
+          defaults: { duration: 1, ease: "power1.inOut" }
+        });
+
+        carouselTl
+          .to(bannerRef.current, { opacity: 1 })
+          .to(fbRef.current, { opacity: 1, delay: 1 })
+          .to(fbRef.current, { opacity: 0, delay: 1 })
+          .to(igRef.current, { opacity: 1, delay: 0.5 })
+          .to(igRef.current, { opacity: 0, delay: 1 });
+      }
 
     }, mainRef);
 
@@ -143,12 +163,36 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="hero-banner hidden lg:flex justify-end" style={{ transform: `translateY(${offset * 0.05}px)` }}>
-              <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 backdrop-blur-sm max-w-[480px] aspect-square flex flex-col justify-center items-center">
-                <Award size={48} className="mb-6 text-[#0DBAAC]" />
-                <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
-                <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">Crecimiento en <br/> Facturación</p>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+            {/* BANNER + CARROSSEL */}
+            <div className="relative w-full flex justify-center items-center overflow-visible">
+              {/* Banner +340% */}
+              <div ref={bannerRef} className="hero-banner absolute z-20 opacity-1">
+                <div className="bg-[#0A1738] p-16 rounded-[4rem] text-white shadow-2xl text-center relative overflow-hidden border-8 border-white/50 max-w-[480px] aspect-square flex flex-col justify-center items-center">
+                  <Award size={48} className="mb-6 text-[#0DBAAC]" />
+                  <p className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
+                  <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">
+                    Crecimiento en <br/> Facturación
+                  </p>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                </div>
+              </div>
+
+              {/* Imagem Facebook */}
+              <div ref={fbRef} className="absolute z-10 opacity-0">
+                <img
+                  src="https://images.unsplash.com/photo-1532570122812-6c53b4cdd5f7?auto=format&fit=crop&q=80"
+                  className="w-56 h-56 rounded-[3rem] object-cover shadow-2xl border-8 border-white"
+                  alt="Facebook"
+                />
+              </div>
+
+              {/* Imagem Instagram */}
+              <div ref={igRef} className="absolute z-10 opacity-0">
+                <img
+                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
+                  className="w-56 h-56 rounded-[3rem] object-cover shadow-2xl border-8 border-white"
+                  alt="Instagram"
+                />
               </div>
             </div>
 
@@ -250,28 +294,20 @@ export default function Index() {
                       <p className="text-xs text-slate-500">{review.role}</p>
                     </div>
                   </div>
-                  <p className="text-slate-500 text-sm italic">"{review.text}"</p>
+                  <p className="text-slate-700 text-sm leading-relaxed mb-4">"{review.text}"</p>
+                  <div className="flex gap-1 text-[#0DBAAC]">
+                    {Array.from({length: review.rating}).map((_, i) => <Star key={i} size={16} />)}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
+        {/* CHATBOT */}
+        <Chatbot />
+
       </main>
-
-      {/* CHATBOT ADICIONADO AQUI */}
-      <Chatbot />
-
-      <style>{`
-        .animate-reveal {
-          animation: reveal 1s cubic-bezier(0, 0, 0.2, 1) forwards;
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        @keyframes reveal {
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </div>
   );
 }
