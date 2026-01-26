@@ -146,15 +146,15 @@ export default function Index() {
                   <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest text-center leading-tight">Crecimiento en <br/> Facturación</p>
                 </div>
 
-                {/* SLIDE 2: FACEBOOK COM FOTO */}
-                <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
-                  <img src="/foto-facebook.jpg" alt="Facebook Ads" className="w-full h-full object-cover opacity-50" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1738] via-transparent to-transparent flex flex-col items-center justify-center p-12">
-                    <div className="bg-[#1877F2] p-4 rounded-2xl mb-4 shadow-lg"><Facebook size={40} fill="white" /></div>
-                    <h3 className="text-3xl font-bold mb-2">Facebook Ads</h3>
-                    <p className="text-center text-slate-200">Resultados reales en campañas.</p>
-                  </div>
-                </div>
+               
+               {/* SLIDE 3: Facebook / MARKETING COM SEU LINK DO SUPABASE */}
+               <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+               {/* AQUI ESTÁ O SEU LINK */}
+                <img 
+                 src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/04.PNG" 
+                 alt="Marketing Digital" 
+                  className="w-full h-full object-cover opacity-50" 
+                 />
 
                {/* SLIDE 3: INSTAGRAM / MARKETING COM SEU LINK DO SUPABASE */}
                <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
