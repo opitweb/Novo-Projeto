@@ -48,14 +48,17 @@ export default function MarbleChatbot() {
     }
   };
 
-  return (
+ return (
     <div className="fixed bottom-6 right-6 z-[9999]">
       {!isOpen ? (
-        <button onClick={() => setIsOpen(true)} className="bg-[#0DBAAC ] hover:bg-[#0a8d82] text-white p-4 rounded-full shadow-2xl transition-all scale-110">
+        <button 
+          onClick={() => setIsOpen(true)} 
+          className="bg-[#0DBAAC] hover:bg-[#0a8d82] text-white p-4 rounded-full shadow-2xl transition-all scale-110"
+        >
           <MessageCircle size={30} />
         </button>
       ) : (
-       <div className="bg-[#0f172a] border border-[#0DBAAC]/30 w-80 sm:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="bg-[#0f172a] border border-[#0DBAAC]/30 w-80 sm:w-96 h-[500px] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
           <div className="bg-[#0DBAAC] p-4 flex justify-between text-white font-bold items-center shadow-lg">
             <span className="flex items-center gap-2"><Bot size={20}/> Betterfly IA</span>
             <button onClick={() => setIsOpen(false)} className="hover:bg-black/10 rounded-full p-1"><X size={20}/></button>
@@ -65,7 +68,7 @@ export default function MarbleChatbot() {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`p-3 rounded-2xl max-w-[85%] text-sm ${
-                  m.role === 'user' ? 'bg-[#0DBAAC ] text-white rounded-tr-none' : 'bg-[#1e293b] text-slate-100 border border-slate-700 rounded-tl-none'
+                  m.role === 'user' ? 'bg-[#0DBAAC] text-white rounded-tr-none' : 'bg-[#1e293b] text-slate-100 border border-slate-700 rounded-tl-none'
                 }`}>
                   {m.text}
                 </div>
@@ -78,10 +81,16 @@ export default function MarbleChatbot() {
               <Phone size={14}/> FALAR COMO AGENTE AGORA
             </button>
             <div className="flex gap-2">
-              <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSend()} 
+              <input 
+                value={input} 
+                onChange={e => setInput(e.target.value)} 
+                onKeyDown={e => e.key === 'Enter' && handleSend()} 
                 className="flex-1 bg-[#1e293b] border border-slate-700 text-white p-2.5 rounded-xl text-sm outline-none" 
-                placeholder="Dúvida sobre materiais..."/>
-              <button onClick={handleSend} className="bg-[#0DBAAC ] hover:bg-[#d97706] p-2.5 rounded-xl text-white transition-colors">
+                placeholder="Dúvida sobre marketing..."/>
+              <button 
+                onClick={handleSend} 
+                className="bg-[#0DBAAC] hover:bg-[#0a8d82] p-2.5 rounded-xl text-white transition-colors"
+              >
                 <Send size={20}/>
               </button>
             </div>
