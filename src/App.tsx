@@ -147,7 +147,7 @@ export default function Index() {
                 </div>
 
                
-               {/* SLIDE 3: Facebook / MARKETING COM SEU LINK DO SUPABASE */}
+               {/* SLIDE 2: Facebook / MARKETING COM SEU LINK DO SUPABASE */}
                <div className={`absolute inset-0 transition-all duration-700 ${activeSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
                {/* AQUI ESTÁ O SEU LINK */}
                 <img 
