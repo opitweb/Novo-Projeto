@@ -169,21 +169,29 @@ export default function Index() {
               </div>
             </div>
 
-            {/* NOVO BANNER COM VÍDEO DO SUPABASE */}
-            <div className="relative w-full flex justify-center items-center overflow-visible">
-              <div ref={bannerRef} className="hero-banner absolute z-20 opacity-1">
-                <div className="relative bg-[#0A1738] rounded-[4rem] text-white shadow-2xl text-center overflow-hidden border-8 border-white/50 w-[480px] aspect-square flex flex-col justify-center items-center">
-                  
-                  {/* VÍDEO DE FUNDO */}
-                  <video 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
-                    className="absolute inset-0 w-full h-full object-cover opacity-40 z-0"
-                  >
-                    <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
-                  </video>
+            {/* BANNER - SOMENTE VÍDEO */}
+<div className="relative w-full flex justify-center items-center">
+  <div ref={bannerRef} className="hero-banner relative z-20">
+    <div className="relative w-[500px] h-[500px] rounded-[4rem] overflow-hidden border-8 border-white shadow-2xl bg-white">
+      
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsinline 
+        className="w-full h-full object-cover"
+      >
+        <source 
+          src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" 
+          type="video/mp4" 
+        />
+      </video>
+
+      {/* Brilho sutil no canto para integrar com o vidro do vídeo */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/5 rounded-full blur-3xl"></div>
+    </div>
+  </div>
+</div>
 
                   {/* CONTEÚDO SOBREPOSTO */}
                   <div className="relative z-10 p-16">
