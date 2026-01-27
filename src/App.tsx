@@ -137,33 +137,38 @@ export default function Index() {
               </div>
             </div>
 
-            {/* A BOLA (ESFERA GIRATÓRIA) */}
-            <div className="relative w-full flex justify-center items-center">
-              <div className="hero-banner relative">
-                {/* Glow de fundo para a bola saltar do site */}
-                <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[100px] rounded-full scale-150"></div>
-                
-                <div 
-                  ref={bannerRef}
-                  className="relative w-[420px] h-[420px] rounded-full overflow-hidden border-[12px] border-white shadow-[0_0_60px_rgba(13,186,172,0.2)] bg-white flex items-center justify-center"
-                >
-                  <video 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
-                    className="w-[120%] h-[120%] object-cover max-w-none"
-                  >
-                    <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
-                  </video>
+           {/* A BOLA (SEM BORDA BRANCA - EFEITO INFINITO) */}
+    <div className="relative w-full flex justify-center items-center">
+      <div className="hero-banner relative">
+        
+        {/* Glow externo turquesa (substitui a borda para dar definição) */}
+        <div className="absolute inset-0 bg-[#0DBAAC]/25 blur-[60px] rounded-full scale-125"></div>
+        
+        <div 
+          ref={bannerRef}
+          className="relative w-[450px] h-[450px] rounded-full overflow-hidden flex items-center justify-center bg-transparent"
+        >
+          {/* O vídeo ocupa tudo, sem moldura branca */}
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="w-full h-full object-cover scale-105"
+          >
+            <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
+          </video>
 
-                  {/* Efeito de lente de vidro */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/30 pointer-events-none rounded-full"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          {/* Sombra interna sutil para simular a curvatura da esfera */}
+          <div className="absolute inset-0 rounded-full shadow-[inset_0_0_50px_rgba(0,0,0,0.1)] pointer-events-none"></div>
+          
+          {/* Brilho especular (reflexo de luz na "lente") */}
+          <div className="absolute top-[10%] left-[15%] w-[30%] h-[30%] bg-gradient-to-br from-white/40 to-transparent rounded-full blur-xl pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* RESTANTE DO SITE (BARCELONA, SOCIAL, ETC) */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
