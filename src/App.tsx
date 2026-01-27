@@ -42,7 +42,6 @@ export default function Index() {
             repeatDelay: 6
           });
 
-          // Fase 1: Borboleta aparece e gira
           butterflyTl
             .from(butterfly, {
               scale: 0,
@@ -56,14 +55,12 @@ export default function Index() {
               duration: 2.5,
               ease: "none"
             })
-            // Fase 2: Borboleta pulsa
             .to(butterfly.querySelector('.butterfly-icon'), {
               scale: 1.4,
               duration: 0.25,
               yoyo: true,
               repeat: 5
             })
-            // Fase 3: EXPLOSÃO
             .to(butterfly.querySelector('.butterfly-icon'), {
               scale: 0,
               opacity: 0,
@@ -77,7 +74,6 @@ export default function Index() {
               duration: 1,
               ease: "power2.out"
             }, "-=0.3")
-            // Fase 4: Flutuação
             .to(particles, {
               y: "+=15",
               duration: 0.8,
@@ -85,14 +81,12 @@ export default function Index() {
               repeat: 2,
               ease: "sine.inOut"
             }, "-=0.5")
-            // Fase 5: Desaparecimento
             .to(particles, {
               opacity: 0,
               scale: 0,
               duration: 0.6,
               ease: "power2.in"
             })
-            // Reset
             .set(butterfly, { rotation: 0 })
             .set(butterfly.querySelector('.butterfly-icon'), { scale: 1, opacity: 1 })
             .set(particles, { x: 0, y: 0, scale: 0, opacity: 0 });
@@ -147,7 +141,6 @@ export default function Index() {
     };
   }, []);
 
-  // Dados das seções
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
@@ -171,7 +164,6 @@ export default function Index() {
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* Background Dot Grid */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-40">
         <div className="absolute inset-0 w-full h-full"
           style={{
@@ -213,7 +205,6 @@ export default function Index() {
           transition: color 0.3s ease;
         }
 
-        /* Borboletas - apenas desktop */
         .butterflies-container {
           display: none;
         }
@@ -252,7 +243,6 @@ export default function Index() {
           box-shadow: 0 0 15px #0DBAAC, 0 0 25px #00FFC6;
         }
 
-        /* Animação simples para mobile */
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
           50% { transform: translateY(-20px); }
@@ -267,7 +257,6 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        {/* HERO SECTION */}
         <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center relative">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
@@ -275,12 +264,14 @@ export default function Index() {
               <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
-             <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#0A1738] leading-[1.15] max-w-2xl">
-                 Estratégias de marketing digital{' '}
+              
+              {/* H1 AJUSTADO PARA NÃO CORTAR */}
+              <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#0A1738] leading-[1.15] max-w-2xl">
+                Estratégias de marketing digital{' '}
                 <span className="block mt-2 font-light italic text-[#0DBAAC] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl lowercase">
-               Barcelona
-             </span>
-             </h1>
+                  Barcelona
+                </span>
+              </h1>
 
               <p className="hero-subtitle text-base sm:text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-4 sm:pl-6 max-w-md">
                 Marketing de alto nivel para especialistas que desean aumentar la visibilidad y las citas de su clínica.
@@ -292,42 +283,34 @@ export default function Index() {
               </div>
             </div>
 
-            {/* ESFERA COM BORBOLETAS (apenas desktop) */}
             <div className="flex justify-center items-center perspective-[1000px] mt-8 lg:mt-0 relative">
-              {/* Container de Borboletas - APENAS DESKTOP */}
               <div ref={butterfliesRef} className="butterflies-container absolute inset-0 pointer-events-none z-10">
-                {/* Borboleta 1 - Topo */}
                 <div className="butterfly" style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
-                {/* Borboleta 2 - Direita */}
                 <div className="butterfly" style={{ top: '28%', right: '8%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
-                {/* Borboleta 3 - Esquerda */}
                 <div className="butterfly" style={{ top: '28%', left: '8%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
-                {/* Borboleta 4 - Inferior Direita */}
                 <div className="butterfly" style={{ bottom: '12%', right: '18%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
-                {/* Borboleta 5 - Inferior Esquerda */}
                 <div className="butterfly" style={{ bottom: '12%', left: '18%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
               </div>
 
-              {/* Esfera com Vídeo */}
               <div className="sphere-frame relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[80px] sm:blur-[120px] rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_20px_50px_rgba(13,186,172,0.3)] bg-[#0DBAAC] flex items-center justify-center">
@@ -346,7 +329,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO BARCELONA */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] text-[#0A1738]">
@@ -364,7 +346,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO MÍDIA SOCIAL */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
@@ -385,7 +366,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO AUTOMAÇÃO */}
         <section className="py-32 bg-[#0A1738] border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 gap-12 items-center">
             <div className="grid sm:grid-cols-2 gap-6">
@@ -408,7 +388,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO REVIEWS */}
         <section className="py-32">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
