@@ -257,12 +257,13 @@ export default function Index() {
 
       <main className="relative z-10">
         
-      <h1 className="hero-title text-[3rem] sm:text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#0A1738] leading-tight max-w-2xl">
+       <h1 className="hero-title text-[3rem] sm:text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#0A1738] leading-tight max-w-2xl">
            Marketing Digital
         <span className="block mt-2 font-light italic text-[#0DBAAC] text-[2rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
                Barcelona
          </span>
          </h1>
+              
               
               {/* H1 COM TAMANHOS MUITO MENORES NO MOBILE */}
             
