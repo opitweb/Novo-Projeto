@@ -142,13 +142,19 @@ export default function Index() {
   ];
 
 return (
-      <>
-    {/* SEO deve estar dentro de um fragmento */}
+   return (
+  <>
     <SEO
       title="Agência de Marketing Médico em Barcelona | Betterfly Media"
       description="Agência de marketing médico em Barcelona especializada em atrair pacientes..."
       canonical="https://betterflymedia.es/"
     />
+    <div ref={mainRef} className="min-h-screen ...">
+      ...
+    </div>
+  </>
+);
+
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
       {/* EFEITO DE BOLINHAS ANIMADAS (DOT GRID) - VERDE SUAVE */}
