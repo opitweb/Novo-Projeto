@@ -267,7 +267,7 @@ export default function Index() {
               
               {/* H1 COM TAMANHOS MUITO MENORES NO MOBILE */}
               <h1 className="hero-title text-[2rem] sm:text-[2.5rem] md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#0A1738] leading-[1.15] max-w-2xl">
-                Estratégias de<br className="sm:hidden" /> marketing<br className="sm:hidden" /> digital{' '}
+                <br className="sm:hidden" /> Marketing<br className="sm:hidden" /> digital{' '}
                 <span className="block mt-2 font-light italic text-[#0DBAAC] text-[1.75rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
                   Barcelona
                 </span>
