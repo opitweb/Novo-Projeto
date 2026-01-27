@@ -33,7 +33,7 @@ export default function Index() {
             .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
             .from(".hero-sphere-wrapper", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
 
-      // GIRO 3D REALISTA (Evita o efeito achatado da sua captura)
+      // GIRO 3D REALISTA (Sem efeito achatado)
       if (videoRef.current) {
         gsap.to(videoRef.current, {
           rotationY: 360,
@@ -44,7 +44,7 @@ export default function Index() {
         });
       }
 
-      // Animações de Scroll
+      // Animações de Scroll nos cards
       gsap.utils.toArray('.service-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
@@ -97,7 +97,7 @@ export default function Index() {
       
       {/* BACKGROUND DOT GRID */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 w-full h-full opacity-[0.50]"
+        <div className="absolute inset-0 w-full h-full opacity-[0.40]"
           style={{
             backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
             backgroundSize: '40px 40px',
@@ -109,41 +109,39 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        {/* HERO SECTION - CORREÇÃO DE POSICIONAMENTO MOBILE */}
-        <section className="pt-28 lg:pt-20 pb-16 px-6 min-h-screen flex items-center justify-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
+        {/* HERO SECTION - REVISADA PARA RESPONSIVIDADE TOTAL */}
+        <section className="pt-28 lg:pt-36 pb-20 px-4 md:px-6 min-h-screen flex items-center justify-center">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 lg:gap-10 items-center">
             
-            {/* LADO TEXTO */}
-            <div className="hero-content space-y-6 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left">
-              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-6 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+            {/* TEXTO - FONTE AJUSTADA PARA MOBILE */}
+            <div className="hero-content space-y-6 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left px-2">
+              <div className="hero-badge inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-5 py-2 rounded-full text-xs md:text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
               
-              <h1 className="hero-title text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
+              <h1 className="hero-title text-[32px] sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.2] lg:leading-[1.1] break-words">
                 Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-3xl lg:text-6xl lowercase">Barcelona</span>
+                <span className="font-light italic text-[#0DBAAC] text-[28px] sm:text-3xl lg:text-6xl lowercase">barcelona</span>
               </h1>
               
-              <p className="hero-subtitle text-lg text-slate-500 border-l-0 lg:border-l-2 border-[#0DBAAC] lg:pl-6 max-w-md mx-auto lg:mx-0">
+              <p className="hero-subtitle text-base md:text-lg text-slate-500 border-l-0 lg:border-l-2 border-[#0DBAAC] lg:pl-6 max-w-md mx-auto lg:mx-0 leading-relaxed">
                 Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
               </p>
 
               <div className="hero-button pt-4">
-                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20">
                   Análisis Gratuito <ArrowRight className="ml-2" size={20} />
                 </Link>
               </div>
             </div>
 
-            {/* LADO ESFERA - CENTRALIZADO E DENTRO DA TELA */}
-            <div className="hero-sphere-wrapper relative w-full flex justify-center items-center order-1 lg:order-2 py-8 lg:py-0">
-              {/* Glow circular */}
-              <div className="absolute w-[250px] h-[250px] lg:w-[450px] lg:h-[450px] bg-[#0DBAAC]/20 blur-[60px] lg:blur-[120px] rounded-full" />
+            {/* ESFERA - CORRIGIDA: SEM SOBREPOSIÇÃO E COM PERSPECTIVA */}
+            <div className="hero-sphere-wrapper relative w-full flex justify-center items-center order-1 lg:order-2 py-10 lg:py-0">
+              <div className="absolute w-[240px] h-[240px] lg:w-[450px] lg:h-[450px] bg-[#0DBAAC]/15 blur-[50px] lg:blur-[120px] rounded-full" />
               
-              {/* Container da Esfera com Perspectiva Forçada */}
               <div 
-                className="relative w-[280px] h-[280px] lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden bg-[#0DBAAC] shadow-2xl flex items-center justify-center"
-                style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                className="relative w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden bg-[#0DBAAC] shadow-2xl flex items-center justify-center"
+                style={{ transformStyle: 'preserve-3d', perspective: '1200px' }}
               >
                 <video 
                   ref={videoRef}
@@ -152,34 +150,32 @@ export default function Index() {
                 >
                   <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
                 </video>
-                
-                {/* Efeito de Vidro e Profundidade */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0DBAAC]/30 via-transparent to-white/40 pointer-events-none" />
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_50px_rgba(0,0,0,0.3)] lg:shadow-[inset_0_0_80px_rgba(0,0,0,0.3)] pointer-events-none" />
+                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_40px_rgba(0,0,0,0.3)] lg:shadow-[inset_0_0_80px_rgba(0,0,0,0.3)] pointer-events-none" />
               </div>
             </div>
           </div>
         </section>
 
         {/* --- SEÇÃO BARCELONA --- */}
-        <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm border-y border-slate-100">
+        <section className="py-24 bg-white/40 backdrop-blur-sm border-y border-slate-100 relative z-20">
           <div className="max-w-7xl mx-auto px-6 barcelona-content">
-            <h2 className="text-3xl md:text-6xl font-bold mb-16 text-[#0A1738]">
-              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales probadas.
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#0A1738] leading-tight">
+              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales.
             </h2>
-            <div className="grid md:grid-cols-2 gap-12">
-              <p className="text-xl font-semibold">En 2010 iniciamos nuestra andadura em <span className="text-[#0DBAAC]">Barcelona</span>.</p>
-              <p className="text-slate-500">Nuestra metodología combina estética y técnica para resultados reales.</p>
+            <div className="grid md:grid-cols-2 gap-10">
+              <p className="text-lg md:text-xl font-semibold">Fundada em <span className="text-[#0DBAAC]">Barcelona</span>, ajudamos clínicas a escalar com autoridade.</p>
+              <p className="text-slate-500">Unimos a estética visual de alto luxo com automações que convertem.</p>
             </div>
           </div>
         </section>
 
-        {/* --- DEMAIS SEÇÕES MANTIDAS IGUAIS --- */}
+        {/* --- SEÇÃO SOCIAL SERVICES --- */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               {socialServices.map((s, i) => (
-                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10">
+                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
                   <s.icon size={40} className="text-[#0DBAAC] mb-6" />
                   <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
                   <p className="text-white/70">{s.description}</p>
@@ -192,43 +188,12 @@ export default function Index() {
         <section className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-8">
             {webFeatures.map((f, i) => (
-              <div key={i} className="service-card p-10 rounded-3xl border border-slate-100">
+              <div key={i} className="service-card p-10 rounded-3xl border border-slate-100 hover:shadow-xl transition-all">
                 <f.icon size={30} className="text-[#0DBAAC] mb-8" />
                 <h3 className="text-2xl font-bold text-[#0A1738] mb-4">{f.title}</h3>
                 <p className="text-slate-500">{f.description}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="py-32 bg-[#0A1738]">
-          <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 gap-12 items-center">
-            <div className="grid sm:grid-cols-2 gap-6">
-              {automations.map((a, i) => (
-                <div key={i} className="service-card bg-white/5 p-8 rounded-3xl">
-                  <a.icon size={32} className="text-[#0DBAAC] mb-4" />
-                  <h3 className="text-lg font-bold text-white mb-2">{a.title}</h3>
-                  <p className="text-white/60 text-sm">{a.description}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-12 lg:mt-0 bg-white p-16 rounded-[3rem] text-center">
-              <p className="text-5xl font-bold text-[#0A1738]">85%</p>
-              <p className="text-[#0DBAAC] uppercase text-sm font-medium">Ahorro de Tiempo</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-32">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <div className="grid md:grid-cols-4 gap-6">
-              {reviews.map((r, i) => (
-                <div key={i} className="bg-white p-8 rounded-3xl border border-slate-200 text-left shadow-lg">
-                  <h4 className="font-bold text-[#0A1738]">{r.name}</h4>
-                  <p className="text-slate-700 text-sm mt-4 italic">"{r.text}"</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
