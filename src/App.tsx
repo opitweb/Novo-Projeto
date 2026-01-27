@@ -18,13 +18,10 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
-  // Refs do banner/carrossel
+  // Refs do banner - Simplificado (removido fb e ig)
   const bannerRef = useRef<HTMLDivElement>(null);
-  const fbRef = useRef<HTMLDivElement>(null);
-  const igRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLParagraphElement>(null);
 
-  // 1. Lógica de Scroll e GSAP
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -32,15 +29,15 @@ export default function Index() {
     window.addEventListener('scroll', handleScroll);
 
     const ctx = gsap.context(() => {
-      // Timeline do Hero
+      // Timeline do Hero (Surgimento suave)
       const heroTl = gsap.timeline();
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
             .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
             .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
             .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
-            .from(".hero-banner", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
+            .from(".hero-banner", { opacity: 0, scale: 0.9, duration: 1.2, ease: "power2.out" }, "-=1");
 
-      // Animação dos cards ao scroll
+      // Animação dos cards ao scroll (Serviços)
       gsap.utils.toArray('.service-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
@@ -53,49 +50,12 @@ export default function Index() {
 
       // Animação da Seção Barcelona
       gsap.from(".barcelona-content", {
-        scrollTrigger: {
-          trigger: ".barcelona-content",
-          start: "top 80%",
-        },
+        scrollTrigger: { trigger: ".barcelona-content", start: "top 80%" },
         opacity: 0,
         x: -50,
         duration: 1.2,
         ease: "power2.out"
       });
-
-      // NOVA ANIMAÇÃO: Contador de 0 até 340
-      if (counterRef.current) {
-        gsap.from(counterRef.current, {
-          scrollTrigger: {
-            trigger: counterRef.current,
-            start: "top 80%",
-          },
-          textContent: 0,
-          duration: 2.5,
-          ease: "power1.inOut",
-          snap: { textContent: 1 },
-          onUpdate: function() {
-            if (counterRef.current) {
-              counterRef.current.textContent = `+${Math.ceil(parseFloat(counterRef.current.textContent))}%`;
-            }
-          }
-        });
-      }
-
-      // Timeline do carrossel banner +340% / Facebook / Instagram
-      if (bannerRef.current && fbRef.current && igRef.current) {
-        const carouselTl = gsap.timeline({
-          repeat: -1,
-          defaults: { duration: 1, ease: "power1.inOut" }
-        });
-
-        carouselTl
-          .to(bannerRef.current, { opacity: 1 })
-          .to(fbRef.current, { opacity: 1, delay: 1 })
-          .to(fbRef.current, { opacity: 0, delay: 1 })
-          .to(igRef.current, { opacity: 1, delay: 0.5 })
-          .to(igRef.current, { opacity: 0, delay: 1 });
-      }
 
     }, mainRef);
 
@@ -105,7 +65,7 @@ export default function Index() {
     };
   }, []);
 
-  // Dados das seções (omitidos para brevidade, mas mantidos no seu código original)
+  // Dados das seções (Mantidos exatamente como no seu código original)
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
@@ -129,7 +89,7 @@ export default function Index() {
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      {/* EFEITO DE BOLINHAS */}
+      {/* DOT GRID BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute inset-0 w-full h-full opacity-[0.50]"
@@ -169,68 +129,28 @@ export default function Index() {
               </div>
             </div>
 
-            {/* BANNER - SOMENTE VÍDEO */}
-<div className="relative w-full flex justify-center items-center">
-  <div ref={bannerRef} className="hero-banner relative z-20">
-    <div className="relative w-[500px] h-[500px] rounded-[4rem] overflow-hidden border-8 border-white shadow-2xl bg-white">
-      
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsinline 
-        className="w-full h-full object-cover"
-      >
-        <source 
-          src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" 
-          type="video/mp4" 
-        />
-      </video>
-
-      {/* Brilho sutil no canto para integrar com o vidro do vídeo */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/5 rounded-full blur-3xl"></div>
-    </div>
-  </div>
-</div>
-
-                  {/* CONTEÚDO SOBREPOSTO */}
-                  <div className="relative z-10 p-16">
-                    <Award size={48} className="mb-6 text-[#0DBAAC] mx-auto" />
-                    <p ref={counterRef} className="text-8xl font-bold mb-2 tracking-tighter">+340%</p>
-                    <p className="text-[#0DBAAC] text-lg font-medium uppercase tracking-widest leading-tight">
-                      Crecimiento en <br/> Facturación
-                    </p>
-                  </div>
-                  
-                  {/* Brilho decorativo */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#0DBAAC]/10 rounded-full -mr-16 -mt-16 blur-2xl z-0"></div>
+            {/* BANNER COM VÍDEO (ÚNICO E LIMPO) */}
+            <div className="relative w-full flex justify-center items-center overflow-visible">
+              <div ref={bannerRef} className="hero-banner relative">
+                <div className="bg-white rounded-[4rem] shadow-2xl overflow-hidden border-8 border-white w-[500px] h-[500px] flex items-center justify-center">
+                  <video 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
+                  </video>
                 </div>
-              </div>
-
-              {/* Cards do Carrossel (Facebook / Instagram) */}
-              <div ref={fbRef} className="absolute z-10 opacity-0">
-                <img
-                  src="https://images.unsplash.com/photo-1532570122812-6c53b4cdd5f7?auto=format&fit=crop&q=80"
-                  className="w-56 h-56 rounded-[3rem] object-cover shadow-2xl border-8 border-white"
-                  alt="Facebook"
-                />
-              </div>
-
-              <div ref={igRef} className="absolute z-10 opacity-0">
-                <img
-                  src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
-                  className="w-56 h-56 rounded-[3rem] object-cover shadow-2xl border-8 border-white"
-                  alt="Instagram"
-                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO BARCELONA E RESTANTE DO CÓDIGO (Igual ao seu original) */}
+        {/* SEÇÃO BARCELONA */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
-           {/* ... conteúdo da seção barcelona ... */}
-           <div className="max-w-7xl mx-auto px-6 barcelona-content">
+          <div className="max-w-7xl mx-auto px-6 barcelona-content">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
               Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> <span className="text-[#0DBAAC]">estrategias digitales probadas.</span> 
             </h2>
@@ -246,9 +166,93 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Mantenha todas as outras seções (Mídia Social, Automação, Reviews) como estavam */}
-        {/* ... */}
-        
+        {/* SEÇÃO MÍDIA SOCIAL */}
+        <section className="py-32 relative bg-[#0A1738]">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-20">
+              <span className="inline-flex items-center gap-2 text-[#0DBAAC] text-sm font-semibold uppercase tracking-widest mb-6">
+                <Instagram size={16} /> Redes Sociales
+              </span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+                Tu presencia en <span className="text-[#0DBAAC]">redes sociales</span><br/>
+                que genera resultados
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
+              {socialServices.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <div key={index} className="service-card bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-2 group">
+                    <Icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                    <p className="text-white/70 leading-relaxed">{service.description}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO AUTOMAÇÃO */}
+        <section className="py-32 relative bg-[#0A1738] overflow-hidden border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-20">
+              <span className="inline-flex items-center gap-2 text-[#0DBAAC] text-sm font-semibold uppercase tracking-widest mb-6">
+                <Bot size={16} /> Automatización
+              </span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
+                <span className="text-[#0DBAAC]">Automatiza</span> tu clínica<br/>
+                y multiplica resultados
+              </h2>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="grid sm:grid-cols-2 gap-6">
+                {automations.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-1 group">
+                      <Icon size={32} className="text-[#0DBAAC] mb-4 group-hover:scale-110 transition-transform" />
+                      <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="bg-white p-16 rounded-[3rem] shadow-2xl relative overflow-hidden text-center">
+                <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
+                <p className="text-5xl font-bold text-[#0A1738]">85%</p>
+                <p className="text-[#0DBAAC] uppercase tracking-widest text-sm font-medium">Ahorro de Tiempo</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO GOOGLE REVIEWS */}
+        <section className="py-32 relative">
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <h2 className="text-5xl md:text-7xl font-bold text-[#0A1738] mb-16">
+              Lo que dicen <span className="text-[#0DBAAC]">nuestros clientes</span>
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {reviews.map((review, index) => (
+                <div key={index} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-[#0DBAAC]/10 flex items-center justify-center font-bold text-[#0DBAAC]">{review.avatar}</div>
+                    <div>
+                      <h4 className="font-bold text-[#0A1738]">{review.name}</h4>
+                      <p className="text-xs text-slate-500">{review.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-slate-700 text-sm leading-relaxed mb-4">"{review.text}"</p>
+                  <div className="flex gap-1 text-[#0DBAAC]">
+                    {Array.from({length: review.rating}).map((_, i) => <Star key={i} size={16} />)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Chatbot />
       </main>
     </div>
