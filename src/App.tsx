@@ -13,7 +13,6 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const automationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -40,51 +39,36 @@ export default function Index() {
         });
       }
 
-      // 3. NOVA TIMELINE COM SCROLLTRIGGER PARA SEÇÃO DE AUTOMAÇÃO
-      if (automationRef.current) {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: automationRef.current,
-            pin: true, // fixa o elemento enquanto anima
-            start: 'top top', // quando o topo do trigger atinge o topo do viewport
-            end: '+=800', // termina após rolar 800px além do início
-            scrub: 1, // animação suave, leva 1s para "alcançar" a scrollbar
-            snap: {
-              snapTo: 'labels', // ajusta para o label mais próximo
-              duration: { min: 0.2, max: 3 },
-              delay: 0.2,
-              ease: 'power1.inOut'
-            },
-            // markers: true // descomente para debug
-          }
-        });
+      // 3. EFEITO LETREIRO NOS TÍTULOS H1, H2, H3, H4
+      const headings = document.querySelectorAll('h1, h2, h3, h4');
+      
+      headings.forEach((heading) => {
+        const text = heading.textContent || '';
+        const spans = text.split('').map(char => 
+          char === ' ' ? '<span class="inline-block">&nbsp;</span>' : 
+          `<span class="inline-block">${char}</span>`
+        ).join('');
+        
+        heading.innerHTML = spans;
+        const letters = heading.querySelectorAll('span');
 
-        // Adiciona animações e labels à timeline
-        tl.addLabel('start')
-          .from('.automation-card', { 
-            scale: 0.8, 
-            rotation: -15, 
-            autoAlpha: 0,
-            stagger: 0.1 
-          })
-          .addLabel('color')
-          .to('.automation-section', { 
-            backgroundColor: '#0DBAAC',
-            duration: 1
-          })
-          .addLabel('scale')
-          .to('.automation-card', { 
-            scale: 1.05,
-            stagger: 0.05
-          })
-          .addLabel('rotate')
-          .to('.automation-percentage', { 
-            rotation: 360,
-            scale: 1.2,
-            duration: 1
-          })
-          .addLabel('end');
-      }
+        // Animação ao passar o mouse - efeito letreiro
+        heading.addEventListener('mouseenter', () => {
+          gsap.to(letters, {
+            x: -20,
+            opacity: 0,
+            stagger: 0.02,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+              gsap.fromTo(letters,
+                { x: 20, opacity: 0 },
+                { x: 0, opacity: 1, stagger: 0.02, duration: 0.3, ease: "power2.out" }
+              );
+            }
+          });
+        });
+      });
 
     }, mainRef);
 
@@ -130,7 +114,7 @@ export default function Index() {
         />
       </div>
 
-      {/* CSS para animação dos cards de redes sociais */}
+      {/* CSS para animações */}
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -164,6 +148,17 @@ export default function Index() {
           transform: translateY(-8px);
           transition: transform 0.3s ease;
         }
+
+        /* Estilo para títulos com efeito letreiro */
+        h1, h2, h3, h4 {
+          cursor: pointer;
+          user-select: none;
+        }
+
+        h1 span, h2 span, h3 span, h4 span {
+          display: inline-block;
+          transition: color 0.3s ease;
+        }
       `}</style>
 
       <main className="relative z-10">
@@ -177,8 +172,7 @@ export default function Index() {
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
               <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
-                Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-2xl sm:text-3xl md:text-4xl lg:text-6xl lowercase">Barcelona</span>
+                Estratégias de marketing digital Barcelona
               </h1>
               <p className="hero-subtitle text-base sm:text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-4 sm:pl-6 max-w-md">
                 Marketing de alto nivel para especialistas que desean aumentar la visibilidad y las citas de su clínica.
@@ -214,11 +208,11 @@ export default function Index() {
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] text-[#0A1738]">
-              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales probadas.
+              Atraemos más pacientes a tu clínica con estrategias digitales probadas.
             </h2>
             <div className="grid md:grid-cols-2 gap-12 md:gap-20">
               <div className="text-xl md:text-2xl font-semibold text-[#0A1738]">
-                <p>En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde nuestra oficina de Barcelona.</p>
+                <p>En 2010 iniciamos nuestra andadura, diseñando e innovando desde nuestra oficina de Barcelona.</p>
               </div>
               <div className="text-base md:text-lg text-slate-500 space-y-6">
                 <p>Nuestra metodología combina la estética médica con el rigor técnico necesario para convertir visitantes en pacientes.</p>
@@ -232,7 +226,7 @@ export default function Index() {
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
-              <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">Tu presencia en <span className="text-[#0DBAAC]">redes sociales</span></h2>
+              <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">Tu presencia en redes sociales</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {socialServices.map((service, index) => {
@@ -249,25 +243,23 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO AUTOMAÇÃO COM SCROLLTRIGGER TIMELINE */}
-        <section ref={automationRef} className="automation-section py-32 bg-[#0A1738] border-t border-white/5">
+        {/* SEÇÃO AUTOMAÇÃO */}
+        <section className="py-32 bg-[#0A1738] border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 gap-12 items-center">
             <div className="grid sm:grid-cols-2 gap-6">
               {automations.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <div key={index} className="automation-card bg-white/5 border border-white/10 p-8 rounded-3xl">
+                  <div key={index} className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-colors">
                     <Icon size={32} className="text-[#0DBAAC] mb-4" />
-                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
                     <p className="text-white/60 text-sm">{item.description}</p>
                   </div>
                 )
               })}
             </div>
             <div className="mt-12 lg:mt-0 bg-white p-16 rounded-[3rem] text-center">
-              <div className="automation-percentage">
-                <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6" />
-              </div>
+              <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
               <p className="text-5xl font-bold text-[#0A1738]">85%</p>
               <p className="text-[#0DBAAC] uppercase text-sm font-medium">Ahorro de Tiempo</p>
             </div>
