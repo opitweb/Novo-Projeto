@@ -29,8 +29,8 @@ export default function Index() {
             .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
             .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7");
 
-      // 2. ANIMAÇÃO DAS BORBOLETAS - GIRAM E EXPLODEM EM PARTÍCULAS
-      if (butterfliesRef.current) {
+      // 2. ANIMAÇÃO DAS BORBOLETAS - APENAS EM DESKTOP
+      if (butterfliesRef.current && window.innerWidth >= 1024) {
         const butterflies = butterfliesRef.current.querySelectorAll('.butterfly');
         
         butterflies.forEach((butterfly, index) => {
@@ -56,14 +56,14 @@ export default function Index() {
               duration: 2.5,
               ease: "none"
             })
-            // Fase 2: Borboleta pulsa antes de explodir
+            // Fase 2: Borboleta pulsa
             .to(butterfly.querySelector('.butterfly-icon'), {
               scale: 1.4,
               duration: 0.25,
               yoyo: true,
               repeat: 5
             })
-            // Fase 3: EXPLOSÃO - partículas se espalham radialmente
+            // Fase 3: EXPLOSÃO
             .to(butterfly.querySelector('.butterfly-icon'), {
               scale: 0,
               opacity: 0,
@@ -72,34 +72,34 @@ export default function Index() {
             .to(particles, {
               opacity: 1,
               scale: 1.2,
-              x: (i) => (Math.cos((i / particles.length) * Math.PI * 2) * 150),
-              y: (i) => (Math.sin((i / particles.length) * Math.PI * 2) * 150),
+              x: (i) => (Math.cos((i / particles.length) * Math.PI * 2) * 100),
+              y: (i) => (Math.sin((i / particles.length) * Math.PI * 2) * 100),
               duration: 1,
               ease: "power2.out"
             }, "-=0.3")
-            // Fase 4: Partículas flutuam levemente
+            // Fase 4: Flutuação
             .to(particles, {
-              y: "+=20",
+              y: "+=15",
               duration: 0.8,
               yoyo: true,
               repeat: 2,
               ease: "sine.inOut"
             }, "-=0.5")
-            // Fase 5: Partículas desaparecem
+            // Fase 5: Desaparecimento
             .to(particles, {
               opacity: 0,
               scale: 0,
               duration: 0.6,
               ease: "power2.in"
             })
-            // Reset para próxima iteração
+            // Reset
             .set(butterfly, { rotation: 0 })
             .set(butterfly.querySelector('.butterfly-icon'), { scale: 1, opacity: 1 })
             .set(particles, { x: 0, y: 0, scale: 0, opacity: 0 });
         });
       }
 
-      // 3. GIRO VERTICAL DO VÍDEO DENTRO DA ESFERA
+      // 3. GIRO DO VÍDEO
       if (videoRef.current) {
         gsap.to(videoRef.current, {
           rotationY: 360,
@@ -109,7 +109,7 @@ export default function Index() {
         });
       }
 
-      // 4. EFEITO LETREIRO NOS TÍTULOS H1, H2, H3, H4
+      // 4. EFEITO LETREIRO NOS TÍTULOS
       const headings = document.querySelectorAll('h1, h2, h3, h4');
       
       headings.forEach((heading) => {
@@ -213,7 +213,17 @@ export default function Index() {
           transition: color 0.3s ease;
         }
 
-        /* Estilos das borboletas e partículas */
+        /* Borboletas - apenas desktop */
+        .butterflies-container {
+          display: none;
+        }
+
+        @media (min-width: 1024px) {
+          .butterflies-container {
+            display: block;
+          }
+        }
+
         .butterfly {
           position: absolute;
           width: 60px;
@@ -225,7 +235,7 @@ export default function Index() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 45px;
+          font-size: 40px;
           filter: drop-shadow(0 6px 12px rgba(13, 186, 172, 0.5));
         }
 
@@ -241,11 +251,23 @@ export default function Index() {
           transform: translate(-50%, -50%) scale(0);
           box-shadow: 0 0 15px #0DBAAC, 0 0 25px #00FFC6;
         }
+
+        /* Animação simples para mobile */
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 1023px) {
+          .sphere-frame {
+            animation: float 4s ease-in-out infinite;
+          }
+        }
       `}</style>
 
       <main className="relative z-10">
         
-        {/* HERO SECTION COM BORBOLETAS EXPLOSIVAS */}
+        {/* HERO SECTION */}
         <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center relative">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
@@ -266,36 +288,36 @@ export default function Index() {
               </div>
             </div>
 
-            {/* ESFERA COM BORBOLETAS ANIMADAS */}
+            {/* ESFERA COM BORBOLETAS (apenas desktop) */}
             <div className="flex justify-center items-center perspective-[1000px] mt-8 lg:mt-0 relative">
-              {/* Container de Borboletas */}
-              <div ref={butterfliesRef} className="absolute inset-0 pointer-events-none z-10">
-                {/* Borboleta 1 - Centro Superior */}
-                <div className="butterfly" style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}>
+              {/* Container de Borboletas - APENAS DESKTOP */}
+              <div ref={butterfliesRef} className="butterflies-container absolute inset-0 pointer-events-none z-10">
+                {/* Borboleta 1 - Topo */}
+                <div className="butterfly" style={{ top: '5%', left: '50%', transform: 'translateX(-50%)' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
                 {/* Borboleta 2 - Direita */}
-                <div className="butterfly" style={{ top: '30%', right: '10%' }}>
+                <div className="butterfly" style={{ top: '28%', right: '8%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
                 {/* Borboleta 3 - Esquerda */}
-                <div className="butterfly" style={{ top: '30%', left: '10%' }}>
+                <div className="butterfly" style={{ top: '28%', left: '8%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
                 {/* Borboleta 4 - Inferior Direita */}
-                <div className="butterfly" style={{ bottom: '15%', right: '20%' }}>
+                <div className="butterfly" style={{ bottom: '12%', right: '18%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
                 
                 {/* Borboleta 5 - Inferior Esquerda */}
-                <div className="butterfly" style={{ bottom: '15%', left: '20%' }}>
+                <div className="butterfly" style={{ bottom: '12%', left: '18%' }}>
                   <div className="butterfly-icon">🦋</div>
                   {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
                 </div>
