@@ -275,9 +275,11 @@ export default function Index() {
               <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
-             <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
+             <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#0A1738] leading-[1.15] max-w-2xl">
                  Estratégias de marketing digital{' '}
-               <span className="whitespace-nowrap">Barcelona</span>
+                <span className="block mt-2 font-light italic text-[#0DBAAC] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl lowercase">
+               Barcelona
+             </span>
              </h1>
 
               <p className="hero-subtitle text-base sm:text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-4 sm:pl-6 max-w-md">
