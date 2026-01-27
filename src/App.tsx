@@ -141,12 +141,6 @@ export default function Index() {
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
 return (
-  <>
-    <SEO
-      title="Agência de Marketing Médico em Barcelona | Betterfly Media"
-      description="Agência de marketing médico em Barcelona especializada em atrair pacientes..."
-      canonical="https://betterflymedia.es/"
-    />
 
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
 
