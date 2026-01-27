@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Sparkles, ArrowRight, Award, Instagram, Facebook, Linkedin, 
-  TrendingUp, Users, Heart, Globe, Search, Palette, Zap, Monitor, 
-  BarChart3, Bot, Workflow, Calendar, MessageSquare, Cog, Clock, 
-  Target, Star 
+  Sparkles, ArrowRight, Instagram, Facebook, Linkedin, 
+  Bot, Workflow, Calendar, MessageSquare, Cog, Star 
 } from 'lucide-react';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-// Importação do Chatbot
 import Chatbot from './components/Chatbot/Chatbot';
 
 export default function Index() {
@@ -25,65 +21,32 @@ export default function Index() {
     window.addEventListener('scroll', handleScroll);
 
     const ctx = gsap.context(() => {
-      // Timeline do Hero - Adicionado clearProps para evitar tremores após o término
+      // 1. Entrada da Hero Section
       const heroTl = gsap.timeline();
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
-            .from(".hero-title", { opacity: 0, y: 50, duration: 1, clearProps: "y" }, "-=0.3")
-            .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1, clearProps: "y" }, "-=0.7")
-            .from(".hero-button", { opacity: 0, y: 30, duration: 1, clearProps: "y" }, "-=0.7")
-            .from(".hero-sphere-wrapper", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
+            .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
+            .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
+            .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
+            .from(".sphere-frame", { opacity: 0, scale: 0.8, duration: 1.2, ease: "power2.out" }, "-=1");
 
-      // GIRO 3D REALISTA
+      // 2. GIRO VERTICAL APENAS DO VÍDEO DENTRO DA ESFERA
       if (videoRef.current) {
         gsap.to(videoRef.current, {
           rotationY: 360,
-          duration: 20,
+          duration: 15,
           repeat: -1,
-          ease: "none",
-          transformOrigin: "50% 50% 0"
+          ease: "none"
         });
       }
 
-      // Animações de Scroll e Hover nos cards
+      // Animação dos cards ao scroll (Serviços e Automação)
       gsap.utils.toArray('.service-card').forEach((card: any) => {
-        // Entrada (Scroll)
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
           opacity: 0, 
           y: 50, 
           duration: 1, 
-          ease: "power3.out",
-          force3D: true,
-          clearProps: "transform" // Evita conflito com o hover
-        });
-
-        // Hover (Interação)
-        card.addEventListener('mouseenter', () => {
-          gsap.to(card, {
-            y: -10,
-            scale: 1.02,
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
-            borderColor: "#0DBAAC",
-            duration: 0.3,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-            zIndex: 50
-          });
-        });
-
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            y: 0,
-            scale: 1,
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-            borderColor: "rgba(255, 255, 255, 0.1)",
-            duration: 0.3,
-            ease: "power2.inOut",
-            overwrite: "auto",
-            force3D: true,
-            zIndex: 1
-          });
+          ease: "power3.out"
         });
       });
 
@@ -95,26 +58,33 @@ export default function Index() {
     };
   }, []);
 
-  // --- DADOS ORIGINAIS ---
+  // Dados das seções restaurados
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
     { icon: Linkedin, title: "LinkedIn", description: "Posicionamiento profesional para especialistas y clínicas de referencia." },
   ];
-  const webFeatures = [
-    { icon: Globe, title: "Diseño Web Premium", description: "Websites que convierten visitantes en pacientes con diseño profesional." },
-    { icon: Search, title: "SEO Médico", description: "Posicionamiento orgánico especializado para clínicas y especialistas." },
-    { icon: Palette, title: "UX/UI Design", description: "Experiencias de usuario intuitivas que facilitan la conversión." },
-    { icon: Zap, title: "Velocidad Optimizada", description: "Tiempos de carga ultrarrápidos que mejoran el SEO." },
-    { icon: Monitor, title: "Responsive Design", description: "Diseños que se adaptan perfectamente a todos los dispositivos." },
-    { icon: BarChart3, title: "Analítica Avanzada", description: "Seguimiento detallado del comportamento de usuarios." },
+
+  const automations = [
+    { icon: Calendar, title: "Reservas Automatizadas", description: "Sistema de citas online integrado con tu agenda." },
+    { icon: MessageSquare, title: "Chatbots Inteligentes", description: "Atención 24/7 para consultas y captación de leads." },
+    { icon: Workflow, title: "Email Marketing", description: "Secuencias automatizadas de seguimiento y fidelización." },
+    { icon: Cog, title: "Lead Scoring", description: "Clasificación automática de prospectos." },
+  ];
+
+  const reviews = [
+    { name: "Dr. María García", role: "Cirujana Plástica", rating: 5, text: "Betterfly transformó completamente nuestra presencia digital. En 6 meses duplicamos las consultas.", avatar: "MG" },
+    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "El equipo es increíble. Nuestro SEO pasó de la página 5 a los primeiros resultados.", avatar: "CS" },
+    { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabalho administrativo.", avatar: "CF" },
+    { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
 
   return (
-    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-x-hidden font-['Poppins']">
+    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
       
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 w-full h-full opacity-[0.40]"
+      {/* Background Dot Grid */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-40">
+        <div className="absolute inset-0 w-full h-full"
           style={{
             backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
             backgroundSize: '40px 40px',
@@ -126,86 +96,125 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        <section className="pt-28 lg:pt-36 pb-20 px-4 md:px-6 min-h-screen flex items-center justify-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 lg:gap-10 items-center">
+        {/* HERO SECTION COM ESFERA #0DBAAC */}
+        <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
             
-            <div className="hero-content space-y-6 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left px-2">
-              <div className="hero-badge inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-5 py-2 rounded-full text-xs md:text-sm font-semibold shadow-sm">
+            <div className="hero-content space-y-8">
+              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-6 py-2 rounded-full text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
-              
-              <h1 className="hero-title text-[32px] sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.2] lg:leading-[1.1] break-words">
+              <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
                 Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-[28px] sm:text-3xl lg:text-6xl lowercase">barcelona</span>
+                <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
               </h1>
-              
-              <p className="hero-subtitle text-base md:text-lg text-slate-500 border-l-0 lg:border-l-2 border-[#0DBAAC] lg:pl-6 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                Marketing de alto nivel para especialistas que <span className="text-[#0A1738] font-medium">desean aumentar la visibilidad y las citas de su clínica.</span>
+              <p className="hero-subtitle text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md">
+                Marketing de alto nivel para especialistas que desean aumentar la visibilidad y las citas de su clínica.
               </p>
-
-              <div className="hero-button pt-4">
-                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20">
+              <div className="hero-button">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20">
                   Análisis Gratuito <ArrowRight className="ml-2" size={20} />
                 </Link>
               </div>
             </div>
 
-            <div className="hero-sphere-wrapper relative w-full flex justify-center items-center order-1 lg:order-2 py-10 lg:py-0">
-              <div className="absolute w-[240px] h-[240px] lg:w-[450px] lg:h-[450px] bg-[#0DBAAC]/15 blur-[50px] lg:blur-[120px] rounded-full" />
-              
-              <div 
-                className="relative w-[260px] h-[260px] sm:w-[300px] sm:h-[300px] lg:w-[480px] lg:h-[480px] rounded-full overflow-hidden bg-[#0DBAAC] shadow-2xl flex items-center justify-center"
-                style={{ transformStyle: 'preserve-3d', perspective: '1200px' }}
-              >
-                <video 
-                  ref={videoRef}
-                  autoPlay muted loop playsInline 
-                  className="w-full h-full object-cover scale-110 opacity-90 mix-blend-screen"
-                >
-                  <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0DBAAC]/30 via-transparent to-white/40 pointer-events-none" />
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_40px_rgba(0,0,0,0.3)] lg:shadow-[inset_0_0_80px_rgba(0,0,0,0.3)] pointer-events-none" />
+            {/* ESFERA FIXA COM VÍDEO GIRANDO */}
+            <div className="flex justify-center items-center perspective-[1000px]">
+              <div className="sphere-frame relative w-[480px] h-[480px] rounded-full flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[120px] rounded-full" />
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_20px_50px_rgba(13,186,172,0.3)] bg-[#0DBAAC] flex items-center justify-center">
+                  <video 
+                    ref={videoRef}
+                    autoPlay muted loop playsInline 
+                    className="w-full h-full object-cover scale-110 opacity-90 mix-blend-screen"
+                  >
+                    <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0DBAAC]/20 via-transparent to-white/30 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full shadow-[inset_0_0_80px_rgba(0,0,0,0.2)] pointer-events-none" />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24 bg-white/40 backdrop-blur-sm border-y border-slate-100 relative z-20">
-          <div className="max-w-7xl mx-auto px-6 barcelona-content">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#0A1738] leading-tight">
-              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales.
+        {/* SEÇÃO BARCELONA */}
+        <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] text-[#0A1738]">
+              Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> estrategias digitales probadas.
             </h2>
-            <div className="grid md:grid-cols-2 gap-10">
-              <p className="text-lg md:text-xl font-semibold">Fundada em <span className="text-[#0DBAAC]">Barcelona</span>, ajudamos clínicas a escalar com autoridade.</p>
-              <p className="text-slate-500">Unimos a estética visual de alto luxo com automações que convertem.</p>
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+              <div className="text-xl md:text-2xl font-semibold text-[#0A1738]">
+                <p>En 2010 iniciamos nuestra andadura, <span className="text-[#0DBAAC]">diseñando e innovando</span> desde nuestra oficina de Barcelona.</p>
+              </div>
+              <div className="text-base md:text-lg text-slate-500 space-y-6">
+                <p>Nuestra metodología combina la estética médica con el rigor técnico necesario para convertir visitantes en pacientes.</p>
+                <p>Actualmente, trabajamos con clínicas que buscan dar el salto al siguiente nivel.</p>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* SEÇÃO MÍDIA SOCIAL */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">Tu presencia en <span className="text-[#0DBAAC]">redes sociales</span></h2>
+            </div>
             <div className="grid md:grid-cols-3 gap-8">
-              {socialServices.map((s, i) => (
-                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 transition-colors cursor-pointer">
-                  <s.icon size={40} className="text-[#0DBAAC] mb-6" />
-                  <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
-                  <p className="text-white/70">{s.description}</p>
+              {socialServices.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <div key={index} className="service-card bg-white/5 border border-white/10 p-10 rounded-3xl group">
+                    <Icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                    <p className="text-white/70">{service.description}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO AUTOMAÇÃO */}
+        <section className="py-32 bg-[#0A1738] border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid sm:grid-cols-2 gap-6">
+              {automations.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <div key={index} className="service-card bg-white/5 border border-white/10 p-8 rounded-3xl">
+                    <Icon size={32} className="text-[#0DBAAC] mb-4" />
+                    <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-white/60 text-sm">{item.description}</p>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="mt-12 lg:mt-0 bg-white p-16 rounded-[3rem] text-center">
+              <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
+              <p className="text-5xl font-bold text-[#0A1738]">85%</p>
+              <p className="text-[#0DBAAC] uppercase text-sm font-medium">Ahorro de Tiempo</p>
+            </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO REVIEWS */}
+        <section className="py-32">
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <h2 className="text-5xl font-bold text-[#0A1738] mb-16">Lo que dicen nuestros clientes</h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              {reviews.map((review, index) => (
+                <div key={index} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
+                  <h4 className="font-bold text-[#0A1738]">{review.name}</h4>
+                  <p className="text-slate-700 text-sm mb-4">"{review.text}"</p>
+                  <div className="flex gap-1 text-[#0DBAAC]">
+                    {Array.from({length: 5}).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section className="py-32 bg-white">
-          <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-8">
-            {webFeatures.map((f, i) => (
-              <div key={i} className="service-card p-10 rounded-3xl border border-slate-100 transition-all cursor-pointer">
-                <f.icon size={30} className="text-[#0DBAAC] mb-8" />
-                <h3 className="text-2xl font-bold text-[#0A1738] mb-4">{f.title}</h3>
-                <p className="text-slate-500">{f.description}</p>
-              </div>
-            ))}
           </div>
         </section>
 
