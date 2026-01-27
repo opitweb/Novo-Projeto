@@ -39,21 +39,28 @@ export default function Index() {
         });
       }
 
-      // Animação dos cards de automação ao scroll (NÃO aplica mais aos service-card da seção de redes sociais)
-      gsap.utils.toArray('.automation-card').forEach((card: any) => {
-        gsap.from(card, {
-          scrollTrigger: { trigger: card, start: "top 85%" },
-          opacity: 0, 
-          y: 50, 
-          duration: 1, 
-          ease: "power3.out"
-        });
-      });
-
     }, mainRef);
+
+    // 3. Intersection Observer para cards de automação (sem GSAP)
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('card-visible');
+        }
+      });
+    }, observerOptions);
+
+    const automationCards = document.querySelectorAll('.automation-card');
+    automationCards.forEach(card => observer.observe(card));
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      automationCards.forEach(card => observer.unobserve(card));
       ctx.revert();
     };
   }, []);
@@ -127,6 +134,38 @@ export default function Index() {
         .social-card:hover {
           transform: translateY(-8px);
           transition: transform 0.3s ease;
+        }
+
+        /* Animação para cards de automação com Intersection Observer */
+        .automation-card {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .automation-card.card-visible {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+
+        .automation-card:nth-child(1).card-visible {
+          transition-delay: 0.1s;
+        }
+
+        .automation-card:nth-child(2).card-visible {
+          transition-delay: 0.2s;
+        }
+
+        .automation-card:nth-child(3).card-visible {
+          transition-delay: 0.3s;
+        }
+
+        .automation-card:nth-child(4).card-visible {
+          transition-delay: 0.4s;
+        }
+
+        .automation-card:hover {
+          transform: translateY(-5px) scale(1.02);
         }
       `}</style>
 
