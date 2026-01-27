@@ -13,6 +13,7 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const butterfliesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -26,10 +27,79 @@ export default function Index() {
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
             .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
             .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
-            .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
-            .from(".sphere-frame", { opacity: 0, scale: 0.8, duration: 1.2, ease: "power2.out" }, "-=1");
+            .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7");
 
-      // 2. GIRO VERTICAL APENAS DO VÍDEO DENTRO DA ESFERA
+      // 2. ANIMAÇÃO DAS BORBOLETAS - GIRAM E EXPLODEM EM PARTÍCULAS
+      if (butterfliesRef.current) {
+        const butterflies = butterfliesRef.current.querySelectorAll('.butterfly');
+        
+        butterflies.forEach((butterfly, index) => {
+          const particles = butterfly.querySelectorAll('.particle');
+          
+          const butterflyTl = gsap.timeline({
+            delay: index * 0.4,
+            repeat: -1,
+            repeatDelay: 6
+          });
+
+          // Fase 1: Borboleta aparece e gira
+          butterflyTl
+            .from(butterfly, {
+              scale: 0,
+              rotation: -180,
+              opacity: 0,
+              duration: 0.8,
+              ease: "back.out(1.7)"
+            })
+            .to(butterfly, {
+              rotation: 720,
+              duration: 2.5,
+              ease: "none"
+            })
+            // Fase 2: Borboleta pulsa antes de explodir
+            .to(butterfly.querySelector('.butterfly-icon'), {
+              scale: 1.4,
+              duration: 0.25,
+              yoyo: true,
+              repeat: 5
+            })
+            // Fase 3: EXPLOSÃO - partículas se espalham radialmente
+            .to(butterfly.querySelector('.butterfly-icon'), {
+              scale: 0,
+              opacity: 0,
+              duration: 0.4
+            })
+            .to(particles, {
+              opacity: 1,
+              scale: 1.2,
+              x: (i) => (Math.cos((i / particles.length) * Math.PI * 2) * 150),
+              y: (i) => (Math.sin((i / particles.length) * Math.PI * 2) * 150),
+              duration: 1,
+              ease: "power2.out"
+            }, "-=0.3")
+            // Fase 4: Partículas flutuam levemente
+            .to(particles, {
+              y: "+=20",
+              duration: 0.8,
+              yoyo: true,
+              repeat: 2,
+              ease: "sine.inOut"
+            }, "-=0.5")
+            // Fase 5: Partículas desaparecem
+            .to(particles, {
+              opacity: 0,
+              scale: 0,
+              duration: 0.6,
+              ease: "power2.in"
+            })
+            // Reset para próxima iteração
+            .set(butterfly, { rotation: 0 })
+            .set(butterfly.querySelector('.butterfly-icon'), { scale: 1, opacity: 1 })
+            .set(particles, { x: 0, y: 0, scale: 0, opacity: 0 });
+        });
+      }
+
+      // 3. GIRO VERTICAL DO VÍDEO DENTRO DA ESFERA
       if (videoRef.current) {
         gsap.to(videoRef.current, {
           rotationY: 360,
@@ -39,7 +109,7 @@ export default function Index() {
         });
       }
 
-      // 3. EFEITO LETREIRO NOS TÍTULOS H1, H2, H3, H4
+      // 4. EFEITO LETREIRO NOS TÍTULOS H1, H2, H3, H4
       const headings = document.querySelectorAll('h1, h2, h3, h4');
       
       headings.forEach((heading) => {
@@ -52,7 +122,6 @@ export default function Index() {
         heading.innerHTML = spans;
         const letters = heading.querySelectorAll('span');
 
-        // Animação ao passar o mouse - efeito letreiro
         heading.addEventListener('mouseenter', () => {
           gsap.to(letters, {
             x: -20,
@@ -78,7 +147,7 @@ export default function Index() {
     };
   }, []);
 
-  // Dados das seções restaurados
+  // Dados das seções
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
@@ -114,17 +183,10 @@ export default function Index() {
         />
       </div>
 
-      {/* CSS para animações */}
       <style>{`
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         .social-card {
@@ -132,24 +194,15 @@ export default function Index() {
           animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .social-card:nth-child(1) {
-          animation-delay: 0.2s;
-        }
-
-        .social-card:nth-child(2) {
-          animation-delay: 0.4s;
-        }
-
-        .social-card:nth-child(3) {
-          animation-delay: 0.6s;
-        }
+        .social-card:nth-child(1) { animation-delay: 0.2s; }
+        .social-card:nth-child(2) { animation-delay: 0.4s; }
+        .social-card:nth-child(3) { animation-delay: 0.6s; }
 
         .social-card:hover {
           transform: translateY(-8px);
           transition: transform 0.3s ease;
         }
 
-        /* Estilo para títulos com efeito letreiro */
         h1, h2, h3, h4 {
           cursor: pointer;
           user-select: none;
@@ -159,12 +212,41 @@ export default function Index() {
           display: inline-block;
           transition: color 0.3s ease;
         }
+
+        /* Estilos das borboletas e partículas */
+        .butterfly {
+          position: absolute;
+          width: 60px;
+          height: 60px;
+        }
+
+        .butterfly-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 45px;
+          filter: drop-shadow(0 6px 12px rgba(13, 186, 172, 0.5));
+        }
+
+        .particle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          background: linear-gradient(135deg, #0DBAAC, #00FFC6);
+          border-radius: 50%;
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0);
+          box-shadow: 0 0 15px #0DBAAC, 0 0 25px #00FFC6;
+        }
       `}</style>
 
       <main className="relative z-10">
         
-        {/* HERO SECTION COM ESFERA #0DBAAC - RESPONSIVO */}
-        <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center">
+        {/* HERO SECTION COM BORBOLETAS EXPLOSIVAS */}
+        <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center relative">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
             <div className="hero-content space-y-6 sm:space-y-8">
@@ -184,8 +266,42 @@ export default function Index() {
               </div>
             </div>
 
-            {/* ESFERA FIXA COM VÍDEO GIRANDO - RESPONSIVA */}
-            <div className="flex justify-center items-center perspective-[1000px] mt-8 lg:mt-0">
+            {/* ESFERA COM BORBOLETAS ANIMADAS */}
+            <div className="flex justify-center items-center perspective-[1000px] mt-8 lg:mt-0 relative">
+              {/* Container de Borboletas */}
+              <div ref={butterfliesRef} className="absolute inset-0 pointer-events-none z-10">
+                {/* Borboleta 1 - Centro Superior */}
+                <div className="butterfly" style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}>
+                  <div className="butterfly-icon">🦋</div>
+                  {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
+                </div>
+                
+                {/* Borboleta 2 - Direita */}
+                <div className="butterfly" style={{ top: '30%', right: '10%' }}>
+                  <div className="butterfly-icon">🦋</div>
+                  {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
+                </div>
+                
+                {/* Borboleta 3 - Esquerda */}
+                <div className="butterfly" style={{ top: '30%', left: '10%' }}>
+                  <div className="butterfly-icon">🦋</div>
+                  {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
+                </div>
+                
+                {/* Borboleta 4 - Inferior Direita */}
+                <div className="butterfly" style={{ bottom: '15%', right: '20%' }}>
+                  <div className="butterfly-icon">🦋</div>
+                  {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
+                </div>
+                
+                {/* Borboleta 5 - Inferior Esquerda */}
+                <div className="butterfly" style={{ bottom: '15%', left: '20%' }}>
+                  <div className="butterfly-icon">🦋</div>
+                  {Array.from({length: 16}).map((_, i) => <div key={i} className="particle" />)}
+                </div>
+              </div>
+
+              {/* Esfera com Vídeo */}
               <div className="sphere-frame relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full flex items-center justify-center">
                 <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[80px] sm:blur-[120px] rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_20px_50px_rgba(13,186,172,0.3)] bg-[#0DBAAC] flex items-center justify-center">
@@ -222,7 +338,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO MÍDIA SOCIAL - COM ANIMAÇÃO CSS */}
+        {/* SEÇÃO MÍDIA SOCIAL */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
@@ -266,7 +382,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO REVIEWS - ESTILO GOOGLE MELHORADO */}
+        {/* SEÇÃO REVIEWS */}
         <section className="py-32">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
