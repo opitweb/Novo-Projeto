@@ -13,6 +13,7 @@ export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const automationRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -39,28 +40,56 @@ export default function Index() {
         });
       }
 
+      // 3. NOVA TIMELINE COM SCROLLTRIGGER PARA SEÇÃO DE AUTOMAÇÃO
+      if (automationRef.current) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: automationRef.current,
+            pin: true, // fixa o elemento enquanto anima
+            start: 'top top', // quando o topo do trigger atinge o topo do viewport
+            end: '+=800', // termina após rolar 800px além do início
+            scrub: 1, // animação suave, leva 1s para "alcançar" a scrollbar
+            snap: {
+              snapTo: 'labels', // ajusta para o label mais próximo
+              duration: { min: 0.2, max: 3 },
+              delay: 0.2,
+              ease: 'power1.inOut'
+            },
+            // markers: true // descomente para debug
+          }
+        });
+
+        // Adiciona animações e labels à timeline
+        tl.addLabel('start')
+          .from('.automation-card', { 
+            scale: 0.8, 
+            rotation: -15, 
+            autoAlpha: 0,
+            stagger: 0.1 
+          })
+          .addLabel('color')
+          .to('.automation-section', { 
+            backgroundColor: '#0DBAAC',
+            duration: 1
+          })
+          .addLabel('scale')
+          .to('.automation-card', { 
+            scale: 1.05,
+            stagger: 0.05
+          })
+          .addLabel('rotate')
+          .to('.automation-percentage', { 
+            rotation: 360,
+            scale: 1.2,
+            duration: 1
+          })
+          .addLabel('end');
+      }
+
     }, mainRef);
-
-    // 3. Intersection Observer para cards de automação (sem GSAP)
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('card-visible');
-        }
-      });
-    }, observerOptions);
-
-    const automationCards = document.querySelectorAll('.automation-card');
-    automationCards.forEach(card => observer.observe(card));
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      automationCards.forEach(card => observer.unobserve(card));
       ctx.revert();
     };
   }, []);
@@ -101,7 +130,7 @@ export default function Index() {
         />
       </div>
 
-      {/* CSS para animação dos cards de redes sociais - SEM conflito com GSAP */}
+      {/* CSS para animação dos cards de redes sociais */}
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -134,38 +163,6 @@ export default function Index() {
         .social-card:hover {
           transform: translateY(-8px);
           transition: transform 0.3s ease;
-        }
-
-        /* Animação para cards de automação com Intersection Observer */
-        .automation-card {
-          opacity: 0;
-          transform: translateY(40px) scale(0.95);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .automation-card.card-visible {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        .automation-card:nth-child(1).card-visible {
-          transition-delay: 0.1s;
-        }
-
-        .automation-card:nth-child(2).card-visible {
-          transition-delay: 0.2s;
-        }
-
-        .automation-card:nth-child(3).card-visible {
-          transition-delay: 0.3s;
-        }
-
-        .automation-card:nth-child(4).card-visible {
-          transition-delay: 0.4s;
-        }
-
-        .automation-card:hover {
-          transform: translateY(-5px) scale(1.02);
         }
       `}</style>
 
@@ -231,7 +228,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO MÍDIA SOCIAL - COM ANIMAÇÃO CSS (sem conflito GSAP) */}
+        {/* SEÇÃO MÍDIA SOCIAL - COM ANIMAÇÃO CSS */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
@@ -252,8 +249,8 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO AUTOMAÇÃO */}
-        <section className="py-32 bg-[#0A1738] border-t border-white/5">
+        {/* SEÇÃO AUTOMAÇÃO COM SCROLLTRIGGER TIMELINE */}
+        <section ref={automationRef} className="automation-section py-32 bg-[#0A1738] border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-2 gap-12 items-center">
             <div className="grid sm:grid-cols-2 gap-6">
               {automations.map((item, index) => {
@@ -268,7 +265,9 @@ export default function Index() {
               })}
             </div>
             <div className="mt-12 lg:mt-0 bg-white p-16 rounded-[3rem] text-center">
-              <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
+              <div className="automation-percentage">
+                <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6" />
+              </div>
               <p className="text-5xl font-bold text-[#0A1738]">85%</p>
               <p className="text-[#0DBAAC] uppercase text-sm font-medium">Ahorro de Tiempo</p>
             </div>
