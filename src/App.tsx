@@ -39,8 +39,8 @@ export default function Index() {
         });
       }
 
-      // Animação dos cards ao scroll (Serviços e Automação)
-      gsap.utils.toArray('.service-card').forEach((card: any) => {
+      // Animação dos cards de automação ao scroll (NÃO aplica mais aos service-card da seção de redes sociais)
+      gsap.utils.toArray('.automation-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
           opacity: 0, 
@@ -94,34 +94,70 @@ export default function Index() {
         />
       </div>
 
+      {/* CSS para animação dos cards de redes sociais - SEM conflito com GSAP */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .social-card {
+          opacity: 0;
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .social-card:nth-child(1) {
+          animation-delay: 0.2s;
+        }
+
+        .social-card:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+
+        .social-card:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+
+        .social-card:hover {
+          transform: translateY(-8px);
+          transition: transform 0.3s ease;
+        }
+      `}</style>
+
       <main className="relative z-10">
         
-        {/* HERO SECTION COM ESFERA #0DBAAC */}
-        <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
-          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 items-center">
+        {/* HERO SECTION COM ESFERA #0DBAAC - RESPONSIVO */}
+        <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
-            <div className="hero-content space-y-8">
-              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-6 py-2 rounded-full text-sm font-semibold shadow-sm">
+            <div className="hero-content space-y-6 sm:space-y-8">
+              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
               </div>
-              <h1 className="hero-title text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
+              <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-[#0A1738] leading-[1.1]">
                 Estratégias de <br/> marketing digital <br/>
-                <span className="font-light italic text-[#0DBAAC] text-4xl lg:text-6xl lowercase">Barcelona</span>
+                <span className="font-light italic text-[#0DBAAC] text-2xl sm:text-3xl md:text-4xl lg:text-6xl lowercase">Barcelona</span>
               </h1>
-              <p className="hero-subtitle text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-6 max-w-md">
+              <p className="hero-subtitle text-base sm:text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-4 sm:pl-6 max-w-md">
                 Marketing de alto nivel para especialistas que desean aumentar la visibilidad y las citas de su clínica.
               </p>
               <div className="hero-button">
-                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-10 py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20">
+                <Link to="/contacto" className="inline-flex bg-[#0DBAAC] text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold items-center hover:bg-[#0a8d82] transition-all shadow-xl shadow-[#0DBAAC]/20 text-sm sm:text-base">
                   Análisis Gratuito <ArrowRight className="ml-2" size={20} />
                 </Link>
               </div>
             </div>
 
-            {/* ESFERA FIXA COM VÍDEO GIRANDO */}
-            <div className="flex justify-center items-center perspective-[1000px]">
-              <div className="sphere-frame relative w-[480px] h-[480px] rounded-full flex items-center justify-center">
-                <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[120px] rounded-full" />
+            {/* ESFERA FIXA COM VÍDEO GIRANDO - RESPONSIVA */}
+            <div className="flex justify-center items-center perspective-[1000px] mt-8 lg:mt-0">
+              <div className="sphere-frame relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px] rounded-full flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[80px] sm:blur-[120px] rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-[0_20px_50px_rgba(13,186,172,0.3)] bg-[#0DBAAC] flex items-center justify-center">
                   <video 
                     ref={videoRef}
@@ -156,7 +192,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO MÍDIA SOCIAL */}
+        {/* SEÇÃO MÍDIA SOCIAL - COM ANIMAÇÃO CSS (sem conflito GSAP) */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-20">
@@ -166,7 +202,7 @@ export default function Index() {
               {socialServices.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <div key={index} className="service-card bg-white/5 border border-white/10 p-10 rounded-3xl group">
+                  <div key={index} className="social-card bg-white/5 border border-white/10 p-10 rounded-3xl group cursor-pointer">
                     <Icon size={40} className="text-[#0DBAAC] mb-6 group-hover:scale-110 transition-transform" />
                     <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
                     <p className="text-white/70">{service.description}</p>
@@ -184,7 +220,7 @@ export default function Index() {
               {automations.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <div key={index} className="service-card bg-white/5 border border-white/10 p-8 rounded-3xl">
+                  <div key={index} className="automation-card bg-white/5 border border-white/10 p-8 rounded-3xl">
                     <Icon size={32} className="text-[#0DBAAC] mb-4" />
                     <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
                     <p className="text-white/60 text-sm">{item.description}</p>
@@ -200,20 +236,56 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO REVIEWS */}
+        {/* SEÇÃO REVIEWS - ESTILO GOOGLE MELHORADO */}
         <section className="py-32">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-5xl font-bold text-[#0A1738] mb-16">Lo que dicen nuestros clientes</h2>
-            <div className="grid md:grid-cols-4 gap-6">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#0A1738] mb-4">Lo que dicen nuestros clientes</h2>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <div className="flex gap-1 text-[#FBBC04]">
+                  {Array.from({length: 5}).map((_, i) => <Star key={i} size={28} fill="currentColor" />)}
+                </div>
+                <span className="text-3xl font-bold text-[#0A1738] ml-2">5.0</span>
+              </div>
+              <p className="text-slate-500 text-sm">Basado en 127 reseñas</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {reviews.map((review, index) => (
-                <div key={index} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
-                  <h4 className="font-bold text-[#0A1738]">{review.name}</h4>
-                  <p className="text-slate-700 text-sm mb-4">"{review.text}"</p>
-                  <div className="flex gap-1 text-[#0DBAAC]">
-                    {Array.from({length: 5}).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-[#0DBAAC] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                      {review.avatar}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-[#0A1738] text-sm truncate">{review.name}</h4>
+                      <p className="text-slate-500 text-xs truncate">{review.role}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-0.5 mb-3">
+                    {Array.from({length: 5}).map((_, i) => (
+                      <Star key={i} size={16} fill="#FBBC04" className="text-[#FBBC04]" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-slate-700 text-sm leading-relaxed">{review.text}</p>
+                  
+                  <div className="mt-4 pt-4 border-t border-slate-100">
+                    <p className="text-xs text-slate-400">Reseña verificada • Google</p>
                   </div>
                 </div>
               ))}
+            </div>
+            
+            <div className="text-center mt-12">
+              <a 
+                href="#" 
+                className="inline-flex items-center gap-2 text-[#0DBAAC] hover:text-[#0a8d82] font-semibold transition-colors"
+              >
+                Ver todas las reseñas
+                <ArrowRight size={18} />
+              </a>
             </div>
           </div>
         </section>
