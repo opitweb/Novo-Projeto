@@ -140,36 +140,23 @@ export default function Index() {
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo administrativo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
-   return (
+ return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
-
-      {/* EFEITO DE BOLINHAS ANIMADAS */}
+      
+      {/* EFEITO DE BOLINHAS (DOT GRID) - VERDE SUAVE */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
-          className="absolute inset-0 w-full h-full opacity-[0.50] animate-dots"
+          className="absolute inset-0 w-full h-full opacity-[0.50]"
           style={{
             backgroundImage: `radial-gradient(#0DBAAC 1.5px, transparent 1.5px)`,
             backgroundSize: '40px 40px',
-            maskImage: 'linear-gradient(to bottom, black 50%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent)',
-            animation: 'moveDots 20s linear infinite'
+            maskImage: 'linear-gradient(to bottom, black 50%, transparent)', // Desvanece as bolinhas para o final da página
+            WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent)'
           }}
         />
       </div>
 
-      <style>{`
-        @keyframes moveDots {
-          0% { background-position: 0 0; }
-          100% { background-position: 40px 40px; }
-        }
-      `}</style>
-
       <main className="relative z-10">
-        {/* TODO: Colocar todo o restante do JSX aqui, hero, seções, chatbot... */}
-      </main>
-    </div>
-  </>
-);
 
         
         {/* HERO SECTION */}
