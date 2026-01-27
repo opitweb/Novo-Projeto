@@ -142,7 +142,6 @@ export default function Index() {
   ];
 
 return (
-   return (
   <>
     <SEO
       title="Agência de Marketing Médico em Barcelona | Betterfly Media"
