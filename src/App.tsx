@@ -17,10 +17,7 @@ import Chatbot from './components/Chatbot/Chatbot';
 export default function Index() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
-
-  // Refs do banner - Simplificado (removido fb e ig)
   const bannerRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -29,15 +26,35 @@ export default function Index() {
     window.addEventListener('scroll', handleScroll);
 
     const ctx = gsap.context(() => {
-      // Timeline do Hero (Surgimento suave)
+      // 1. Entrada do Hero
       const heroTl = gsap.timeline();
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
             .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
             .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
             .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
-            .from(".hero-banner", { opacity: 0, scale: 0.9, duration: 1.2, ease: "power2.out" }, "-=1");
+            .from(".hero-banner", { opacity: 0, scale: 0.5, duration: 1.5, ease: "elastic.out(1, 0.75)" }, "-=1");
 
-      // Animação dos cards ao scroll (Serviços)
+      // 2. Animação da BOLA (Giro e Flutuação)
+      if (bannerRef.current) {
+        // Rotação contínua
+        gsap.to(bannerRef.current, {
+          rotation: 360,
+          duration: 20,
+          repeat: -1,
+          ease: "none"
+        });
+
+        // Flutuação (sobe e desce)
+        gsap.to(bannerRef.current, {
+          y: -20,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut"
+        });
+      }
+
+      // Animação dos cards de serviço ao scroll
       gsap.utils.toArray('.service-card').forEach((card: any) => {
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
@@ -48,15 +65,6 @@ export default function Index() {
         });
       });
 
-      // Animação da Seção Barcelona
-      gsap.from(".barcelona-content", {
-        scrollTrigger: { trigger: ".barcelona-content", start: "top 80%" },
-        opacity: 0,
-        x: -50,
-        duration: 1.2,
-        ease: "power2.out"
-      });
-
     }, mainRef);
 
     return () => {
@@ -65,7 +73,7 @@ export default function Index() {
     };
   }, []);
 
-  // Dados das seções (Mantidos exatamente como no seu código original)
+  // Dados das seções (Mantidos conforme original)
   const socialServices = [
     { icon: Instagram, title: "Instagram & TikTok", description: "Contenido visual que conecta con pacientes potenciales y genera confianza." },
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
@@ -129,29 +137,38 @@ export default function Index() {
               </div>
             </div>
 
-            {/* BANNER COM VÍDEO (ÚNICO E LIMPO) */}
-            <div className="relative w-full flex justify-center items-center overflow-visible">
-              <div ref={bannerRef} className="hero-banner relative">
-                <div className="bg-white rounded-[4rem] shadow-2xl overflow-hidden border-8 border-white w-[500px] h-[500px] flex items-center justify-center">
+            {/* A BOLA (ESFERA GIRATÓRIA) */}
+            <div className="relative w-full flex justify-center items-center">
+              <div className="hero-banner relative">
+                {/* Glow de fundo para a bola saltar do site */}
+                <div className="absolute inset-0 bg-[#0DBAAC]/20 blur-[100px] rounded-full scale-150"></div>
+                
+                <div 
+                  ref={bannerRef}
+                  className="relative w-[420px] h-[420px] rounded-full overflow-hidden border-[12px] border-white shadow-[0_0_60px_rgba(13,186,172,0.2)] bg-white flex items-center justify-center"
+                >
                   <video 
                     autoPlay 
                     muted 
                     loop 
                     playsInline 
-                    className="w-full h-full object-cover"
+                    className="w-[120%] h-[120%] object-cover max-w-none"
                   >
                     <source src="https://agzxythrwhlpvptlsepv.supabase.co/storage/v1/object/public/Orlando%20Air%20cond/video.mp4" type="video/mp4" />
                   </video>
+
+                  {/* Efeito de lente de vidro */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/30 pointer-events-none rounded-full"></div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO BARCELONA */}
+        {/* RESTANTE DO SITE (BARCELONA, SOCIAL, ETC) */}
         <section className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative z-20 border-y border-slate-100">
-          <div className="max-w-7xl mx-auto px-6 barcelona-content">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
+          <div className="max-w-7xl mx-auto px-6">
+             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-16 leading-[1.05] tracking-tight text-[#0A1738] max-w-5xl">
               Atraemos más pacientes a <span className="text-[#0DBAAC]"> tu clínica con </span> <span className="text-[#0DBAAC]">estrategias digitales probadas.</span> 
             </h2>
             <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
@@ -166,7 +183,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* SEÇÃO MÍDIA SOCIAL */}
+        {/* Mantenha as outras seções igual ao seu original */}
         <section className="py-32 relative bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="text-center mb-20">
@@ -189,66 +206,6 @@ export default function Index() {
                   </div>
                 )
               })}
-            </div>
-          </div>
-        </section>
-
-        {/* SEÇÃO AUTOMAÇÃO */}
-        <section className="py-32 relative bg-[#0A1738] overflow-hidden border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-              <span className="inline-flex items-center gap-2 text-[#0DBAAC] text-sm font-semibold uppercase tracking-widest mb-6">
-                <Bot size={16} /> Automatización
-              </span>
-              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
-                <span className="text-[#0DBAAC]">Automatiza</span> tu clínica<br/>
-                y multiplica resultados
-              </h2>
-            </div>
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="grid sm:grid-cols-2 gap-6">
-                {automations.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all hover:-translate-y-1 group">
-                      <Icon size={32} className="text-[#0DBAAC] mb-4 group-hover:scale-110 transition-transform" />
-                      <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
-                    </div>
-                  )
-                })}
-              </div>
-              <div className="bg-white p-16 rounded-[3rem] shadow-2xl relative overflow-hidden text-center">
-                <Cog size={80} className="text-[#0DBAAC] mx-auto mb-6 animate-spin" style={{ animationDuration: '8s' }} />
-                <p className="text-5xl font-bold text-[#0A1738]">85%</p>
-                <p className="text-[#0DBAAC] uppercase tracking-widest text-sm font-medium">Ahorro de Tiempo</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SEÇÃO GOOGLE REVIEWS */}
-        <section className="py-32 relative">
-          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-5xl md:text-7xl font-bold text-[#0A1738] mb-16">
-              Lo que dicen <span className="text-[#0DBAAC]">nuestros clientes</span>
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {reviews.map((review, index) => (
-                <div key={index} className="bg-white p-8 rounded-3xl border border-slate-200 shadow-lg text-left">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-full bg-[#0DBAAC]/10 flex items-center justify-center font-bold text-[#0DBAAC]">{review.avatar}</div>
-                    <div>
-                      <h4 className="font-bold text-[#0A1738]">{review.name}</h4>
-                      <p className="text-xs text-slate-500">{review.role}</p>
-                    </div>
-                  </div>
-                  <p className="text-slate-700 text-sm leading-relaxed mb-4">"{review.text}"</p>
-                  <div className="flex gap-1 text-[#0DBAAC]">
-                    {Array.from({length: review.rating}).map((_, i) => <Star key={i} size={16} />)}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>
