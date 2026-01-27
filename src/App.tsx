@@ -25,15 +25,15 @@ export default function Index() {
     window.addEventListener('scroll', handleScroll);
 
     const ctx = gsap.context(() => {
-      // Timeline do Hero
+      // Timeline do Hero - Adicionado clearProps para evitar tremores após o término
       const heroTl = gsap.timeline();
       heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6 })
-            .from(".hero-title", { opacity: 0, y: 50, duration: 1 }, "-=0.3")
-            .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1 }, "-=0.7")
-            .from(".hero-button", { opacity: 0, y: 30, duration: 1 }, "-=0.7")
+            .from(".hero-title", { opacity: 0, y: 50, duration: 1, clearProps: "y" }, "-=0.3")
+            .from(".hero-subtitle", { opacity: 0, y: 50, duration: 1, clearProps: "y" }, "-=0.7")
+            .from(".hero-button", { opacity: 0, y: 30, duration: 1, clearProps: "y" }, "-=0.7")
             .from(".hero-sphere-wrapper", { opacity: 0, scale: 0.8, duration: 1.2, ease: "back.out(1.7)" }, "-=1");
 
-      // GIRO 3D REALISTA (Sem efeito achatado)
+      // GIRO 3D REALISTA
       if (videoRef.current) {
         gsap.to(videoRef.current, {
           rotationY: 360,
@@ -44,23 +44,31 @@ export default function Index() {
         });
       }
 
-      // Animações de Scroll nos cards
+      // Animações de Scroll e Hover nos cards
       gsap.utils.toArray('.service-card').forEach((card: any) => {
+        // Entrada (Scroll)
         gsap.from(card, {
           scrollTrigger: { trigger: card, start: "top 85%" },
-          opacity: 0, y: 50, duration: 1, ease: "power3.out"
+          opacity: 0, 
+          y: 50, 
+          duration: 1, 
+          ease: "power3.out",
+          force3D: true,
+          clearProps: "transform" // Evita conflito com o hover
         });
 
-        // --- NOVA ANIMAÇÃO DE HOVER (GSAP) ---
+        // Hover (Interação)
         card.addEventListener('mouseenter', () => {
           gsap.to(card, {
             y: -10,
             scale: 1.02,
             backgroundColor: "rgba(255, 255, 255, 0.12)",
             borderColor: "#0DBAAC",
-            duration: 0.4,
+            duration: 0.3,
             ease: "power2.out",
-            overwrite: true
+            overwrite: "auto",
+            force3D: true,
+            zIndex: 50
           });
         });
 
@@ -70,9 +78,11 @@ export default function Index() {
             scale: 1,
             backgroundColor: "rgba(255, 255, 255, 0.05)",
             borderColor: "rgba(255, 255, 255, 0.1)",
-            duration: 0.4,
+            duration: 0.3,
             ease: "power2.inOut",
-            overwrite: true
+            overwrite: "auto",
+            force3D: true,
+            zIndex: 1
           });
         });
       });
@@ -91,11 +101,6 @@ export default function Index() {
     { icon: Facebook, title: "Facebook Ads", description: "Campañas segmentadas para captar pacientes cualificados en tu zona." },
     { icon: Linkedin, title: "LinkedIn", description: "Posicionamiento profesional para especialistas y clínicas de referencia." },
   ];
-  const socialStats = [
-    { icon: Users, value: 200, suffix: "M", prefix: "+", label: "Alcance Mensual" },
-    { icon: Heart, value: 98, suffix: "%", prefix: "", label: "Engagement Rate" },
-    { icon: TrendingUp, value: 180, suffix: "%", prefix: "+", label: "Crecimiento Seguidores" },
-  ];
   const webFeatures = [
     { icon: Globe, title: "Diseño Web Premium", description: "Websites que convierten visitantes en pacientes con diseño profesional." },
     { icon: Search, title: "SEO Médico", description: "Posicionamiento orgánico especializado para clínicas y especialistas." },
@@ -104,23 +109,10 @@ export default function Index() {
     { icon: Monitor, title: "Responsive Design", description: "Diseños que se adaptan perfectamente a todos los dispositivos." },
     { icon: BarChart3, title: "Analítica Avanzada", description: "Seguimiento detallado del comportamento de usuarios." },
   ];
-  const automations = [
-    { icon: Calendar, title: "Reservas Automatizadas", description: "Sistema de citas online integrado con tu agenda." },
-    { icon: MessageSquare, title: "Chatbots Inteligentes", description: "Atención 24/7 para consultas y captación de leads." },
-    { icon: Workflow, title: "Email Marketing", description: "Secuencias automatizadas de seguimiento y fidelización." },
-    { icon: Target, title: "Lead Scoring", description: "Clasificación automática de prospectos." },
-  ];
-  const reviews = [
-    { name: "Dr. María García", role: "Cirujana Plástica", rating: 5, text: "Betterfly transformó completamente nuestra presencia digital. En 6 meses duplicamos las consultas.", avatar: "MG" },
-    { name: "Clínica Dental Sonrisa", role: "Odontología", rating: 5, text: "El equipo es increíble. Nuestro SEO pasó de la página 5 a los primeiros resultados.", avatar: "CS" },
-    { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabalho administrativo.", avatar: "CF" },
-    { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
-  ];
 
   return (
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-x-hidden font-['Poppins']">
       
-      {/* BACKGROUND DOT GRID */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 w-full h-full opacity-[0.40]"
           style={{
@@ -134,11 +126,9 @@ export default function Index() {
 
       <main className="relative z-10">
         
-        {/* HERO SECTION - REVISADA PARA RESPONSIVIDADE TOTAL */}
         <section className="pt-28 lg:pt-36 pb-20 px-4 md:px-6 min-h-screen flex items-center justify-center">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 lg:gap-10 items-center">
             
-            {/* TEXTO - FONTE AJUSTADA PARA MOBILE */}
             <div className="hero-content space-y-6 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left px-2">
               <div className="hero-badge inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-slate-200 text-[#0A1738] px-5 py-2 rounded-full text-xs md:text-sm font-semibold shadow-sm">
                 <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
@@ -160,7 +150,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* ESFERA - CORRIGIDA: SEM SOBREPOSIÇÃO E COM PERSPECTIVA */}
             <div className="hero-sphere-wrapper relative w-full flex justify-center items-center order-1 lg:order-2 py-10 lg:py-0">
               <div className="absolute w-[240px] h-[240px] lg:w-[450px] lg:h-[450px] bg-[#0DBAAC]/15 blur-[50px] lg:blur-[120px] rounded-full" />
               
@@ -182,7 +171,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* --- SEÇÃO BARCELONA --- */}
         <section className="py-24 bg-white/40 backdrop-blur-sm border-y border-slate-100 relative z-20">
           <div className="max-w-7xl mx-auto px-6 barcelona-content">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-12 text-[#0A1738] leading-tight">
@@ -195,12 +183,11 @@ export default function Index() {
           </div>
         </section>
 
-        {/* --- SEÇÃO SOCIAL SERVICES --- */}
         <section className="py-32 bg-[#0A1738]">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               {socialServices.map((s, i) => (
-                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 transition-colors">
+                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 transition-colors cursor-pointer">
                   <s.icon size={40} className="text-[#0DBAAC] mb-6" />
                   <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
                   <p className="text-white/70">{s.description}</p>
@@ -213,7 +200,7 @@ export default function Index() {
         <section className="py-32 bg-white">
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-8">
             {webFeatures.map((f, i) => (
-              <div key={i} className="service-card p-10 rounded-3xl border border-slate-100 hover:shadow-xl transition-all">
+              <div key={i} className="service-card p-10 rounded-3xl border border-slate-100 transition-all cursor-pointer">
                 <f.icon size={30} className="text-[#0DBAAC] mb-8" />
                 <h3 className="text-2xl font-bold text-[#0A1738] mb-4">{f.title}</h3>
                 <p className="text-slate-500">{f.description}</p>
