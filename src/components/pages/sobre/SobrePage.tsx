@@ -35,17 +35,64 @@ export default function SobrePage() {
         />
       </div>
 
+      {/* CSS para animação do gradiente no H1 */}
+      <style>{`
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
+        .gradient-text {
+          background: linear-gradient(
+            90deg,
+            #0A1738 0%,
+            #0A1738 40%,
+            #0DBAAC 50%,
+            #06d6c4 60%,
+            #0A1738 70%,
+            #0A1738 100%
+          );
+          background-size: 200% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes reveal {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-reveal {
+          animation: reveal 1s ease-out forwards;
+        }
+
+        .delay-200 {
+          animation-delay: 0.2s;
+          opacity: 0;
+        }
+      `}</style>
+
       <main className="relative z-10">
         {/* HEADER DA PÁGINA - Com respiro para a Navbar */}
         <section className="pt-48 pb-24 text-center px-6">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal">
-             Agencia de Marketing Digital en Barcelona
-
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#0A1738] tracking-tighter mb-8 animate-reveal leading-[1.1]">
+              Agencia de Marketing Digital en <span className="gradient-text">Barcelona</span>
             </h1>
-            <p className="text-xl text-slate-500 italic border-l-2 border-[#0DBAAC] inline-block pl-6 max-w-2xl text-left animate-reveal">
+            <p className="text-lg sm:text-xl text-slate-500 italic border-l-2 border-[#0DBAAC] inline-block pl-6 max-w-2xl text-left animate-reveal">
               Transforma tu presencia digital con estrategias de marketing de alto impacto. ¡Estamos a un mensaje de distancia!
-
             </p>
           </div>
         </section>
