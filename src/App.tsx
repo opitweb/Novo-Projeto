@@ -259,19 +259,15 @@ export default function Index() {
         
         <section className="pt-24 pb-12 px-4 sm:px-6 min-h-[90vh] lg:h-screen flex items-center relative">
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            
-            <div className="hero-content space-y-6 sm:space-y-8">
-              <div className="hero-badge inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-sm">
-                <Sparkles size={14} className="text-[#0DBAAC]" /> Marketing Médico en Barcelona
-              </div>
+           <h1 className="hero-title text-[3rem] sm:text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#0A1738] leading-tight max-w-2xl">
+                Marketing Digital
+              <span className="block mt-2 font-light italic text-[#0DBAAC] text-[2rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
+               Barcelona
+              </span>
+             </h1>
               
               {/* H1 COM TAMANHOS MUITO MENORES NO MOBILE */}
-              <h1 className="hero-title text-[3rem] sm:text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#0A1738] leading-[2rem] max-w-2xl">
-                <br className="sm:hidden" /> Marketing<br className="sm:hidden" /> digital{' '}
-                <span className="block mt-2 font-light italic text-[#0DBAAC] text-[2rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
-                  Barcelona
-                </span>
-              </h1>
+            
 
               <p className="hero-subtitle text-base sm:text-lg text-slate-500 border-l-2 border-[#0DBAAC] pl-4 sm:pl-6 max-w-md">
                 Marketing de alto nivel para especialistas que desean aumentar la visibilidad y las citas de su clínica.
