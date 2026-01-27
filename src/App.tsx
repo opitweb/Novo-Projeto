@@ -125,7 +125,7 @@ export default function Index() {
     >
       <main className="relative z-10">
         {/* HERO */}
-        <section className="max-w-7xl mx-auto px-6 pt-24 grid lg:grid-cols-2 gap-16 items-center">
+            <section className="max-w-7xl mx-auto px-6 pt-32 lg:pt-40 grid lg:grid-cols-2 gap-16 items-center min-h-[90vh]">
           <div>
             <h1 className="hero-title text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight max-w-2xl">
               Marketing Digital
