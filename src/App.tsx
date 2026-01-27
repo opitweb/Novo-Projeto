@@ -140,7 +140,6 @@ export default function Index() {
     { name: "Dr. Carlos Fernández", role: "Dermatólogo", rating: 5, text: "La automatización de citas nos ahorró horas de trabajo administrativo.", avatar: "CF" },
     { name: "Centro Médico Salud", role: "Medicina General", rating: 5, text: "Excelente servicio. Las redes sociales nunca habían tenido tanto engagement.", avatar: "CM" },
   ];
-
 return (
   <>
     <SEO
@@ -148,17 +147,10 @@ return (
       description="Agência de marketing médico em Barcelona especializada em atrair pacientes..."
       canonical="https://betterflymedia.es/"
     />
-    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
-      <main className="relative z-10">
-        {/* TODO: resto do JSX */}
-      </main>
-    </div>
-  </>
-);
 
     <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
-      
-      {/* EFEITO DE BOLINHAS ANIMADAS (DOT GRID) - VERDE SUAVE */}
+
+      {/* EFEITO DE BOLINHAS ANIMADAS */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div
           className="absolute inset-0 w-full h-full opacity-[0.50] animate-dots"
@@ -172,19 +164,20 @@ return (
         />
       </div>
 
-      {/* Estilos CSS para animação das bolinhas */}
       <style>{`
         @keyframes moveDots {
-          0% {
-            background-position: 0 0;
-          }
-          100% {
-            background-position: 40px 40px;
-          }
+          0% { background-position: 0 0; }
+          100% { background-position: 40px 40px; }
         }
       `}</style>
 
       <main className="relative z-10">
+        {/* TODO: Colocar todo o restante do JSX aqui, hero, seções, chatbot... */}
+      </main>
+    </div>
+  </>
+);
+
         
         {/* HERO SECTION */}
         <section className="pt-24 pb-12 px-6 min-h-[90vh] lg:h-screen flex items-center">
