@@ -148,8 +148,10 @@ return (
       description="Agência de marketing médico em Barcelona especializada em atrair pacientes..."
       canonical="https://betterflymedia.es/"
     />
-    <div ref={mainRef} className="min-h-screen ...">
-      ...
+    <div ref={mainRef} className="min-h-screen bg-[#F5F5F5] text-[#0A1738] relative overflow-hidden font-['Poppins']">
+      <main className="relative z-10">
+        {/* TODO: resto do JSX */}
+      </main>
     </div>
   </>
 );
