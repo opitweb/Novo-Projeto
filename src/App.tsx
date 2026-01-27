@@ -50,6 +50,31 @@ export default function Index() {
           scrollTrigger: { trigger: card, start: "top 85%" },
           opacity: 0, y: 50, duration: 1, ease: "power3.out"
         });
+
+        // --- NOVA ANIMAÇÃO DE HOVER (GSAP) ---
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            y: -10,
+            scale: 1.02,
+            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            borderColor: "#0DBAAC",
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: true
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            y: 0,
+            scale: 1,
+            backgroundColor: "rgba(255, 255, 255, 0.05)",
+            borderColor: "rgba(255, 255, 255, 0.1)",
+            duration: 0.4,
+            ease: "power2.inOut",
+            overwrite: true
+          });
+        });
       });
 
     }, mainRef);
@@ -175,7 +200,7 @@ export default function Index() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid md:grid-cols-3 gap-8">
               {socialServices.map((s, i) => (
-                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 hover:bg-white/10 transition-colors">
+                <div key={i} className="service-card bg-white/5 p-10 rounded-3xl border border-white/10 transition-colors">
                   <s.icon size={40} className="text-[#0DBAAC] mb-6" />
                   <h3 className="text-2xl font-bold text-white mb-4">{s.title}</h3>
                   <p className="text-white/70">{s.description}</p>
