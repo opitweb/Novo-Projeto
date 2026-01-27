@@ -268,7 +268,7 @@ export default function Index() {
               {/* H1 COM TAMANHOS MUITO MENORES NO MOBILE */}
               <h1 className="hero-title text-[3rem] sm:text-[3rem] md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#0A1738] leading-[1.15] max-w-2xl">
                 <br className="sm:hidden" /> Marketing<br className="sm:hidden" /> digital{' '}
-                <span className="block mt-2 font-light italic text-[#0DBAAC] text-[1.75rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
+                <span className="block mt-2 font-light italic text-[#0DBAAC] text-[2rem] sm:text-[2.25rem] md:text-4xl lg:text-5xl xl:text-6xl lowercase">
                   Barcelona
                 </span>
               </h1>
