@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from './components/SEO';
 import { 
   Sparkles, ArrowRight, Award, Instagram, Facebook, Linkedin, 
   TrendingUp, Users, Heart, Globe, Search, Palette, Zap, Monitor, 
